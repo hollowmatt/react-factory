@@ -25,6 +25,7 @@ class Switch extends React.Component {
         {presentStep("Switch4", Switch4)}
         {presentStep("Switch5", Switch5)}
         {presentStep("Switch6", Switch6)}
+        {presentStep("Switch7", Switch5)}
       </div>
     );
   }
