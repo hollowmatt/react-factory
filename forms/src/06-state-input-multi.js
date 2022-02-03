@@ -60,7 +60,7 @@ module.exports = class extends React.Component {
           <ul>
             {this.state.people.map(({name, email}, i) => (
               <li key={i}>
-                {name} ({email})
+                {name} (<a href={"mailto:" + email + ""}>{email}</a>)
               </li>
             ))}
           </ul>
