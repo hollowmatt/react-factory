@@ -44,6 +44,9 @@ module.exports = class extends React.Component {
     const course = evt.target.value;
     this.setState({course});
     this.props.onChange({name: 'course', value: course});
+    console.log("[State] Department: " + this.state.department + ", course: " + this.state.course);
+    console.log("[Props] Department: " + this.props.department + ", course: " + this.props.course);
+    
   };
 
   fetch = department => {
