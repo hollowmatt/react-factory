@@ -46,7 +46,7 @@ module.exports = class extends React.Component {
 
     fields[name] = value;
     fieldErrors[name] = error;
-
+    console.log(this.state)
     this.setState({fields, fieldErrors});
   };
 
@@ -57,8 +57,8 @@ module.exports = class extends React.Component {
 
     if (!person.name) return true;
     if (!person.email) return true;
-    if (!person.course) return true;
-    if (!person.department) return true;
+    // if (!person.course) return true;
+    // if (!person.department) return true;
     if (errMessages.length) return true;
 
     return false;
