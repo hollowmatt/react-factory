@@ -33,10 +33,16 @@ expected = "There was one catch, and that was catch-22";
 
 assertEqual('`capitalize()`: capitalizes the string', actual, expected);
 
-// Test 1 of CamelCase
+// Test 1 of CamelCase (spaces)
 string = 'customer responded at';
 actual = Modash.camelCase(string);
 expected = 'customerRespondedAt';
 
 assertEqual('`camelcase()`: string with spaces ', actual, expected);
 
+//Test 2 of CamelCase (underscores)
+string = 'customer_responded_at';
+actual = Modash.camelCase(string);
+expected = 'customerRespondedAt';
+
+assertEqual('`camelcase()`: string with underscores ', actual, expected);
