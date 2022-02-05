@@ -27,3 +27,16 @@ expected = string;
 
 assertEqual('`truncate()`: no-ops if <= length', actual, expected);
 
+// Test 1 of Capitalize
+actual = Modash.capitalize(string);
+expected = "There was one catch, and that was catch-22";
+
+assertEqual('`capitalize()`: capitalizes the string', actual, expected);
+
+// Test 1 of CamelCase
+string = 'customer responded at';
+actual = Modash.camelCase(string);
+expected = 'customerRespondedAt';
+
+assertEqual('`camelcase()`: string with spaces ', actual, expected);
+
