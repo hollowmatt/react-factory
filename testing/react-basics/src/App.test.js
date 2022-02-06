@@ -20,5 +20,26 @@ describe('App', () => {
     const button = wrapper.find('button').first();
     expect(button.props().disabled).toBe(true);
   });
+
+  describe('the user inputs some stuff', () => {
+    const item = 'Vancouver';
+
+    beforeEach(() => {
+      const input = wrapper.find('input').first();
+      input.simulate('change', {
+        target: {value: item}
+      })
+    });
+
+    it('should update the state property `item`', () => {
+      expect(wrapper.state().item).toEqual(item);
+    });
+
+    it('should enable `button`', () => {
+      const button = wrapper.find('button').first();
+      expect(button.props().disabled).toBe(false);
+    });
+  });
 });
+
 
