@@ -12,5 +12,10 @@ describe('App', () => {
     const wrapper = shallow(<App/>);
     expect(wrapper.containsMatchingElement(<button>Add item</button>)).toBe(true);
   });
+  it('`button` should be disabled', () => {
+    const wrapper = shallow(<App/>);
+    const button = wrapper.find('button').first();
+    expect(button.props().disabled).toBe(true);
+  });
 });
 
