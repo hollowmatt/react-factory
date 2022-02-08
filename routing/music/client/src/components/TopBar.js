@@ -8,7 +8,8 @@ const TopBar = () => (
   <div
     className='ui huge top attached fluid secondary menu'
   >
-    <div className='item' />
+    <div className='item'>
+    </div>
     <div className='item'>
       <h1
         className='ui green header'
