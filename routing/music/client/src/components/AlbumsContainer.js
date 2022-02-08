@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import VerticalMenu from './VerticalMenu';
 import Album from './Album';
 import { client } from '../Client';
 
@@ -44,7 +44,7 @@ class AlbumsContainer extends Component {
             className='ui six wide column'
             style={{ maxWidth: 250 }}
           >
-            {/* VerticalMenu will go here */}
+            <VerticalMenu albums={this.state.albums} />
           </div>
           <div className='ui ten wide column'>
             {
