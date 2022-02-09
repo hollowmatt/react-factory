@@ -28,7 +28,12 @@ const Album = ({ album }) => (
           <div
             className='ui left floated large button'
           >
-            Close
+            <Link
+              to='/albums'
+              className='ui left floated large button'
+            >
+              Close
+            </Link>
           </div>
         </div>
       </div>
