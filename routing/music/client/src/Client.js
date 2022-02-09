@@ -97,7 +97,8 @@ class Client {
       },
     }).then(this.checkStatus)
       .then(this.parseJson)
-      .then((json) => this.setToken(json.token));
+      .then((json) => this.setToken(json.token))
+      .then(console.log(this.token));
   }
 
   logout() {
