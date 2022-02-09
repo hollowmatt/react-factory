@@ -9,7 +9,10 @@ const PrivateRoute = ({ component, ...rest }) => (
         client.isLoggedIn() ? (
             React.createElement(component, props)
         ) : (
-            <Redirect to={{pathname: '/login',}} />
+            <Redirect to={{
+                pathname: '/login',
+                state: { from: props.location },
+            }} />
         )
     )} />
 );

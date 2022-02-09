@@ -33,7 +33,7 @@ const App = () => (
           <Redirect to='/albums'/>
         )}/>
 
-        <Route component={{NoMatch}} />
+        <Route component={NoMatch} />
       </Switch>
     </div>
   </div>
