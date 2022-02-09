@@ -39,21 +39,22 @@ class AlbumsContainer extends Component {
         <div className='ui active centered inline loader' />
       );
     } else {
+      const matchPath = this.props.match.path;
       return (
         <div className='ui two column divided grid'>
           <div
             className='ui six wide column'
             style={{ maxWidth: 250 }}
           >
-            <VerticalMenu albums={this.state.albums} />
+            <VerticalMenu albums={this.state.albums} albumsPathname={matchPath} />
           </div>
           <div className='ui ten wide column'>
             <Route
-              path='/albums/:albumId'
+              path={`${matchPath}/:albumId`}
               render={({ match }) => {
                 const album = this.state.albums.find((a) => a.id === match.params.albumId);
                 return (
-                  <Album album={album} />
+                  <Album album={album} albumsPathname={matchPath} />
                 )
               }}
             />
