@@ -12,25 +12,57 @@ function reducer(state, action) {
     }
 }
 
-const incrementAction = { type: 'INCREMENT', amount: 5};
-const decrementAction = { type: 'DECREMENT', amount: 11};
+function createStore(reducer) {
+    let state = 0;
+    const getState = () => (state);
 
-var state = 0;
-for (let i=0; i < 4; i++) {
-    state = reducer(state, incrementAction);
-    console.log(state);
+    const dispatch = (action) => {
+        state = reducer(state, action);
+    };
+
+    return {
+        getState,
+        dispatch,
+    };
 }
 
-state = 5;
-for (let i=4; i > 0; i--) {
-    state = reducer(state, "nothing");
-    console.log(state);
-}
+// *** Reducer Test Area
+// const incrementAction = { type: 'INCREMENT', amount: 5};
+// const decrementAction = { type: 'DECREMENT', amount: 11};
 
-state = 44;
-for (let i=4; i > 0; i--) {
-    state = reducer(state, decrementAction);
-    console.log(state);
-}
+// var state = 0;
+// for (let i=0; i < 4; i++) {
+//     state = reducer(state, incrementAction);
+//     console.log(state);
+// }
 
+// state = 5;
+// for (let i=4; i > 0; i--) {
+//     state = reducer(state, "nothing");
+//     console.log(state);
+// }
 
+// state = 44;
+// for (let i=4; i > 0; i--) {
+//     state = reducer(state, decrementAction);
+//     console.log(state);
+// }
+
+// *** Store Test Area
+const store = createStore(reducer);
+const incrementAction = {
+    type: 'INCREMENT',
+    amount: 3,
+};
+const decrementAction = {
+    type: 'DECREMENT',
+    amount: 2,
+};
+
+store.dispatch(incrementAction);
+console.log(store.getState());
+store.dispatch(incrementAction);
+console.log(store.getState());
+
+store.dispatch(decrementAction);
+console.log(store.getState());
