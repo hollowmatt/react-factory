@@ -1,4 +1,6 @@
 import React from 'react';
+import MessageView from './MessageView';
+import MessageInput from './MessageInput';
 
 function reducer(state, action) {
   switch(action.type) {
@@ -44,9 +46,13 @@ class App extends React.Component {
   } 
 
   render() {
+    const messages = store.getState().messages;
+
     return(
       <div>
         <p>... work in progress</p>
+        <MessageView messages={messages} />
+        <MessageInput />
       </div>
     );
   }
