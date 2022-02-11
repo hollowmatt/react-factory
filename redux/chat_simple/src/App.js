@@ -1,3 +1,5 @@
+import React from 'react';
+
 function reducer(state, action) {
   switch(action.type) {
     case 'ADD_MESSAGE':
@@ -33,33 +35,21 @@ function createStore(reducer, initialState) {
   };
 }
 
-// * Testing out theories... electric chairs and dynamos
-const initialState = { messages: []};
+const initialState = { messages: [] };
 const store = createStore(reducer, initialState);
-const listener = () => {
-  console.log('Current state: ');
-  console.log(store.getState());
-};
 
-store.subscribe(listener);
+class App extends React.Component {
+  componentDidMount() {
+    store.subscribe(() => this.forceUpdate());  
+  } 
 
-const addMessageAction1 = {
-  type: 'ADD_MESSAGE',
-  message: 'How do you read?',
-};
+  render() {
+    return(
+      <div>
+        <p>... work in progress</p>
+      </div>
+    );
+  }
+}
 
-store.dispatch(addMessageAction1);
-
-const addMessageAction2 = {
-  type: 'ADD_MESSAGE',
-  message: 'Read you loud and clear',
-};
-
-store.dispatch(addMessageAction2);
-
-const deleteMessageAction = {
-  type: 'DELETE_MESSAGE',
-  index: 1,
-};
-
-store.dispatch(deleteMessageAction);
+export default App;
