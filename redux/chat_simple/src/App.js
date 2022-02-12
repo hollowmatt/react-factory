@@ -50,7 +50,6 @@ class App extends React.Component {
 
     return(
       <div>
-        <p>... work in progress</p>
         <MessageView messages={messages} store={store} />
         <MessageInput store={store} />
       </div>
