@@ -1,6 +1,8 @@
 import React from 'react';
 import {createStore} from 'redux';
 import uuid from 'uuid';
+import MessageInput from './MessageInput';
+import MessageView from './MessageView';
 
 function reducer(state, action) {
   if (action.type === 'ADD_MESSAGE') {
@@ -37,81 +39,8 @@ class App extends React.Component {
 
     return (
       <div className='ui segment'>
-        <MessageView messages={messages} />
-        <MessageInput />
-      </div>
-    );
-  }
-}
-
-class MessageInput extends React.Component {
-  state = {
-    value: '',
-  };
-
-  onChange = (e) => {
-    this.setState({
-      value: e.target.value,
-    })
-  };
-
-
-  handleSubmit = () => {
-    store.dispatch({
-      type: 'ADD_MESSAGE',
-      text: this.state.value,
-    });
-    this.setState({
-      value: '',
-    });
-  };
-
-  render() {
-    return (
-      <div className='ui input'>
-        <input
-          onChange={this.onChange}
-          value={this.state.value}
-          type='text'
-        />
-        <button
-          onClick={this.handleSubmit}
-          className='ui primary button'
-          type='submit'
-        >
-          Submit
-        </button>
-       </div>
-    );
-  }
-}
-
-class MessageView extends React.Component {
-  handleClick = (id) => {
-    store.dispatch({
-      type: 'DELETE_MESSAGE',
-      id: id,
-    });
-  };
-
-  render() {
-    const messages = this.props.messages.map((message, index) => (
-      <div
-        className='comment'
-        key={index}
-        onClick={() => this.handleClick(message.id)}
-      >
-        <div className='text'>
-          {message.text}
-          <span className='metadata'>@{message.timestamp}</span>
-        </div>
-      </div>
-    ));
-    return (
-      <div className='ui center aligned basic segment'>
-        <div className='ui comments'>
-          {messages}
-        </div>
+        <MessageView messages={messages} store={store}/>
+        <MessageInput store={store}/>
       </div>
     );
   }
