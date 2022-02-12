@@ -1,8 +1,8 @@
 import React from 'react';
 import {createStore} from 'redux';
 import uuid from 'uuid';
-import MessageInput from './MessageInput';
-import MessageView from './MessageView';
+import MessageInput from './components/MessageInput';
+import MessageView from './components/MessageView';
 
 function reducer(state, action) {
   if (action.type === 'ADD_MESSAGE') {
