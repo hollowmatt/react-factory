@@ -1,10 +1,27 @@
 import React from 'react';
 
 class MessageView extends React.Component {
+    handleClick = (index) => {
+        this.props.store.dispatch({
+            type: 'DELETE_MESSAGE',
+            index: index,
+        });
+    };
+
     render() {
+        const messages = this.props.messages.map((message, index) => (
+            <div
+                className='comment'
+                key={index}
+                onClick={() => this.handleClick(index)}
+            >
+                {message}
+            </div>
+        ));
+
         return (
-            <div>
-                <p> messages</p>
+            <div className='ui comments'>
+                {messages}
             </div>
         );
     }
