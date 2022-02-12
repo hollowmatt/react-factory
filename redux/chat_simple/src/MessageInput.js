@@ -24,7 +24,7 @@ class MessageInput extends React.Component {
     render() {
         return(
             <div className='ui input'>
-                <input
+                <input autoFocus
                     onChange={this.onChange}
                     value={this.state.value}
                     type='text'
