@@ -58,8 +58,16 @@ class App extends React.Component {
     const threads = state.threads;
     const activeThread = threads.find((t) => t.id === activeThreadId);
 
+    const tabs = threads.map(t => (
+      {
+        title: t.title,
+        active: t.id === activeThreadId,
+      }
+    ));
+
     return (
       <div className='ui segment'>
+        <ThreadTabs tabs={tabs} />
         <Thread thread={activeThread} />
       </div>
     );
@@ -102,6 +110,16 @@ class MessageInput extends React.Component {
         >
           Submit
         </button>
+      </div>
+    );
+  }
+}
+
+class ThreadTabs extends React.Component {
+  render() {
+    return(
+      <div>
+        <p>...tabs go here</p>
       </div>
     );
   }
