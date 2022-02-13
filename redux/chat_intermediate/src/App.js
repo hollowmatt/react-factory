@@ -116,11 +116,16 @@ class MessageInput extends React.Component {
 }
 
 class ThreadTabs extends React.Component {
+  handleClick = (id) => {
+    console.log(id);
+  };
+
   render() {
     const tabs = this.props.tabs.map((tab, index) => (
       <div
         key={index}
         className={tab.active ? 'active item' : 'item'}
+        onClick={() => this.handleClick(index)}
       >
         {tab.title}
       </div>
