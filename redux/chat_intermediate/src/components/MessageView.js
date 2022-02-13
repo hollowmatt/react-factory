@@ -2,7 +2,7 @@ import React from 'react';
 
 class MessageView extends React.Component {
     handleClick = (id) => {
-        this.props.tore.dispatch({
+        this.props.store.dispatch({
           type: 'DELETE_MESSAGE',
           id: id,
         });
