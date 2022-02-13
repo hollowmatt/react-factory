@@ -117,9 +117,17 @@ class MessageInput extends React.Component {
 
 class ThreadTabs extends React.Component {
   render() {
+    const tabs = this.props.tabs.map((tab, index) => (
+      <div
+        key={index}
+        className={tab.active ? 'active item' : 'item'}
+      >
+        {tab.title}
+      </div>
+    ))
     return(
-      <div>
-        <p>...tabs go here</p>
+      <div className='ui tip attached tabular menu'>
+        {tabs}
       </div>
     );
   }
