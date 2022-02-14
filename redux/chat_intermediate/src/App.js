@@ -25,11 +25,28 @@ function reducer(state, action) {
       ],
     };
   } else if (action.type === 'DELETE_MESSAGE') {
-    return {
-      messages: state.messages.filter((m) => (
-        m.id !== action.id
+    const threadIndex = state.threads.findIndex(
+      (t) => t.messages.find((m) => (
+        m.id === action.id
       ))
+    );
+    const oldThread = state.threads[threadIndex];
+    const newThread = {
+      ...oldThread, 
+      messages: oldThread.messages.filter((m) => (
+        m.id !== action.id
+      )),
     };
+
+    return {
+      ...state,
+      threads: [
+        ...state.threads.slice(0, threadIndex),
+        newThread,
+        ...state.threads.slice(threadIndex + 1, state.threads.length),
+      ],
+    };
+
   } else {
     return state;
   }
@@ -156,6 +173,7 @@ class Thread extends React.Component {
     store.dispatch({
       type: 'DELETE_MESSAGE',
       id: id,
+      threadId: this.props.thread,
     });
   };
 
