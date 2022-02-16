@@ -62,6 +62,9 @@ function threadsReducer(state, action) {
   }
 }
 
+function messagesReducer(state, action) {
+  //this will be to further refine the reducer
+}
 
 const initialState = {
   activeThreadId: '1-fca2', // New state property
