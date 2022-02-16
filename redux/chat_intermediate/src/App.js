@@ -2,39 +2,48 @@ import React from 'react';
 import uuid from 'uuid';
 import { createStore } from 'redux';
 
-function threadsReducer(state, action) {
-
+function reducer(state, action) {
+  return {
+    activeThreadId: activeThreadIdReducer(state.activeThreadId, action),
+    threads: threadsReducer(state.threads, action),
+  };
 }
 
-function reducer(state, action) {
+function activeThreadIdReducer(state, action) {
+  if(action.type ==='OPEN_THREAD') {
+    return action.id;
+  } else {
+    return state;
+  }
+}
+
+function threadsReducer(state, action) {
   if (action.type === 'ADD_MESSAGE') {
     const newMessage = {
       text: action.text,
       timestamp: Date.now(),
       id: uuid.v4(),
     };
-    const threadIndex = state.threads.findIndex((t) => t.id === action.threadId);
-    const oldThread = state.threads[threadIndex];
+    const threadIndex = state.findIndex((t) => t.id === action.threadId);
+    const oldThread = state[threadIndex];
     const newThread = {
       ...oldThread,
       messages: oldThread.messages.concat(newMessage),
     };
     
-    return {
-      ...state,
-      threads: [
-        ...state.threads.slice(0, threadIndex),
-        newThread,
-        ...state.threads.slice(threadIndex + 1, state.threads.length),
-      ],
-    };
+    return [
+      ...state.slice(0, threadIndex),
+      newThread,
+      ...state.slice(threadIndex + 1, state.length),
+    ];
+    
   } else if (action.type === 'DELETE_MESSAGE') {
-    const threadIndex = state.threads.findIndex(
+    const threadIndex = state.findIndex(
       (t) => t.messages.find((m) => (
         m.id === action.id
       ))
     );
-    const oldThread = state.threads[threadIndex];
+    const oldThread = state[threadIndex];
     const newThread = {
       ...oldThread, 
       messages: oldThread.messages.filter((m) => (
@@ -42,23 +51,17 @@ function reducer(state, action) {
       )),
     };
 
-    return {
-      ...state,
-      threads: [
-        ...state.threads.slice(0, threadIndex),
-        newThread,
-        ...state.threads.slice(threadIndex + 1, state.threads.length),
-      ],
-    };
+    return [
+      ...state.slice(0, threadIndex),
+      newThread,
+      ...state.slice(threadIndex + 1, state.length),
+    ];
 
-  } else if (action.type === 'OPEN_THREAD') {
-    return {
-      ...state, activeThreadId: action.id,
-    };
   } else {
     return state;
   }
 }
+
 
 const initialState = {
   activeThreadId: '1-fca2', // New state property
