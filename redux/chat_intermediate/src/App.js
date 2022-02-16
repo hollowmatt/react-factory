@@ -2,6 +2,10 @@ import React from 'react';
 import uuid from 'uuid';
 import { createStore } from 'redux';
 
+function threadsReducer(state, action) {
+
+}
+
 function reducer(state, action) {
   if (action.type === 'ADD_MESSAGE') {
     const newMessage = {
