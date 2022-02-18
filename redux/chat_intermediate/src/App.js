@@ -69,6 +69,17 @@ function messagesReducer(state, action) {
   }
 }
 
+function findThreadIndex(threads, action) {
+  switch (action.type) {
+    case 'ADD_MESSAGE': {
+
+    }
+    case 'DELETE_MESSAGE': {
+      
+    }
+  }
+}
+
 const initialState = {
   activeThreadId: '1-fca2', // New state property
   threads: [ // Two threads in state
