@@ -15,6 +15,7 @@ function activeThreadIdReducer(state, action) {
   } else {
     return state;
   }
+  //delete goes here
 }
 
 function threadsReducer(state, action) {
@@ -75,7 +76,7 @@ function findThreadIndex(threads, action) {
 
     }
     case 'DELETE_MESSAGE': {
-      
+
     }
   }
 }
