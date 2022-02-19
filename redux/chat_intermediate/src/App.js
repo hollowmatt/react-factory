@@ -19,41 +19,24 @@ function activeThreadIdReducer(state, action) {
 }
 
 function threadsReducer(state, action) {
-  if (action.type === 'ADD_MESSAGE') {
-    
-    const threadIndex = state.findIndex((t) => t.id === action.threadId);
-    const oldThread = state[threadIndex];
-    const newThread = {
-      ...oldThread,
-      messages: messagesReducer(oldThread.messages, action),
-    };
-    
-    return [
-      ...state.slice(0, threadIndex),
-      newThread,
-      ...state.slice(threadIndex + 1, state.length),
-    ];
-    
-  } else if (action.type === 'DELETE_MESSAGE') {
-    const threadIndex = state.findIndex(
-      (t) => t.messages.find((m) => (
-        m.id === action.id
-      ))
-    );
-    const oldThread = state[threadIndex];
-    const newThread = {
-      ...oldThread, 
-      messages: messagesReducer(oldThread.messages, action),
-    };
-
-    return [
-      ...state.slice(0, threadIndex),
-      newThread,
-      ...state.slice(threadIndex + 1, state.length),
-    ];
-
-  } else {
-    return state;
+  switch (action.type) {
+    case 'ADD_MESSAGE': 
+    case 'DELETE_MESSAGE': {
+      const threadIndex = findThreadIndex(state, action);
+      const oldThread = state[threadIndex];
+      const newThread = {
+        ...oldThread,
+        messages: messagesReducer(oldThread.messages, action),
+      };
+      return [
+        ...state.slice(0, threadIndex),
+        newThread,
+        ...state.slice(threadIndex + 1, state.length),
+      ];  
+    }
+    default: {
+      return state;
+    }
   }
 }
 
@@ -73,10 +56,13 @@ function messagesReducer(state, action) {
 function findThreadIndex(threads, action) {
   switch (action.type) {
     case 'ADD_MESSAGE': {
-
+      return threads.findIndex((t) => t.id === action.threadId);
     }
     case 'DELETE_MESSAGE': {
-
+      return threads.findIndex((t) => t.messages.find((m) => (m.id === action.id)));
+    }
+    default: {
+      return threads;
     }
   }
 }
