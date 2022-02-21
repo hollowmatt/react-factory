@@ -192,19 +192,16 @@ class ThreadTabs extends React.Component {
   };
 
   render() {
-    const tabs = this.props.tabs.map((tab, index) => (
-      <div
-        key={index}
-        className={tab.active ? 'active item' : 'item'}
-        onClick={() => this.handleClick(tab.id)}
-      >
-        {tab.title}
-      </div>
-    ))
     return(
-      <div className='ui tip attached tabular menu'>
-        {tabs}
-      </div>
+      <Tabs
+        tabs={this.props.tabs}
+        onClick={(id) => (
+          store.dispatch({
+            type: 'OPEN_THREAD',
+            id: id,            
+          })
+        )}
+      />
     );
   }
 }
