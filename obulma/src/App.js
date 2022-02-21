@@ -1,25 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import 'bulma/css/bulma.min.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
-
+const App = () => {
+      return (
+        <div classname="main"> 
+          <div className="buttons">
+            <div className="column">
+              <button className="button is-primary is-small is-outlined">Primary</button>
+              <button className="button is-link is-large is-disabled">Link</button>
+              <button className="button is-info">Info</button>
+              <button className="button is-success">Success</button>
+              <button className="button is-warning">Warning</button>
+              <button className="button is-danger">Danger</button>
+            </div>
+            <div className="column">
+              <button className="button is-black">Black</button>
+              <button className="button is-white">White</button>
+              <button className="button is-dark">Dark</button>
+              <button className="button is-light">Light</button>
+            </div>
+          </div>
+        </div>
+      )
+  }
+  
 export default App;
