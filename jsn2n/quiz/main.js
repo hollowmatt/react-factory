@@ -14,4 +14,23 @@ function data() {
     return('done');
 }
 
-alert(data());
+const quiz = [
+    ["What is superman's real name", "Clark Kent"],
+    ["What is wonder woman's real name", "Diana Prince"],
+    ["What is batman's real name", "Bruce Wayne"]
+];
+
+let score = 0;
+
+for(const [question, answer] of quiz) {
+    const response = prompt(question);
+    if(response === answer) {
+        alert('Correct');
+        score++;
+    } else {
+        alert(`No moron, the answer was ${answer}`);
+    }
+}
+
+alert(`Game over, you scored ${score}`);
+
