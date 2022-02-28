@@ -34,14 +34,15 @@
 
 // alert(`Game over, you scored ${score}`);
 
-const sing = (song, callback) => {
-    alert(`I'm singing a song called ${song}`);
-    callback();
-};
+// const sing = (song, callback) => {
+//     alert(`I'm singing a song called ${song}`);
+//     callback();
+// };
 
-function dance() {
-    alert("I'm dancing");
-}
+// function dance() {
+//     alert("I'm dancing");
+// }
 
-sing("Let's dance - by David Bowie", dance);
+// sing("Let's dance - by David Bowie", dance);
 
+alert([1,2,3].map( x => {let val = 2 * x; console.log(val); return(val);}));
