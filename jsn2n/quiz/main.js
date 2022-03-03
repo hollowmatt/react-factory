@@ -44,5 +44,3 @@
 // }
 
 // sing("Let's dance - by David Bowie", dance);
-
-alert([1,2,3].map( x => {let val = 2 * x; console.log(val); return(val);}));
