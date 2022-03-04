@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Routes, Route, Link } from "react-router-dom";
+import { Outlet, Link } from "react-router-dom";
 import "./App.css";
 
 function App() {
@@ -15,6 +15,7 @@ function App() {
         <Link to="/invoices">Invoices</Link> |{" "}
         <Link to="/expenses">Expenses</Link>
       </nav>
+      <Outlet />
     </div>
   );
 }
