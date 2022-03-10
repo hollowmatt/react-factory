@@ -8,15 +8,15 @@ function Invoice() {
     let invoice = getInvoice(parseInt(params.invoiceId, 10));
 
     return(
-        
-        <div className="p-6 max-w-sm mx-auto bg-white rounded-xl shadow-lg flex items-center space-x-4">
-            <div className="shrink-0">
-                <img className="h-12 w-12" src="/img/invoice.svg" alt="ChitChat Logo" />
+        <div class="max-w-sm rounded overflow-hidden shadow-lg">
+            <img class="w-full" src="/img/card-top.jpeg" alt="Sunset in the mountains" />
+            <div class="px-6 py-4">
+                <div class="font-bold text-xl mb-2">
+                    <img className="h-12 w-12 float-left" src="/img/invoice.svg" alt="ChitChat Logo" />
+                    You have a new invoice!
+                </div>
             </div>
-            <div>
-                <div className="text-xl font-medium text-black">Invoice</div>
-                <p className="text-slate-500">You have a new invoice!</p>
-                <hr/>
+            <div class="px-6 py-4 text-gray-700">
                 <p>{invoice.name}: {invoice.number}</p>
                 <p>Due Date: {invoice.due}</p>
                 <br/>
@@ -31,7 +31,12 @@ function Invoice() {
                     </button>
                 </p>
             </div>
-        </div>
+            <div class="px-6 pt-4 pb-2">
+                <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#invoice</span>
+                <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#money</span>
+                <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#pay-up</span>
+            </div>
+        </div>     
     );
 }
 
