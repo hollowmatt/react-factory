@@ -9,7 +9,6 @@ function Invoices() {
         <div style={{display: "flex"}}>
             <nav
                 style={{
-                    borderRight: "solid 1px",
                     padding: "1rem",
                 }}
             >
