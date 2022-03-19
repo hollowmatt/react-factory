@@ -10,7 +10,7 @@ let spa = (function($) {
         extended_title: 'Click to retract',
         retracted_height: 16,
         retracted_title: 'Click to expand',
-        template_html:'<div class="spa-slider"><\/div>'
+        template_html:'<div class="spa-slider"></div>'
     },
     $chatSlider,
     toggleSlider, onClickSlider, initModule;
@@ -48,7 +48,7 @@ let spa = (function($) {
     initModule = function ( $container ) {
         // render HTML
         $container.html(configMap.template_html);
-        $chatSlider = $container.find('.spa-slaider');
+        $chatSlider = $container.find('.spa-slider');
         // initialize slider height and title
         // bind the user click event to the event handler
         $chatSlider
