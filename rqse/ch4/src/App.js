@@ -22,12 +22,15 @@ function Gallery() {
 }
 
 class Image extends Component {
-  
+  getImageSource(index) {
+    return `//picsum.photos/id/${index}/150/150`;
+  }
+
   render() {
     return (
       <figure style={{margin: '5px'}}>
         <img
-          src={`//picsum.photos/id/${this.props.index}/150/150/`}
+          src={this.getImageSource(this.props.index)}
           alt={this.props.title}
         />
         <figcaption>
