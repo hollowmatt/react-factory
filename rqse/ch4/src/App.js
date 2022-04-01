@@ -26,10 +26,12 @@ function Gallery() {
   }
 
   function Image({index, title}) {
+    const getImageSource = () => `//picsum.photos/id/${index}/150/150`;
+    
     return (
       <figure style={{margin: '5px'}}>
         <img
-          src={getImageSource(index)}
+          src={getImageSource()}
           alt={title}
         />
         <figcaption>
