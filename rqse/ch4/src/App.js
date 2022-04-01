@@ -1,4 +1,4 @@
-import { Component } from 'react';
+
 import './App.css';
 
 function App() {
@@ -21,24 +21,22 @@ function Gallery() {
   );
 }
 
-class Image extends Component {
-  getImageSource(index) {
+  function getImageSource(index) {
     return `//picsum.photos/id/${index}/150/150`;
   }
 
-  render() {
+  function Image({index, title}) {
     return (
       <figure style={{margin: '5px'}}>
         <img
-          src={this.getImageSource(this.props.index)}
-          alt={this.props.title}
+          src={getImageSource(index)}
+          alt={title}
         />
         <figcaption>
-          <h3>Species: {this.props.title}</h3>
+          <h3>Species: {title}</h3>
         </figcaption>
       </figure>
     );
-  };
-  
 }
+
 export default App;
