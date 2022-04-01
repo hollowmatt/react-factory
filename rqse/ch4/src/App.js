@@ -1,3 +1,4 @@
+import { Component } from 'react';
 import './App.css';
 
 function App() {
@@ -20,17 +21,21 @@ function Gallery() {
   );
 }
 
-function Image({ index, title }) {
-  return (
-    <figure style={{margin: '5px'}}>
-      <img
-        src={`//picsum.photos/id/${index}/150/150/`}
-        alt={title}
-      />
-      <figcaption>
-        <h3>Species: {title}</h3>
-      </figcaption>
-    </figure>
-  );
+class Image extends Component {
+  
+  render() {
+    return (
+      <figure style={{margin: '5px'}}>
+        <img
+          src={`//picsum.photos/id/${this.props.index}/150/150/`}
+          alt={this.props.title}
+        />
+        <figcaption>
+          <h3>Species: {this.props.title}</h3>
+        </figcaption>
+      </figure>
+    );
+  };
+  
 }
 export default App;
