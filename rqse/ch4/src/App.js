@@ -1,25 +1,36 @@
-import logo from './logo.svg';
 import './App.css';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <main>
+      <h1>Animals</h1>
+      <Gallery />
+    </main>
   );
 }
 
+function Gallery() {
+  return (
+    <section style={{display: 'flex'}}>
+      <Image index="1003" title="Deer" />
+      <Image index="1020" title="Bear" />
+      <Image index="1024" title="Vulture" />
+      <Image index="1084" title="Walrus" />
+    </section>
+  );
+}
+
+function Image({ index, title }) {
+  return (
+    <figure style={{margin: '5px'}}>
+      <img
+        src={`//picsum.photos/id/${index}/150/150/`}
+        alt={title}
+      />
+      <figcaption>
+        <h3>Species: {title}</h3>
+      </figcaption>
+    </figure>
+  );
+}
 export default App;
