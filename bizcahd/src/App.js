@@ -1,23 +1,39 @@
-import logo from './logo.svg';
+import React, { useState } from "react";
 import './App.css';
+import db from "./firebase";
 
 function App() {
+  const [customerName, setCustomerName] = useState("");
+  const [customerPassword, setCustomerPassword] = useState("");
+
+  const submit = (e) => {
+    e.preventDefault();
+    db.collection("customersData").add({
+      name: customerName,
+      password: customerPassword,
+    });
+
+    setCustomerName("");
+    setCustomerPassword("");
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="App__Form">
+        <input
+          type="text"
+          placeholder="Name"
+          value={customerName}
+          onChange={(e) => setCustomerName(e.target.value)}
+        />
+        <input
+          type="text"
+          placeholder="Password"
+          value={customerPassword}
+          onChange={(e) => setCustomerPassword(e.target.value)}
+        />
+        <button onClick={submit}>Submit</button>
+      </div>
     </div>
   );
 }
