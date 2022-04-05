@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./App.css";
-import { collection, addDoc } from "firebase/firestore";
 import db from "./firebase";
+import { addDoc, doc, collection, query, where, onSnapshot } from "firebase/firestore";
 
 function App() {
   const [customerName, setCustomerName] = useState("");
@@ -22,19 +22,28 @@ function App() {
   // }
 
   useEffect(() => {
-    fetchCustomers();
+    const unsub = onSnapshot(doc(db, "customersData", "4QHZBpzevPtuCqaMXe4L"), (doc) => {
+      console.log("Current data: ", doc.data());
+    });
   }, [])
 
-  const fetchCustomers=async()=> {
-    const res=db.collection('customersData');
-    const data=await res.get();
-    setCustomersData(
-      data.forEach((doc)=>({
-        id: doc.id,
-        data: doc.data(),
-      }))
-    );
-  }
+  // useEffect(() => {
+  //   fetchCustomers();
+  // }, [])
+
+  // const fetchCustomers=async()=> {
+  //   const res=db.collection('customersData');
+  //   const data=await res.get();
+  //   setCustomersData(
+  //     data.forEach((doc)=>({
+  //       id: doc.id,
+  //       data: doc.data(),
+  //     }))
+  //   );
+  //   console.log(customersData.map(({id, data}) => {
+  //     return `key: ${id}, name: ${data.name}, password: ${data.password}`
+  //   }));
+  // }
 
   async function submit(e) {
     e.preventDefault();
