@@ -1,50 +1,35 @@
 import React, { useEffect, useState } from "react";
 import "./App.css";
 import db from "./firebase";
-import { addDoc, doc, collection, query, where, onSnapshot } from "firebase/firestore";
+import { addDoc, doc, collection, query, where, onSnapshot, getDocs } from "firebase/firestore";
+
 
 function App() {
   const [customerName, setCustomerName] = useState("");
   const [customerPassword, setCustomerPassword] = useState("");
   const [customersData, setCustomersData] = useState([]);
 
-  // async function getData() {
-  //   const querySnapshot = await getDocs(collection(db, "customersData"));
-  //   setCustomersData(
-  //     querySnapshot.forEach((doc) => ({
-  //       id: doc.id,
-  //       data: doc.data(),
-  //     }))
-  //   );
-  //   customersData?.map(({id, data} ) => {
-  //     console.log(`ID: ${id}, Name: ${data.name}, Password: ${data.password}`);
-  //   });
-  // }
+  async function getData() {
+    const querySnapshot = await getDocs(collection(db, "customersData"));
+    querySnapshot.forEach((doc) => {
+      console.log(doc.id, " => ", doc.data());
+    });
+    
+    setCustomersData(
+      querySnapshot.forEach((doc) => ({
+        id: doc.id,
+        data: doc.data(),
+      }))
+    );
+    // customersData?.map(({id, data} ) => {
+    //   console.log(`ID: ${id}, Name: ${data.name}, Password: ${data.password}`);
+    // });
+  }
 
   useEffect(() => {
-    const unsub = onSnapshot(doc(db, "customersData", "4QHZBpzevPtuCqaMXe4L"), (doc) => {
-      console.log("Current data: ", doc.data());
-    });
+    getData();
   }, [])
-
-  // useEffect(() => {
-  //   fetchCustomers();
-  // }, [])
-
-  // const fetchCustomers=async()=> {
-  //   const res=db.collection('customersData');
-  //   const data=await res.get();
-  //   setCustomersData(
-  //     data.forEach((doc)=>({
-  //       id: doc.id,
-  //       data: doc.data(),
-  //     }))
-  //   );
-  //   console.log(customersData.map(({id, data}) => {
-  //     return `key: ${id}, name: ${data.name}, password: ${data.password}`
-  //   }));
-  // }
-
+  
   async function submit(e) {
     e.preventDefault();
     try {
