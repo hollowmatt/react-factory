@@ -97,7 +97,7 @@ function App() {
         value={updatedCustomerPassword}
         onChange={(e) => setUpdatedCustomerPassword(e.target.value)}
         />
-        <button onClick={update}>Submit</button>
+        <button onClick={update}>Submit</button> &nbsp;
         <button onClick={cancelUpdate}>Cancel</button>
       </div>
     )}
