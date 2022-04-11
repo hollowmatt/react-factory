@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from "react";
 import "./App.css";
 import db from "./firebase";
-import { addDoc, collection, doc, getDocs } from "firebase/firestore";
+import { addDoc, collection, doc, getDocs, setDoc } from "firebase/firestore";
 
 
 function App() {
   const [customerName, setCustomerName] = useState("");
   const [customerPassword, setCustomerPassword] = useState("");
   const [customersData, setCustomersData] = useState([]);
+  const [updatedCustomerName, setUpdatedCustomerName] = useState("");
+  const [updatedCustomerPassword, setUpdatedCustomerPassword] = useState("");
+  const [dataIdToBeUpdated, setDataIdToBeUpdated] = useState("");
 
   useEffect(() => {
     getData();
@@ -36,10 +39,30 @@ function App() {
     } catch(e) {
       console.error("error adding doc: ", e);
     }
+    getData();
+  }
+
+  async function update(e) {
+    e.preventDefault();
+    const custData = doc(db, 'customersData', dataIdToBeUpdated);
+    setDoc(custData, {name: updatedCustomerName, password: updatedCustomerPassword}, {merge: true});
+    
+    setUpdatedCustomerName("");
+    setUpdatedCustomerPassword("");
+    setDataIdToBeUpdated("");
+
+    getData();
+  }
+
+  function cancelUpdate() {
+    setUpdatedCustomerName("");
+    setUpdatedCustomerPassword("");
+    setDataIdToBeUpdated("");
   }
 
   return (
     <div className="App">
+    {!dataIdToBeUpdated ? (
       <div className="App__form">
         <input
         type="text"
@@ -55,12 +78,31 @@ function App() {
         />
         <button onClick={submit}>Submit</button>
       </div>
+    ) : (
+      <div className="App__Updateform">
+        <input
+        type="text"
+        placeholder="Name"
+        value={updatedCustomerName}
+        onChange={(e) => setUpdatedCustomerName(e.target.value)}
+        />
+        <input
+        type="text"
+        placeholder="Password"
+        value={updatedCustomerPassword}
+        onChange={(e) => setUpdatedCustomerPassword(e.target.value)}
+        />
+        <button onClick={update}>Submit</button>
+        <button onClick={cancelUpdate}>Cancel</button>
+      </div>
+    )}
       <div className="App__DataDisplay">
         <table>
           <thead>
             <tr>
               <th>NAME</th>
               <th>PASSWORD</th>
+              <th>Update</th>
             </tr>
           </thead>
           <tbody>
@@ -68,6 +110,17 @@ function App() {
               <tr key={id}>
                 <td>{data.name}</td>
                 <td>{data.password}</td>
+                <td>
+                  <button
+                    onClick={() => {
+                      setDataIdToBeUpdated(id);
+                      setUpdatedCustomerName(data.name);
+                      setUpdatedCustomerPassword(data.password);
+                    }}
+                  >
+                    Update
+                  </button>
+                </td>
               </tr>
             ))}
           </tbody>
