@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./App.css";
 import db from "./firebase";
-import { addDoc, collection, doc, getDocs, setDoc } from "firebase/firestore";
+import { addDoc, collection, deleteDoc, doc, getDocs, setDoc } from "firebase/firestore";
 
 
 function App() {
@@ -60,6 +60,11 @@ function App() {
     setDataIdToBeUpdated("");
   }
 
+  async function deleteData(id) {
+    await deleteDoc(doc(db, "customersData", id));
+    getData();
+  }
+
   return (
     <div className="App">
     {!dataIdToBeUpdated ? (
@@ -103,6 +108,7 @@ function App() {
               <th>NAME</th>
               <th>PASSWORD</th>
               <th>Update</th>
+              <th>Delete</th>
             </tr>
           </thead>
           <tbody>
@@ -119,6 +125,15 @@ function App() {
                     }}
                   >
                     Update
+                  </button>
+                </td>
+                <td>
+                  <button
+                    onClick={() => {
+                      deleteData(id);
+                    }}
+                  >
+                    Delete
                   </button>
                 </td>
               </tr>
