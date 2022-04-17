@@ -13,12 +13,25 @@ function Counter({start}) {
   )
 }
 
+function Accordian() {
+  const [isExpanded, setExpanded] = useState(false);
+  return(
+    <main>
+      <h2 style={{display: 'flex', gap: '6px'}}>
+        Secret passowrd
+        <button onClick={() => setExpanded(false)}>-</button>
+        <button onClick={() => setExpanded(true)}>+</button>
+      </h2>
+      {isExpanded && <p>Password: <code>hunter2</code>.</p>}
+    </main>
+  );
+}
+
 function App() {
   return (
     <div className='App'>
       <Counter start={0}/>
-      <Counter start={123}/>
-      <Counter start={-64}/>
+      <Accordian/>
     </div>
   );
 }
