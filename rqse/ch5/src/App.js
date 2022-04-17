@@ -1,37 +1,47 @@
 import './App.css';
 import { useState } from 'react';
 
-function Counter({start}) {
-  const [counter, setCounter] = useState(start);
-  return(
-    <main>
-      <p>Counter: {counter}</p>
-      <button onClick={() => setCounter(value => value + 1)}>
-        Increment
-      </button>
-    </main>
-  )
-}
-
-function Accordian() {
-  const [isExpanded, setExpanded] = useState(false);
-  return(
-    <main>
-      <h2 style={{display: 'flex', gap: '6px'}}>
-        Secret password
-        <button onClick={() => setExpanded(false)}>-</button>
-        <button onClick={() => setExpanded(true)}>+</button>
-      </h2>
-      {isExpanded && <p>Password: <code>hunter2</code>.</p>}
-    </main>
-  );
-}
-
 function markDone(list, index) {
   return list.map(
     (item, i) => i === index ? {...item, done: true } : item
   )
 }
+
+function FilterButton({ current, flag, setFilter, children }) {
+  const style = {
+    border: '1px solid dimgray',
+    background: current === flag ? 'dimgray' : 'transparent',
+    color: current === flag ? 'white' : 'dimgray',
+    padding: '4px 10px',
+  };
+  return (
+    <button style={style} onClick={() => setFilter(flag)}>
+      {children}
+    </button>
+  );
+}
+
+function Task({ task, done, markDone }) {
+  const paragraphStyle = {
+    color: done ? 'gray' : 'black',
+    borderLeft: '2px solid',
+  };
+  const buttonStyle = {
+    border: 'none',
+    background: 'transparent',
+    display: 'inline',
+    color: 'inherit',
+  };
+  return (
+    <p style={paragraphStyle}>
+      <button style={buttonStyle} onClick={done ? null : markDone}>
+        {done ? '✓ ' : '◯ '}
+      </button>
+      {task}
+    </p>
+  );
+}
+
 function TodoApplication({initialList}) {
   const [todos, setTodos] = useState(initialList);
   const [hideDone, setHideDone] = useState(false);
@@ -41,41 +51,47 @@ function TodoApplication({initialList}) {
   return (
     <main>
       <div style={{display: 'flex'}}>
-        <button onClick={() => setHideDone(false)}>
-          Show all
-        </button> &nbsp;
-        <button onClick={() => setHideDone(true)}>
+        <FilterButton
+          current={hideDone}
+          flag={false}
+          setFilter={setHideDone}
+        >
+          Show All
+        </FilterButton>
+        <FilterButton
+          current={hideDone}
+          flag={true}
+          setFilter={setHideDone}
+        >
           Hide Completed
-        </button>
+        </FilterButton>
       </div>
       {filteredTodos.map((todo, index) => (
-        <p key={todo.task}>
-        {todo.done ? (
-          <strike>{todo.task}</strike>
-        ) : (
-          <>
-            {todo.task}
-            <button onClick={() =>
-              setTodos(todos => markDone(todos, index))
-            }>x</button>
-          </>
-        )}
-        </p>
+        <Task
+          key={todo.task}
+          task={todo.task}
+          done={todo.done}
+          markDone={() => setTodos(todos => markDone(todos, index))}
+        />
       ))} 
     </main>
   );
 }
 
 function App() {
+  const appStyle = {
+    margin: '25px',
+    padding: '10px',
+    border: 'dotted',
+  };
+
   const items = [
     { task: 'Feed Cats', done: false }, 
     { task: 'Make Bread', done: false },
     { task: 'Clean litterboxes', done: false},
   ];
   return (
-    <div className='App'>
-      <Counter start={0}/>
-      <Accordian/>
+    <div style={appStyle}>
       <TodoApplication initialList={items}/>
     </div>
   );
