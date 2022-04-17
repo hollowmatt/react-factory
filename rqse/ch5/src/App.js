@@ -18,7 +18,7 @@ function Accordian() {
   return(
     <main>
       <h2 style={{display: 'flex', gap: '6px'}}>
-        Secret passowrd
+        Secret password
         <button onClick={() => setExpanded(false)}>-</button>
         <button onClick={() => setExpanded(true)}>+</button>
       </h2>
@@ -27,11 +27,32 @@ function Accordian() {
   );
 }
 
+function ToDo({initialList}) {
+  const [todos, setTodos] = useState(initialList);
+  return (
+    <main className='App'>
+      {todos.map((todo, index) => (
+        <p key={todo}>
+          {todo} &nbsp;
+          <button onClick={() => {
+            setTodos([
+              ...todos.splice(0,index),
+              ...todos.slice(index + 1),
+            ]);
+          }}>X</button>
+        </p>
+      ))}
+    </main>
+  );
+}
+
 function App() {
+  const items = ['Feed Cats', 'Make Bread', 'Clean litterboxes']
   return (
     <div className='App'>
       <Counter start={0}/>
       <Accordian/>
+      <ToDo initialList={items}/>
     </div>
   );
 }
