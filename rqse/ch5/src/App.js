@@ -27,34 +27,59 @@ function Accordian() {
   );
 }
 
-function ToDo({initialList}) {
+function markDone(list, index) {
+  return list.map(
+    (item, i) => i === index ? {...item, done: true } : item
+  )
+}
+function TodoApplication({initialList}) {
   const [todos, setTodos] = useState(initialList);
+  const [hideDone, setHideDone] = useState(false);
+  const filteredTodos = hideDone
+    ? todos.filter(({done}) => !done)
+    : todos;
   return (
-    <main className='App'>
-      {todos.map((todo, index) => (
-        <p key={todo}>
-          {todo} &nbsp;
-          <button onClick={() => {
-            setTodos([
-              ...todos.splice(0,index),
-              ...todos.slice(index + 1),
-            ]);
-          }}>X</button>
+    <main>
+      <div style={{display: 'flex'}}>
+        <button onClick={() => setHideDone(false)}>
+          Show all
+        </button> &nbsp;
+        <button onClick={() => setHideDone(true)}>
+          Hide Completed
+        </button>
+      </div>
+      {filteredTodos.map((todo, index) => (
+        <p key={todo.task}>
+        {todo.done ? (
+          <strike>{todo.task}</strike>
+        ) : (
+          <>
+            {todo.task}
+            <button onClick={() =>
+              setTodos(todos => markDone(todos, index))
+            }>x</button>
+          </>
+        )}
         </p>
-      ))}
+      ))} 
     </main>
   );
 }
 
 function App() {
-  const items = ['Feed Cats', 'Make Bread', 'Clean litterboxes']
+  const items = [
+    { task: 'Feed Cats', done: false }, 
+    { task: 'Make Bread', done: false },
+    { task: 'Clean litterboxes', done: false},
+  ];
   return (
     <div className='App'>
       <Counter start={0}/>
       <Accordian/>
-      <ToDo initialList={items}/>
+      <TodoApplication initialList={items}/>
     </div>
   );
 }
 
 export default App;
+ 
