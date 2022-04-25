@@ -2,10 +2,17 @@
   "name": "da-backend",
   "version": "1.0.0",
   "description": "Backend for the MERN app",
-  "main": "index.js",
+  "main": "servder.js",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
   "author": "Matt Holloway",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.0",
+    "mongoose": "^6.3.1",
+    "nodemon": "^2.0.15"
+  }
 }
