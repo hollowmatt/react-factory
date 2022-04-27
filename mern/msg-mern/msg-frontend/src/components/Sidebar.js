@@ -4,6 +4,7 @@ import DonutLargeIcon from '@material-ui/icons/DonutLarge';
 import ChatIcon from '@material-ui/icons/Chat';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import { Avatar, IconButton } from '@material-ui/core';
+import { SearchOutlined } from '@material-ui/icons';
 
 const Sidebar = () => {
     return(
@@ -22,7 +23,12 @@ const Sidebar = () => {
                     </IconButton>
                 </div>
             </div>
-            <div className='sidebar__search'></div>
+            <div className='sidebar__search'>
+                <div className='sidebar__searchContainer'>
+                    <SearchOutlined />
+                    <input placeholder="Search or start new chat" type="text" />
+                </div>
+            </div>
             <div className='sidebar__chats'></div>
         </div>
     );
