@@ -2,8 +2,8 @@ import './App.css';
 
 function App() {
   return (
-    <div className="App">
-      <h1>Messaging App MERN</h1>
+    <div className="app">
+      <div className="app__body"></div>
     </div>
   );
 }
