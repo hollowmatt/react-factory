@@ -3,9 +3,21 @@ import { Avatar, IconButton } from '@material-ui/core';
 import { AttachFile, MoreVert, SearchOutlined, InsertEmoticon } from '@material-ui/icons';
 import MicIcon from '@material-ui/icons/Mic';
 import './Chat.css';
+import axios from './axios';
 
 const Chat = ({ messages }) => {
     const [seed, setSeed] = useState("");
+    const [input, setInput] = useState("");
+    const sendMessage = async(e) => {
+        e.preventDefault();
+        await axios.post('/messages/new', {
+            message: input,
+            name: "webui",
+            timestamp: new Date().toUTCString(),
+            received: true
+        });
+        setInput("");
+    };
     useEffect(() => {
         setSeed(Math.floor(Math.random() * 5000))
     }, [])
@@ -44,10 +56,12 @@ const Chat = ({ messages }) => {
                 <InsertEmoticon />
                 <form>
                     <input
+                        value={input}
+                        onChange={e => setInput(e.target.value)}
                         placeholder="Type a message"
                         type="text"
                     />
-                    <button type="submit">Send a message</button>
+                    <button onClick={sendMessage} type="submit">Send a message</button>
                 </form>
                 <MicIcon />
             </div>

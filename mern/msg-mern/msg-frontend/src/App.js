@@ -26,7 +26,7 @@ function App() {
       channel.unsubscribe();
     };
   }, [messages]);
-  console.log(messages);
+
   return (
     <div className="app">
       <div className="app__body">
