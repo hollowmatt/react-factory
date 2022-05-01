@@ -8,7 +8,7 @@ import { Avatar, IconButton } from '@material-ui/core';
 import { SearchOutlined } from '@material-ui/icons';
 import { useStateValue } from './StateProvider';
 
-const Sidebar = () => {
+const Sidebar = ({messages}) => {
     const [{user}, dispatch] = useStateValue();
     return(
         <div className='sidebar'>
@@ -33,7 +33,7 @@ const Sidebar = () => {
                 </div>
             </div>
             <div className='sidebar__chats'>
-                <SidebarChat />
+                <SidebarChat messages={messages}/>
             </div>
         </div>
     );

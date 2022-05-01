@@ -9,9 +9,10 @@ import { useStateValue } from './StateProvider';
 const Chat = ({ messages }) => {
     const [seed, setSeed] = useState("");
     const [input, setInput] = useState("");
-    const [user, dispatch] = useStateValue();
+    const [{user}, dispatch] = useStateValue();
     const sendMessage = async(e) => {
         e.preventDefault();
+        console.log(user.displayName);
         await axios.post('/messages/new', {
             message: input,
             name: user.displayName,
@@ -28,7 +29,7 @@ const Chat = ({ messages }) => {
             <div className="chat__header">
                 <Avatar src={`https://avatars.dicebear.com/api/human/b${seed}.svg`} />
                 <div className="chat__headerInfo">
-                    <h3>Room Name</h3>
+                    <h3>CoolRoom</h3>
                     <p>
                         Last seen at (" ")
                         {messages[messages.length -1]?.timestamp}
