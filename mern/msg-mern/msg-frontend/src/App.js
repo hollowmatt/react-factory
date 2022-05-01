@@ -4,15 +4,19 @@ import Sidebar from './components/Sidebar';
 import Chat from './components/Chat';
 import './App.css';
 import axios from './components/axios';
+import Login from './components/Login';
 
 
 function App() {
   const [messages, setMessages] = useState([]);
+  const [user, setUser] = useState(null);
+
   useEffect(() => {
     axios.get("/messages/sync").then(res => {
       setMessages(res.data)
     })
   }, []);
+  
   useEffect(() => {
     const pusher = new Pusher('33afcbde14eb9a4893f4', {
       cluster: 'us2'
@@ -29,10 +33,14 @@ function App() {
 
   return (
     <div className="app">
+    { !user ? <Login /> : 
+      (
       <div className="app__body">
         <Sidebar />
         <Chat messages={messages}/>
       </div>
+      )
+    }
     </div>
   );
 }
