@@ -1,16 +1,5 @@
 import './App.css';
-import { useState, memo } from 'react';
-
-const Items = memo(function Items({ items }) {
-  return(
-    <>
-      <h2>ToDo Items</h2>
-      <ul>
-        {items.map(todo => <li key={todo}>{todo}</li>)}
-      </ul>
-    </>
-  );
-});
+import { useState, useMemo } from 'react';
 
 function App() {
   const [items, setItems] = useState(['Clean Gutter', 'Do Dishes']);
@@ -22,11 +11,23 @@ function App() {
     evt.preventDefault();
   };
 
+  const itemsRendered = useMemo(
+    () => (
+      <>
+        <h2>ToDo Items</h2>
+        <ul>
+          {items.map(todo => <li key={todo}>{todo}</li>)}
+        </ul>
+      </>
+    ),
+    [items],
+  );
+
   const onChange = (evt) => setNewItem(evt.target.value);
 
   return (
     <div className="App">
-      <Items items={items} />
+      {itemsRendered}
       <form onSubmit={onSubmit}>
         <input value={newItem} onChange={onChange} />
         <button>Add</button>
