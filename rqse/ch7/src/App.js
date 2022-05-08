@@ -1,7 +1,7 @@
 import './App.css';
-import { useState } from 'react';
+import { useState, memo } from 'react';
 
-function Items({ items}) {
+const Items = memo(function Items({ items }) {
   return(
     <>
       <h2>ToDo Items</h2>
@@ -10,7 +10,7 @@ function Items({ items}) {
       </ul>
     </>
   );
-}
+});
 
 function App() {
   const [items, setItems] = useState(['Clean Gutter', 'Do Dishes']);
