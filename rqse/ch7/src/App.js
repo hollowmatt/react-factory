@@ -1,5 +1,5 @@
 import './App.css';
-import { useState, memo } from 'react';
+import { useState, memo, useMemo } from 'react';
 
 const Items = memo(function items({ items }) {
   return (
@@ -22,10 +22,15 @@ function App() {
   };
 
   const onChange = (evt) => setNewItem(evt.target.value);
+  const allItems = useMemo(
+    () => (
+      ['Complete todo list', ...items]),
+      [items],
+  );
 
   return (
     <div className="App">
-      <Items items={['Complete todo list', ...items]} />
+      <Items items={allItems} />
       <form onSubmit={onSubmit}>
         <input value={newItem} onChange={onChange} />
         <button>Add</button>
