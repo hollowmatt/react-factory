@@ -8,7 +8,7 @@ const Items = memo(function items({ items, onDelete }) {
         <ul>
           {items.map(todo => (
             <li key={todo}>
-              {todo}
+              {todo} &nbsp;
               <button onClick={() => onDelete(todo)}> X </button>
             </li>
           ))}
