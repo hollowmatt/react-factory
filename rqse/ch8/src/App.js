@@ -60,7 +60,7 @@ function VideoPlayer() {
   return(
     <section className='video'>
       <video 
-         ref={video}
+        ref={video}
         src={VIDEO_SRC}
         controls
         width="480"
