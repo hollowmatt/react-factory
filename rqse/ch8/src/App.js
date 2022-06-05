@@ -26,7 +26,7 @@ function App() {
        <DropCounter />
        <MouseStatus />
        <VideoPlayer />
-       {/* <Contact /> */}
+       <Contact />
        <Admin />
       </header>
     </div>
