@@ -18,12 +18,17 @@ function App() {
 
 function Counter() {
   const [counter, setCounter] = useState(0);
-  const onClick = () => setCounter(c => c + 1);
-  
+  const increment = useRef();
+  const onClick = (event) => {
+    const delta = event.target === increment.current ? 1: -1;
+    setCounter(c => c + delta);
+  };
+
   return(
     <section className="counter">
       <h1>Value: {counter}</h1>
-      <button onClick={onClick}>Increment</button>
+      <button ref={increment} onClick={onClick}>Increment</button>
+      <button onClick={onClick}>Decrement</button>
     </section>
   );
 }
