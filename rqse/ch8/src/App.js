@@ -4,6 +4,20 @@ import { useEffect, useState, useRef } from 'react';
 const VIDEO_SRC = '//images-assets.nasa.gov/' +
   'video/One Small Step/One Small Step~orig.mp4';
 
+// Following is for the Contact form
+const FOCUS_NONE = 0;
+const FOCUS_USER = 1;
+const FOCUS_REQUEST = 2;
+
+function getStyle(isActive) {
+  return {
+    display: 'flex',
+    flexDirection: 'column',
+    backgroundColor: isActive ? 'oldlace' : 'transparent',
+  };
+}
+// end of Contact form constants
+
 function App() {
   return (
     <div className="App">
@@ -12,6 +26,7 @@ function App() {
        <DropCounter />
        <MouseStatus />
        <VideoPlayer />
+       <Contact />
       </header>
     </div>
   );
@@ -42,7 +57,7 @@ function DropCounter() {
   const values = [1,2,3,4,5];
 
   return(
-    <section>
+    <section className='counter'>
       <h1> Drop Count: {counter}</h1>
       <select onChange={onChange}>
         {values.map(value => (
@@ -100,4 +115,40 @@ function VideoPlayer() {
   );
 }
 
+function Contact() {
+  const [focus, setFocus] = useState(FOCUS_NONE);
+  const onUserFocus = () => {
+    setFocus(FOCUS_USER);
+  };
+  const onRequestFocus = () => {
+    setFocus(FOCUS_REQUEST);
+  };
+  const onBlur = () => {
+    setFocus(FOCUS_NONE);
+  }
+
+  return(
+    <section>
+      <from onBlur={onBlur}>
+        <h1>Contact</h1>
+        <fieldset
+          onFocus={onUserFocus}
+          style={getStyle(focus === FOCUS_USER)}
+        >
+          <legend>User</legend>
+          <label>Name:<br/><input /></label>
+          <label>Email:<br/><input type="email"/></label>
+        </fieldset>
+        <fieldset
+          onFocus={onRequestFocus}
+          style={getStyle(focus === FOCUS_REQUEST)}
+        >
+          <legend>Request</legend>
+          <label>Subject: <br/><input /></label>
+          <label>Body: <br/><textarea /></label>
+        </fieldset>
+      </from>
+    </section>
+  );
+}
 export default App;
