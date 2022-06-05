@@ -9,6 +9,7 @@ function App() {
     <div className="App">
       <header className="App-header">
        <Counter />
+       <DropCounter />
        <MouseStatus />
        <VideoPlayer />
       </header>
@@ -29,6 +30,25 @@ function Counter() {
       <h1>Value: {counter}</h1>
       <button ref={increment} onClick={onClick}>Increment</button>
       <button onClick={onClick}>Decrement</button>
+    </section>
+  );
+}
+
+function DropCounter() {
+  const [counter, setCounter] = useState(0);
+  const onChange = (event) => {
+    setCounter(value => value + parseInt(event.target.value));
+  };
+  const values = [1,2,3,4,5];
+
+  return(
+    <section>
+      <h1> Drop Count: {counter}</h1>
+      <select onChange={onChange}>
+        {values.map(value => (
+          <option key={value} value={value}>{value}</option>
+        ))}
+      </select>
     </section>
   );
 }
