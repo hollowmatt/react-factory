@@ -18,11 +18,28 @@ function getStyle(isActive) {
 }
 // end of Contact form constants
 
+// Styled Counter Stuff
+function Button({ handleClick, label }) {
+  const buttonStyle = {
+    color: 'white',
+    border: '1px solid',
+    background: 'transparent',
+    borderRadius: '.25em',
+    padding: '.5em',
+    margin: '.5em',
+  };
+  return(
+    <button style={buttonStyle} onClick={handleClick}>{label}</button>
+  );
+}
+// end styled counter stuff
+
 function App() {
   return (
     <div className="App">
       <header className="App-header">
        <Counter />
+       <StyledCounter />
        <DropCounter />
        <MouseStatus />
        <VideoPlayer />
@@ -46,6 +63,20 @@ function Counter() {
       <h1>Value: {counter}</h1>
       <button ref={increment} onClick={onClick}>Increment</button>
       <button onClick={onClick}>Decrement</button>
+    </section>
+  );
+}
+
+function StyledCounter() {
+  const [counter, setCounter] = useState(0);
+  const update = (d) => {
+    setCounter(val => val + d);
+  }
+  return(
+    <section>
+      <h1>Counter: {counter}</h1>
+      <Button handleClick={() => update(1) } label="Increment" />
+      <Button handleClick={() => update(-1) } label="Decrement" />
     </section>
   );
 }
