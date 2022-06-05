@@ -26,7 +26,8 @@ function App() {
        <DropCounter />
        <MouseStatus />
        <VideoPlayer />
-       <Contact />
+       {/* <Contact /> */}
+       <Admin />
       </header>
     </div>
   );
@@ -129,7 +130,7 @@ function Contact() {
 
   return(
     <section>
-      <from onBlur={onBlur}>
+      <form onBlur={onBlur}>
         <h1>Contact</h1>
         <fieldset
           onFocus={onUserFocus}
@@ -147,8 +148,27 @@ function Contact() {
           <label>Subject: <br/><input /></label>
           <label>Body: <br/><textarea /></label>
         </fieldset>
-      </from>
+      </form>
     </section>
+  );
+}
+
+function Admin() {
+  const [password, setPassword] = useState('');
+  const [isAdmin, setAdmin] = useState(false);
+  const onSubmit = (event) => {
+    event.preventDefault();
+    if(password === 'platypus') {
+      setAdmin(true);
+    }
+  };
+  return isAdmin ? (
+    <h1>Tofu is great</h1>
+  ) : (
+    <form onSubmit={onSubmit}>
+      <input type="passowrd" onChange={evt => setPassword(evt.target.value)} />
+      <button>Login</button>
+    </form>
   );
 }
 export default App;
