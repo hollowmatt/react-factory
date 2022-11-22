@@ -12,20 +12,20 @@ function Fapp() {
 function Menu() {
     return(
         <ul>
-            <MenuItem label="Home" href="/" />
-            <MenuItem label="About" href="/about/" />
-            <MenuItem label="Blog" href="/blog/" target="_blank" />
+            <MenuItem label="Home" href="/" className="logo" />
+            <MenuItem label="About" href="/about/" id="about-link" />
+            <MenuItem label="Blog" href="/blog/" target="_blank" id="blog-link" />
         </ul>
     );
 }
 
-function MenuItem({href, label, target="_self"}) {
+function MenuItem({href, label, ...rest}) {
     return(
         <li>
             <a
                 href={href}
                 title={label}
-                target={target} >
+                {...rest} >
                     {label}
             </a>
         </li>
