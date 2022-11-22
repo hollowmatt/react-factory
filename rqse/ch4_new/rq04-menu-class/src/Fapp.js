@@ -14,17 +14,18 @@ function Menu() {
         <ul>
             <MenuItem label="Home" href="/" />
             <MenuItem label="About" href="/about/" />
-            <MenuItem label="Blog" href="/blog/" />
+            <MenuItem label="Blog" href="/blog/" target="_blank" />
         </ul>
     );
 }
 
-function MenuItem({href, label}) {
+function MenuItem({href, label, target="_self"}) {
     return(
         <li>
             <a
                 href={href}
-                title={label} >
+                title={label}
+                target={target} >
                     {label}
             </a>
         </li>
