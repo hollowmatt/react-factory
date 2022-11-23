@@ -1,16 +1,15 @@
 import './App.css';
 import React, {Component} from 'react';
 
-class App extends Component {
-  render() {
-    return (
-      <main>
-        <h1>Animals</h1>
-        <Gallery />
-      </main>
-    );
-  }
+function App () {
+  return (
+    <main>
+      <h1>Animals</h1>
+      <Gallery />
+    </main>
+  );
 }
+
 class Gallery extends Component {
   render() {
     return (
