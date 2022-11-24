@@ -1,4 +1,5 @@
 import './App.css';
+import { useMemo } from 'react';
 
 function App () {
   return (
@@ -21,8 +22,11 @@ function Gallery() {
 }
 
 function Image({index, title}) {
+  const id = useMemo(
+    () => 'image-'+Math.floor(Math.random()*1000000),[],
+  );
   return (
-    <figure style={{margin: '5px'}}>
+    <figure style={{margin: '5px'}} id={id}>
       <img
         src={getImageSource(index)}
         alt={title}
