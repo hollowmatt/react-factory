@@ -1,24 +1,33 @@
-import logo from './logo.svg';
+import {useState} from 'react';
 import './App.css';
 
 function App() {
+  const items = ['Feed Plants', 'Water dishes', 'Wash the cat'];
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <TodoApp initialList = {items} />
     </div>
+  );
+}
+
+function TodoApp ({initialList}) {
+  const [todos, setTodos] = useState(initialList);
+  return (
+    <main>
+      {todos.map((todo, index) => (
+        <p key={todo}>
+          {todo}
+          <button onClick={() => {
+            setTodos([
+              ...todos.slice(0,index),
+              ...todos.slice(index + 1),
+            ]);
+          }}>
+            X
+          </button>
+        </p>
+      ))}
+    </main> 
   );
 }
 
