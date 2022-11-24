@@ -24,7 +24,7 @@ function Image({index, title}) {
   return (
     <figure style={{margin: '5px'}}>
       <img
-        src={`//picsum.photos/id/${index}/150/150/`}
+        src={getImageSource(index)}
         alt={title}
       />
       <figcaption>
@@ -32,6 +32,10 @@ function Image({index, title}) {
       </figcaption>
     </figure>
   );
+}
+
+function getImageSource(index) {
+  return `//picsum.photos/id/${index}/150/150`;
 }
 
 export default App;
