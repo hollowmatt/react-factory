@@ -1,23 +1,25 @@
-import logo from './logo.svg';
+import { useState, useEffect } from 'react';
 import './App.css';
+function Stopwatch() {
+  const [seconds, setSeconds] = useState(0);
+
+  useEffect(() => {
+
+  });
+  return (
+    <h1>Seconds: {seconds}</h1>
+  );
+}
 
 function App() {
+  const [showWatch, setShowWatch] = useState(false);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <button onClick={() => setShowWatch(b => !b)}>
+        Toggle Watch
+      </button>
+      {showWatch && <Stopwatch />}
     </div>
   );
 }
