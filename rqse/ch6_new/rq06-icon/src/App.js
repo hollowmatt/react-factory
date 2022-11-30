@@ -7,20 +7,22 @@ function Icon({type}) {
   );
 }
 
-function Button({ label, getIcon }) {
+function Button({ label, Icon }) {
   const [pressed, setPressed] = useState(false);
   return(
     <button onClick={() => setPressed(p => !p)}>
-      {getIcon(pressed)}
+     <Icon pressed={pressed} />
       {label}
     </button>
   );
 }
+function LockIcon({ pressed }) {
+  return pressed ? <Icon type="lock" /> : <Icon type="unlock" />;
+}
 
 function LockButton() {
-  const getIcon = (pressed) => pressed ? <Icon type="lock" /> : <Icon type="unlock"/>;
   return(
-    <Button label="Lock" getIcon={getIcon}/>
+    <Button Icon={LockIcon}/>
   )
 }
 function App() {
