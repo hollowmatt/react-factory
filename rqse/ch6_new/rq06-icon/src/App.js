@@ -3,7 +3,7 @@ import './App.css';
 
 function Icon({type}) {
   return(
-    <img src={`/images/${type}.png`} alt="" />
+    <img src={`/images/${type}.png`} width="16" alt="" />
   );
 }
 
