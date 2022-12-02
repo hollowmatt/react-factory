@@ -11,7 +11,7 @@ function DoubleCount({from}) {
     if (isDoubleClick) {
       setCounter(value => value + 1);
     } else {
-      lastClickTime.current = Date.now;
+      lastClickTime.current = Date.now();
     }
   };
   return (
