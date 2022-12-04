@@ -1,23 +1,41 @@
-import logo from './logo.svg';
+import { memo, useState } from 'react';
 import './App.css';
+
+const Items = memo (function Items({ items }) {
+  return(
+    <div>
+      <h2>Todo Items</h2>
+      <ul>
+        {items.map(todo => <li key={todo}>{todo}</li>)}
+      </ul>
+    </div>
+  );
+});
+
+function Todo() {
+  const [items, setItems] = useState(['Clean catbox', 'Do Dishes']);
+  const [newItem, setNewItem] = useState('');
+  const onSubmit = (evt) => {
+    setItems(items => items.concat([newItem]));
+    setNewItem('');
+    evt.preventDefault();
+  };
+  const onChange = (evt) => setNewItem(evt.target.value);
+  return(
+    <main>
+      <Items items={items} />
+      <form onSubmit={onSubmit}>
+        <input value={newItem} onChange={onChange} />
+        <button>Add</button>
+      </form>
+    </main>
+  );
+}
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Todo />
     </div>
   );
 }
