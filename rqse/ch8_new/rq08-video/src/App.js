@@ -17,6 +17,7 @@ function VideoPlayer() {
         onPlay={onPlay}
         onPause={onPause}
       />
+      <br/>
       <button
         onClick={isPlaying ? onClickPause : onClickPlay}
       >
