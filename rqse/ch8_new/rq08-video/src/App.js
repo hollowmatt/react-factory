@@ -9,6 +9,7 @@ function VideoPlayer() {
   const video = useRef();
   return (
     <section>
+      <h2>Video Service</h2>
       <video
         ref={video}
         src={VIDEO_SRC}
