@@ -35,11 +35,43 @@ function DropDownCounter() {
   );
 }
 
+function ContactForm(){
+  return(
+    <section>
+      <h1>Contact</h1>
+      <form>
+        <fieldset>
+          <legend>User</legend>
+          <label>Name:<br/>
+            <input />
+          </label><br/>
+          <label>e-mail:<br/>
+            <input type="email"/>
+          </label>
+        </fieldset>
+        <fieldset>
+          <legend>Request</legend>
+          <label>Subject:<br/>
+            <input/>
+          </label><br/>
+          <label>Body:<br/>
+            <textarea />
+          </label>
+        </fieldset>
+      </form>
+    </section>
+  )
+}
 function App() {
   return (
-    <div className="App">
-      <Counter />
-      <DropDownCounter />
+    <div>
+      <div className="App">
+        <Counter />
+        <DropDownCounter />
+      </div>
+      <div>
+        <ContactForm />
+      </div>
     </div>
   );
 }
