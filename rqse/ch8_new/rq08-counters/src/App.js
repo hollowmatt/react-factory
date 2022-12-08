@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, memo } from 'react';
 import './App.css';
 
 // Counter stuff
@@ -36,6 +36,10 @@ function DropDownCounter() {
     </section>
   );
 }
+
+const Button = memo(function Button({ handleClick, label }) {
+//8.10 goes here
+});
 
 // Contact stuff
 const FOCUS_NONE = 0;
