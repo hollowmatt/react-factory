@@ -1,4 +1,4 @@
-import { useState, useRef, memo } from 'react';
+import { useState, useRef, memo, useCallback } from 'react';
 import './App.css';
 
 // Counter stuff
@@ -53,13 +53,15 @@ const Button = memo(function Button({ handleClick, label }) {
 
 function StyledCounter(){
   const [counter, setCounter] = useState(0);
-  const update = (d) => setCounter(v => v + d);
+  const update = useCallback((d) => setCounter(v => v + d), [setCounter]);
+  const handleIncrement = useCallback(() => update(1), [update]);
+  const handleDecrement = useCallback(() => update(-1), [update]);
   return (
     <section>
       <h1>Counter {counter}</h1>
       <div>
-        <Button handleClick={() => update(1)} label="Increment" />
-        <Button handleClick={() => update(-1)} label='Decrement' />
+        <Button handleClick={handleIncrement} label="Increment" />
+        <Button handleClick={handleDecrement} label='Decrement' />
       </div>
     </section>
   );
