@@ -52,7 +52,17 @@ const Button = memo(function Button({ handleClick, label }) {
 });
 
 function StyledCounter(){
-  
+  const [counter, setCounter] = useState(0);
+  const update = (d) => setCounter(v => v + d);
+  return (
+    <section>
+      <h1>Counter {counter}</h1>
+      <div>
+        <Button handleClick={() => update(1)} label="Increment" />
+        <Button handleClick={() => update(-1)} label='Decrement' />
+      </div>
+    </section>
+  );
 }
 
 // Contact stuff
@@ -106,6 +116,7 @@ function App() {
       <div className="App">
         <Counter />
         <DropDownCounter />
+        <StyledCounter />
       </div>
       <div>
         <ContactForm />
