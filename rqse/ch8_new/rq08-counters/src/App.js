@@ -38,8 +38,22 @@ function DropDownCounter() {
 }
 
 const Button = memo(function Button({ handleClick, label }) {
-//8.10 goes here
+  const buttonStyle = {
+    color: 'blue',
+    border: '1px solid',
+    background: 'transparent',
+    borderRadius: '.25em',
+    padding: '.5em',
+    margin: '.5em'
+  };
+  return (
+    <button style={buttonStyle} onClick={handleClick}>{label}</button>
+  );
 });
+
+function StyledCounter(){
+  
+}
 
 // Contact stuff
 const FOCUS_NONE = 0;
