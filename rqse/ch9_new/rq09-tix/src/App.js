@@ -1,23 +1,30 @@
-import logo from './logo.svg';
+import { useState } from 'react';
 import './App.css';
+
+
+function TicketNumber() {
+  const [ticketNumber, setTicketNumber] = useState('');
+  const isValid = ticketNumber.length === 7;
+  const onChange = (evt) => {
+
+  };
+  return(
+    <form style={{display: 'flex'}}>
+      <label>
+        Ticket Number:
+        <input value={ticketNumber} onChange={onChange} placeholder="E.G. R1S-T2U"/>
+      </label>
+      <span>
+        {isValid ? '✓' : '✗'}
+      </span>
+    </form>
+  );
+}
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <TicketNumber />
     </div>
   );
 }
