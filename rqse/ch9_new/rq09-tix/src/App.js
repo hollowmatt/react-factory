@@ -6,7 +6,10 @@ function TicketNumber() {
   const [ticketNumber, setTicketNumber] = useState('');
   const isValid = ticketNumber.length === 7;
   const onChange = (evt) => {
-
+    const [first = '', second = ''] = evt.target.value
+      .replace(/[^0-9a-z]/gi, '').slice(0,6).match(/.{0,3}/g);
+    const value = first.length === 3 ? `${first}-${second}` : first;
+    setTicketNumber(value.toUpperCase());
   };
   return(
     <form style={{display: 'flex'}}>
