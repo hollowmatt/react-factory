@@ -9,6 +9,8 @@ function Result({a, b, op}) {
       return a * b;
     case '/': 
       return a/b;
+    case '%':
+      return a%b;
     default:
       return a + b;
   }
@@ -37,6 +39,7 @@ function SumNumbers() {
             <option value='-'>-</option>
             <option value='x'>x</option>
             <option value='/'>/</option>
+            <option value='%'>mod</option>
           </select>
         </label>
         <label>
