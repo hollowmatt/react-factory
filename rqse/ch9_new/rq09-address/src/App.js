@@ -1,23 +1,41 @@
-import logo from './logo.svg';
+import { useState } from 'react';
 import './App.css';
+
+function Address() {
+  return(
+    <form style={{display: 'flex', flexDirection: 'column'}}>
+      <label>
+        Address line 1:
+        <input />
+      </label>
+      <label>
+        Address line 2:
+        <input />
+      </label>
+      <label>
+        Postal/Zip:
+        <input />
+      </label>
+      <label>
+        City:
+        <input />
+      </label>
+      <label>
+        Province/State:
+        <input />
+      </label>
+      <label>
+        Country:
+        <input />
+      </label>
+    </form>
+  );
+}
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Address />
     </div>
   );
 }
