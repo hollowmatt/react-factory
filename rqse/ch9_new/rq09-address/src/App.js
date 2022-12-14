@@ -2,11 +2,26 @@ import { useState } from 'react';
 import './App.css';
 
 function Address() {
+  const [data, setData] = useState({
+    address1: '',
+    address2: '',
+    postal: '',
+    city: '',
+    province: '',
+    country: '',
+  });
+  const onChange = (key) => (evt) => {
+    setData(oldData => ({
+      ...oldData,
+      [key]: evt.target.value,
+    }));
+  };
+
   return(
     <form style={{display: 'flex', flexDirection: 'column'}}>
       <label>
         Address line 1:
-        <input />
+        <input value = {data.address1} onChange={onChange('address1')}/>
       </label>
       <label>
         Address line 2:
