@@ -25,23 +25,23 @@ function Address() {
       </label>
       <label>
         Address line 2:
-        <input />
+        <input value = {data.address2} onChange={onChange('address2')}/>
       </label>
       <label>
         Postal/Zip:
-        <input />
+        <input value = {data.postal} onChange={onChange('postal')}/>
       </label>
       <label>
         City:
-        <input />
+        <input value = {data.city} onChange={onChange('city')}/>
       </label>
       <label>
         Province/State:
-        <input />
+        <input value = {data.province} onChange={onChange('province')}/>
       </label>
       <label>
         Country:
-        <input />
+        <input value = {data.country} onChange={onChange('country')}/>
       </label>
     </form>
   );
