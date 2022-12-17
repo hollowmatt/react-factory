@@ -79,7 +79,7 @@ function SmartAddy() {
         </tr>
         <tr>
           <th>Country:</th>
-          <td>{data.province}</td>
+          <td>{data.country}</td>
         </tr>
       </table>
     </div>
