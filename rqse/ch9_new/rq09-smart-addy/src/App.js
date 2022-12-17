@@ -10,14 +10,13 @@ function SmartAddy() {
     province: '',
     country: '',
   });
-  const onChange = (key) => (evt) => {
-    setData(oldData => ({
-      ...oldData,
-      [key]: evt.target.value,
-    }));
+  const onChange = (evt) => {
+    const key = evt.target.name;
+    const value = evt.target.value;
+    setData(oldData => ({...oldData, [key]: value }));
   };
 
-  const tableStyle = {
+  const jsonStyle = {
     border: '1px solid',
     background: 'transparent',
     borderRadius: '.25em',
@@ -25,63 +24,37 @@ function SmartAddy() {
     margin: '.5em'
   };  
 
-
   return(
     <div>
       <section>
         <form style={{display: 'flex', flexDirection: 'column'}}>
           <label>
             Address line 1:
-            <input value = {data.address1} name="address1" onChange={onChange('address1')}/>
+            <input value = {data.address1} name="address1" onChange={onChange} />
           </label>
           <label>
             Address line 2:
-            <input value = {data.address2} name="address2" onChange={onChange('address2')}/>
+            <input value = {data.address2} name="address2" onChange={onChange} />
           </label>
           <label>
             Postal/Zip:
-            <input value = {data.postal} name="postal" onChange={onChange('postal')}/>
+            <input value = {data.postal} name="postal" onChange={onChange} />
           </label>
           <label>
             City:
-            <input value = {data.city} name="city" onChange={onChange('city')}/>
+            <input value = {data.city} name="city" onChange={onChange} />
           </label>
           <label>
             Province/State:
-            <input value = {data.province} name="province" onChange={onChange('province')}/>
+            <input value = {data.province} name="province" onChange={onChange} />
           </label>
           <label>
             Country:
-            <input value = {data.country} name="country" onChange={onChange('country')}/>
+            <input value = {data.country} name="country" onChange={onChange} />
           </label>
+          <pre style={jsonStyle}>{JSON.stringify(data, true, 2)}</pre>
         </form>
       </section>
-      <table style={tableStyle}>
-        <tr>
-          <th>Address Line 1:</th>
-          <td>{data.address1}</td>
-        </tr>
-        <tr>
-          <th>Address Line 2:</th>
-          <td>{data.address2}</td>
-        </tr>
-        <tr>
-          <th>Postal/Zip:</th>
-          <td>{data.postal}</td>
-        </tr>
-        <tr>
-          <th>City:</th>
-          <td>{data.city}</td>
-        </tr>
-        <tr>
-          <th>Province/State:</th>
-          <td>{data.province}</td>
-        </tr>
-        <tr>
-          <th>Country:</th>
-          <td>{data.country}</td>
-        </tr>
-      </table>
     </div>
     
   );
