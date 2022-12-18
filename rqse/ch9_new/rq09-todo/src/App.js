@@ -3,12 +3,12 @@ import './App.css';
 
 function ToDo() {
   return(
-    <Section>
+    <section>
       <h1>To Do</h1>
       <p>
         ...placeholder
       </p>
-    </Section>
+    </section>
   )
 }
 
