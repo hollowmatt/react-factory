@@ -62,7 +62,7 @@ function SmartAddy() {
 
 function App() {
   return (
-    <div className="App">
+    <div className="">
       <SmartAddy />
     </div>
   );
