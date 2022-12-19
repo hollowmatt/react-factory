@@ -21,7 +21,7 @@ function List({items, handleDelete}) {
                     <tr>
                         <td>{item.title}</td>
                         <td>{item.category}</td>
-                        <td>{item.dudDate}</td>
+                        <td>{item.date}</td>
                         <td>
                             <button onClick={() => handleDelete(item)}>Delete</button>
                         </td>

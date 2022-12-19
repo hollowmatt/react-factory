@@ -1,19 +1,37 @@
 import { useState } from 'react';
 
 function Add({handleAdd, handleCancel}) {
+    const [data, setData] = useState({
+        title: '',
+        category: '',
+        date: '',
+    });
+    const onChange = (evt) => {
+        const key = evt.target.name;
+        const value = evt.target.value;
+        setData(oldData => ({ ...oldData, [key]:value}));
+    };
+    const onSubmit = (evt) => {
+        handleAdd(data);
+        evt.preventDefault();
+    };
+    
     return(
-        <form>
+        <form onSubmit={onSubmit} style={{display: 'flex', flexDirection: 'column'}}>
             <label>
-                <input />
+                Title:
+                <input value={data.title} name="title" onChange={onChange}/>
             </label>
             <label>
-                <input />
+                Category:
+                <input value={data.category} name="category" onChange={onChange}/>
             </label>
             <label>
-                <input />
+                Due Date:
+                <input value={data.date} type="date" name="date" onChange={onChange}/>
             </label>
             <div>
-                <button type='button' onClick={handleAdd}>Submit</button>
+                <button>Submit</button>
                 <button type='button' onClick={handleCancel}>Cancel</button>
             </div>
         </form>
