@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import List from './components/List';
+import Add from './components/Add';
 import './App.css';
 
 function App() {
@@ -23,7 +24,11 @@ function App() {
           <button onClick={() => setAdding(false)}>View list</button>
           <button onClick={() => setAdding(true)}>Add New Item</button>
         </nav>
-        <List items={items} handleDelete={handleDelete} />
+        {isAdding ?
+          <Add handleAdd={handleAdd} handleCancel={handleCancel} />
+          :
+          <List items={items} handleDelete={handleDelete} />
+        }
       </main>
     </div>
   );
