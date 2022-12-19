@@ -12,7 +12,7 @@ function App() {
   );
 
   const handleAdd = (newItem) => {
-    setItems(oldItems => oldItems.concate([newItem]));
+    setItems(oldItems => oldItems.concat([newItem]));
     setAdding(false);
   }
   const handleCancel = () => setAdding(false);
