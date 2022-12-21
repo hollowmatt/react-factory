@@ -7,6 +7,7 @@ function Add({handleAdd, handleCancel}) {
         priority: '',
     });
     const priorities = ['low', 'medium','high', 'urgent'];
+    const people = ['Catnip', 'Milkshake', 'Shivers', 'Bella'];
     const onChangeTitle = (evt) => {
         setData(oldData => ({ ...oldData, title: evt.target.value}));
     };
@@ -15,6 +16,11 @@ function Add({handleAdd, handleCancel}) {
     };
     const onChangePriority = (evt) => {
         setData(oldData => ({ ...oldData, priority: evt.target.value}));
+    }
+    const onChangePeople = (evt) => {
+        const options = Array.from(evt.target.selectedOptions);
+        const value = options.map(opt => opt.value);
+        setData(oldData => ({ ...oldData, people: value}));
     }
     const onSubmit = (evt) => {
         handleAdd(data);
@@ -36,6 +42,14 @@ function Add({handleAdd, handleCancel}) {
                 <select value={data.priority} name="priority" onChange={onChangePriority}>
                 {priorities.map(priority => (
                     <option value={priority}>{priority}</option>
+                ))}
+                </select>
+            </label>
+            <label>
+                People:
+                <select value={data.people} name={people} onChange={onChangePeople} multiple>
+                {people.map(person => (
+                    <option>{person}</option>
                 ))}
                 </select>
             </label>

@@ -12,6 +12,7 @@ function List({items, handleDelete}) {
                 <thead>
                     <tr>
                         <th>Title</th>
+                        <th>People</th>
                         <th>Urgent?</th>
                         <th>Priority</th>
                         <th>Action</th>
@@ -20,6 +21,7 @@ function List({items, handleDelete}) {
                 {items.map(item => (
                     <tr>
                         <td>{item.title}</td>
+                        <td>{item.people}</td>
                         <td>{item.isUrgent? 'yes' : 'no'}</td>
                         <td>{item.priority}</td>
                         <td>
