@@ -13,12 +13,15 @@ function List({items, handleDelete}) {
                     <tr>
                         <th>Title</th>
                         <th>Urgent?</th>
+                        <th>Priority</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 {items.map(item => (
                     <tr>
                         <td>{item.title}</td>
                         <td>{item.isUrgent? 'yes' : 'no'}</td>
+                        <td>{item.priority}</td>
                         <td>
                             <button onClick={() => handleDelete(item)}>Delete</button>
                         </td>

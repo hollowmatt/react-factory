@@ -4,14 +4,18 @@ function Add({handleAdd, handleCancel}) {
     const [data, setData] = useState({
         title: '',
         isUrgent: false,
+        priority: '',
     });
+    const priorities = ['low', 'medium','high', 'urgent'];
     const onChangeTitle = (evt) => {
         setData(oldData => ({ ...oldData, title: evt.target.value}));
     };
     const onChangeUrgent = (evt) => {
         setData(oldData => ({ ...oldData, isUrgent: evt.target.checked}));
     };
-
+    const onChangePriority = (evt) => {
+        setData(oldData => ({ ...oldData, priority: evt.target.value}));
+    }
     const onSubmit = (evt) => {
         handleAdd(data);
         evt.preventDefault();
@@ -26,6 +30,14 @@ function Add({handleAdd, handleCancel}) {
             <label>
                 Urgent:
                 <input type="checkbox" checked={data.isUrgent} onChange={onChangeUrgent}/>
+            </label>
+            <label>
+                Priority:
+                <select value={data.priority} name="priority" onChange={onChangePriority}>
+                {priorities.map(priority => (
+                    <option value={priority}>{priority}</option>
+                ))}
+                </select>
             </label>
             <div>
                 <button>Submit</button>
