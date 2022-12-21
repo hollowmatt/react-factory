@@ -4,6 +4,7 @@ function Add({handleAdd, handleCancel}) {
     const [data, setData] = useState({
         title: '',
         people: [],
+        description: '',
         isUrgent: false,
         priority: '',
     });
@@ -17,12 +18,15 @@ function Add({handleAdd, handleCancel}) {
     };
     const onChangePriority = (evt) => {
         setData(oldData => ({ ...oldData, priority: evt.target.value}));
-    }
+    };
     const onChangePeople = (evt) => {
         const options = Array.from(evt.target.selectedOptions);
         const value = options.map(opt => opt.value);
         setData(oldData => ({ ...oldData, people: value}));
-    }
+    };
+    const onChangeDescription = (evt) => {
+        setData(oldData => ({ ...oldData, description: evt.target.value}));
+    };
     const onSubmit = (evt) => {
         handleAdd(data);
         evt.preventDefault();
@@ -53,6 +57,10 @@ function Add({handleAdd, handleCancel}) {
                     <option>{person}</option>
                 ))}
                 </select>
+            </label>
+            <label>
+                Description:
+                <textarea value={data.description} name="description" onChange={onChangeDescription}/>
             </label>
             <div>
                 <button>Submit</button>

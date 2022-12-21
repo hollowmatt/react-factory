@@ -14,6 +14,7 @@ function List({items, handleDelete}) {
                         <tr>
                             <th>Title</th>
                             <th>People</th>
+                            <th>Description</th>
                             <th>Urgent?</th>
                             <th>Priority</th>
                             <th>Action</th>
@@ -23,6 +24,7 @@ function List({items, handleDelete}) {
                         <tr>
                             <td>{item.title}</td>
                             <td>{item.people.join(", ")}</td>
+                            <td>{item.description}</td>
                             <td>{item.isUrgent? 'yes' : 'no'}</td>
                             <td>{item.priority}</td>
                             <td>
