@@ -11,9 +11,14 @@ function Add({handleAdd, handleCancel}) {
     const onChangeUrgent = (evt) => {
         setData(oldData => ({ ...oldData, isUrgent: evt.target.checked}));
     };
+
+    const onSubmit = (evt) => {
+        handleAdd(data);
+        evt.preventDefault();
+    };
     
     return(
-        <form onSubmit={handleAdd} style={{display: 'flex', flexDirection: 'column'}}>
+        <form onSubmit={onSubmit} style={{display: 'flex', flexDirection: 'column'}}>
             <label>
                 Title:
                 <input value={data.title} name="title" onChange={onChangeTitle}/>
