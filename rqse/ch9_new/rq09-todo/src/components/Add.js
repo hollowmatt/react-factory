@@ -10,23 +10,19 @@ function Add({handleAdd, handleCancel}) {
     });
     const priorities = ['low', 'medium','high', 'urgent'];
     const people = ['Catnip', 'Milkshake', 'Shivers', 'Bella'];
-    const onChangeTitle = (evt) => {
-        setData(oldData => ({ ...oldData, title: evt.target.value}));
+    const onChange = (evt) => {
+        const key = evt.target.name;
+        const value = evt.target.value;
+        setData(oldData => ({ ...oldData, [key]: value}));
     };
     const onChangeUrgent = (evt) => {
         setData(oldData => ({ ...oldData, isUrgent: evt.target.checked}));
     };
-    const onChangePriority = (evt) => {
-        setData(oldData => ({ ...oldData, priority: evt.target.value}));
-    };
     const onChangePeople = (evt) => {
-        const options = Array.from(evt.target.selectedOptions);
-        const value = options.map(opt => opt.value);
+        const value = Array.from(evt.target.selectedOptions).map(opt => opt.value);
         setData(oldData => ({ ...oldData, people: value}));
     };
-    const onChangeDescription = (evt) => {
-        setData(oldData => ({ ...oldData, description: evt.target.value}));
-    };
+    
     const onSubmit = (evt) => {
         handleAdd(data);
         evt.preventDefault();
@@ -36,7 +32,7 @@ function Add({handleAdd, handleCancel}) {
         <form onSubmit={onSubmit} style={{display: 'flex', flexDirection: 'column'}}>
             <label>
                 Title:
-                <input value={data.title} name="title" onChange={onChangeTitle}/>
+                <input value={data.title} name="title" onChange={onChange}/>
             </label>
             <label>
                 Urgent:
@@ -44,7 +40,7 @@ function Add({handleAdd, handleCancel}) {
             </label>
             <label>
                 Priority:
-                <select value={data.priority} name="priority" onChange={onChangePriority}>
+                <select value={data.priority} name="priority" onChange={onChange}>
                 {priorities.map(priority => (
                     <option value={priority}>{priority}</option>
                 ))}
@@ -60,7 +56,7 @@ function Add({handleAdd, handleCancel}) {
             </label>
             <label>
                 Description:
-                <textarea value={data.description} name="description" onChange={onChangeDescription}/>
+                <textarea value={data.description} name="description" onChange={onChange}/>
             </label>
             <div>
                 <button>Submit</button>
