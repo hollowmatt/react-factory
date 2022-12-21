@@ -3,6 +3,7 @@ import { useState } from 'react';
 function Add({handleAdd, handleCancel}) {
     const [data, setData] = useState({
         title: '',
+        people: [],
         isUrgent: false,
         priority: '',
     });
