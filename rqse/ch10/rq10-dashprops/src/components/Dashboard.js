@@ -1,4 +1,4 @@
-import { createContext, useContext } from 'react';
+import { memo, createContext, useContext } from 'react';
 
 const BUTTON_STYLE = {
     display: 'inline-block',
@@ -27,7 +27,7 @@ function UserButton() {
     );
 }
 
-function Header() {
+const Header = memo(function Header() {
     const name = useContext(NameContext);
     return(
         <header style={HEADER_STYLE}>
@@ -37,7 +37,7 @@ function Header() {
             <UserButton name={name}/>
         </header>
     );
-}
+});
 
 function Welcome() {
     const name = useContext(NameContext);
@@ -48,13 +48,13 @@ function Welcome() {
     );
 }
 
-function Main() {
+const Main = memo(function Main() {
     return(
         <main>
             <Welcome />
         </main>
     );
-}
+});
 
 function Dashboard({ name }) {
     return(
