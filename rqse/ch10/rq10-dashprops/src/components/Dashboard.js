@@ -1,3 +1,5 @@
+import { createContext, useContext } from 'react';
+
 const BUTTON_STYLE = {
     display: 'inline-block',
     padding: '4px 10px',
@@ -9,6 +11,8 @@ const HEADER_STYLE = {
     justifyContent: 'flex-end',
     borderBottom: '1px solid',
 };
+//Using context hook instead of passing the name around.
+const NameContext = createContext();
 
 function Button({ children }) {
     return(
@@ -16,13 +20,15 @@ function Button({ children }) {
     );
 }
 
-function UserButton({ name }) {
+function UserButton() {
+    const name = useContext(NameContext);
     return(
         <button>👤 {name}</button>
     );
 }
 
-function Header({ name }) {
+function Header() {
+    const name = useContext(NameContext);
     return(
         <header style={HEADER_STYLE}>
             <Button>Home</Button>
@@ -33,7 +39,8 @@ function Header({ name }) {
     );
 }
 
-function Welcome({ name }) {
+function Welcome() {
+    const name = useContext(NameContext);
     return(
         <section>
             <h1>Welcome, {name}!</h1>
@@ -41,7 +48,8 @@ function Welcome({ name }) {
     );
 }
 
-function Main({ name }) {
+function Main() {
+    const name = useContext(NameContext);
     return(
         <main>
             <Welcome name={name}/>
@@ -51,10 +59,10 @@ function Main({ name }) {
 
 function Dashboard({ name }) {
     return(
-        <div>
+        <NameContext.Provider value={name}>
             <Header name={name}/>
             <Main name={name}/>
-        </div>
+        </NameContext.Provider>
     );
 }
 
