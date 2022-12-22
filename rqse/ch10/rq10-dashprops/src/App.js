@@ -1,10 +1,10 @@
 import './App.css';
-import Dashboard from './components/Dashboard';
+import AdminDashboard from './components/AdminDashboard';
 
 function App() {
   return (
     <div>
-      <Dashboard name="Alice" />
+      <AdminDashboard />
     </div>
   );
 }

@@ -49,10 +49,9 @@ function Welcome() {
 }
 
 function Main() {
-    const name = useContext(NameContext);
     return(
         <main>
-            <Welcome name={name}/>
+            <Welcome />
         </main>
     );
 }
