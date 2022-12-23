@@ -6,12 +6,14 @@ const dmText = '#c9eb34';
 const lmText = '#3a3b35';
 const dmBack = '#30302e';
 const lmBack = '#fafafa';
+const dmButton = '#333';
+const lmButton = '#CCC';
 
 const DarkModeContext = createContext({});
 function Button({ children, ...rest }) {
   const { isDarkMode } = useContext(DarkModeContext);
   const style = {
-    backgroundColor: isDarkMode ? '#333' : '#CCC',
+    backgroundColor: isDarkMode ? `${dmButton}` : `${lmButton}`,
     border: '1px solid',
     color: 'inherit',
   };
