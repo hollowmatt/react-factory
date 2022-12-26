@@ -7,7 +7,10 @@ import {
   Route,
 } from "react-router-dom";
 
-import Root, {loader as rootLoader, action as rootAction } from "./routes/root";
+import Root, {
+  loader as rootLoader, 
+  action as rootAction 
+} from "./routes/root";
 import ErrorPage from './error-page';
 import Contact, {loader as contactLoader} from './routes/contact';
 
@@ -22,7 +25,7 @@ const router = createBrowserRouter([
       {
         path: "contacts/:contactId",
         element: <Contact/>,
-        loacer: contactLoader,
+        loader: contactLoader,
       },
     ],
   },

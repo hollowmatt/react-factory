@@ -6,15 +6,15 @@ export async function loader({params}) {
 }
 
 function Contact() {
-  //const contact = useLoaderData();  
-  const contact = {
-        first: "Your",
-        last: "Name",
-        avatar: "https://placekitten.com/g/200/200",
-        twitter: "your_handle",
-        notes: "some notes",
-        favorite: true,
-    };
+  const contact = useLoaderData();  
+  // const contact = {
+  //       first: "Your",
+  //       last: "Name",
+  //       avatar: "https://placekitten.com/g/200/200",
+  //       twitter: "your_handle",
+  //       notes: "some notes",
+  //       favorite: true,
+  //   };
     
 
     return (
