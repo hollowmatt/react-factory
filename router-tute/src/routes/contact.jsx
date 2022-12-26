@@ -1,7 +1,13 @@
-import {Form} from "react-router-dom";
+import { Form, useLoaderData } from "react-router-dom";
+import { getContact } from "../contacts";
+
+export async function loader({params}) {
+  return getContact(params.contactId);
+}
 
 function Contact() {
-    const contact = {
+  //const contact = useLoaderData();  
+  const contact = {
         first: "Your",
         last: "Name",
         avatar: "https://placekitten.com/g/200/200",
@@ -9,12 +15,13 @@ function Contact() {
         notes: "some notes",
         favorite: true,
     };
+    
 
     return (
         <div id="contact">
           <div>
             <img
-              key={contact.avatar}
+              key={contact.avatar || null}
               src={contact.avatar || null}
             />
           </div>
