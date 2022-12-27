@@ -4,6 +4,7 @@ import {
   useLoaderData, 
   Form,
   redirect,
+  useNavigation,
 } from "react-router-dom";
 import { getContacts, createContact } from "../contacts";
 
@@ -19,6 +20,7 @@ export async function action() {
 
 function Root() {
   const { contacts } = useLoaderData();  
+  const navigation = useNavigation();
   return (
     <>
       <div id="sidebar">
@@ -78,7 +80,12 @@ function Root() {
           )}
         </nav>
       </div>
-      <div id="detail">
+      <div 
+        id="detail"
+        className={
+          navigation.state === "loading" ? "loading" : ""
+        }
+      >
         <Outlet/>
       </div>
     </>
