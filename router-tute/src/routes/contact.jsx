@@ -13,6 +13,7 @@ export async function loader({params}) {
       statusText: "Contact not found",
     });
   }
+  return contact;
 }
 
 export async function action({ request, params }) {
