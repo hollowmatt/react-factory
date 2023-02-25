@@ -28,13 +28,12 @@ function UserButton() {
 }
 
 const Header = memo(function Header() {
-    const name = useContext(NameContext);
     return(
         <header style={HEADER_STYLE}>
             <Button>Home</Button>
             <Button>Groups</Button>
             <Button>Profile</Button>
-            <UserButton name={name}/>
+            <UserButton/>
         </header>
     );
 });
@@ -59,8 +58,8 @@ const Main = memo(function Main() {
 function Dashboard({ name }) {
     return(
         <NameContext.Provider value={name}>
-            <Header name={name}/>
-            <Main name={name}/>
+            <Header/>
+            <Main/>
         </NameContext.Provider>
     );
 }
