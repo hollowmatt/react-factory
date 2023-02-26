@@ -51,11 +51,17 @@ const Main = memo(function Main() {
     boxSizing: 'border-box',
  
   }
-  return <main style={style}>
-    <Header />
-    <h1>Welcome to our business site!</h1>
-  </main>
+  return(
+    <main style={style}>
+      <Header />
+      <h1>Welcome to our business site!</h1>
+      <p>
+        This is our site.  You can toggle between dark mode and light mode, using the 'Toggle Mode' button at the top right.
+      </p>
+    </main>
+  ); 
 });
+
 function App() {
   const [isDarkMode, setDarkMode] = useState(false);
   const toggleDarkMode = () => setDarkMode(v => !v);
