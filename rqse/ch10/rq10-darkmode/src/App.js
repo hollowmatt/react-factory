@@ -43,6 +43,7 @@ const Header = memo(function Header() {
 });
 const Main = memo(function Main() {
   const { isDarkMode } = useContext(DarkModeContext);
+  const { phrase } = useContext(DarkModeContext);
   const style = {
     color: isDarkMode ? `${dmText}` : `${lmText}`,
     backgroundColor: isDarkMode ? `${dmBack}` : `${lmBack}`,
@@ -56,7 +57,7 @@ const Main = memo(function Main() {
       <Header />
       <h1>Welcome to our business site!</h1>
       <p>
-        This is our site.  You can toggle between dark mode and light mode, using the 'Toggle Mode' button at the top right.
+        {phrase}
       </p>
     </main>
   ); 
@@ -65,7 +66,8 @@ const Main = memo(function Main() {
 function App() {
   const [isDarkMode, setDarkMode] = useState(false);
   const toggleDarkMode = () => setDarkMode(v => !v);
-  const contextValue = { isDarkMode, toggleDarkMode };
+  const phrase = isDarkMode ? "We are in dark mode" : "We are in light mode";
+  const contextValue = { isDarkMode, toggleDarkMode, phrase };
   return (
     <DarkModeContext.Provider value={contextValue}>
       <Main />
