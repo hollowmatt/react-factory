@@ -1,4 +1,5 @@
-import { useContext, useState, createContext, memo } from 'react';
+import { useState, memo } from 'react';
+import { createContext, useContextSelector } from 'use-context-selector';
 import './App.css';
 
 //colors
@@ -11,7 +12,10 @@ const lmButton = '#CCC';
 
 const DarkModeContext = createContext({});
 function Button({ children, ...rest }) {
-  const { isDarkMode } = useContext(DarkModeContext);
+  const isDarkMode = useContextSelector(
+    DarkModeContext,
+    (contextValue) => contextValue.isDarkMode,
+  );
   const style = {
     backgroundColor: isDarkMode ? `${dmButton}` : `${lmButton}`,
     border: '1px solid',
@@ -20,7 +24,10 @@ function Button({ children, ...rest }) {
   return <button style={style} {...rest}>{children}</button>
 }
 function ToggleButton() {
-  const { toggleDarkMode } = useContext(DarkModeContext);
+  const toggleDarkMode = useContextSelector(
+    DarkModeContext,
+    (contextValue) => contextValue.toggleDarkMode,
+  );
   return <Button onClick={toggleDarkMode}>Toggle mode</Button>
 }
 const Header = memo(function Header() {
@@ -42,8 +49,14 @@ const Header = memo(function Header() {
   )
 });
 const Main = memo(function Main() {
-  const { isDarkMode } = useContext(DarkModeContext);
-  const { phrase } = useContext(DarkModeContext);
+  const isDarkMode = useContextSelector(
+    DarkModeContext,
+    (contextValue) => contextValue.isDarkMode,
+  );
+  const phrase = useContextSelector(
+    DarkModeContext,
+    (contextValue) => contextValue.phrase,
+  );
   const style = {
     color: isDarkMode ? `${dmText}` : `${lmText}`,
     backgroundColor: isDarkMode ? `${dmBack}` : `${lmBack}`,
