@@ -1,7 +1,9 @@
 import MenuItem from "./MenuItem";
-import menu from "../data/menu.json"
+import { useContext } from 'react';
+import { MenuContext } from '../App';
 
 function Header() {
+  const menu = useContext(MenuContext);
   return(
     <header>
       <nav>
