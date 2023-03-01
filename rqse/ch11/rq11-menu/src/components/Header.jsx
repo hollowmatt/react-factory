@@ -4,6 +4,7 @@ import { MenuContext } from '../App';
 
 function Header() {
   const menu = useContext(MenuContext);
+  const value = false;
   return(
     <header>
       <nav>
@@ -11,6 +12,7 @@ function Header() {
           {menu.map(({title, ...props}) => {
             return(<MenuItem key={title} {...props}>{title}</MenuItem>);
           })}
+          <MenuItem key="login" icon="login" href={value ? "/logout" : "/login"}> {value ? "Logout" : "Login"}</MenuItem>
         </ul>
       </nav>
     </header>
