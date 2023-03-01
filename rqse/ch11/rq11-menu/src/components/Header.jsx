@@ -1,6 +1,8 @@
 function Header() {
   return(
-    <p>header placeholder</p>
+    <header>
+      <nav>nav placeholder</nav>
+    </header>
   );
 }
 

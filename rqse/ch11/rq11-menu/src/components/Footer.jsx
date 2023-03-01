@@ -1,6 +1,10 @@
 function Footer() {
   return(
-    <p>footer placeholder</p>
+    <footer>
+      <a href="/about">About</a>
+      <a href="/contact">Contact</a>
+      <a href="//reactquickly.dev">React Quickly 2E</a>
+    </footer>
   )
 }
 

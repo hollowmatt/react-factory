@@ -1,6 +1,8 @@
 function Main() {
   return(
-    <p>Main placeholder</p>
+    <main>
+      <h1>Main Placeholder</h1>
+    </main>
   );
 }
 
