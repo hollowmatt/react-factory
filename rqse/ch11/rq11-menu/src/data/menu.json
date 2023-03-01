@@ -1,0 +1,22 @@
+[
+  {
+    "title": "Home",
+    "icon": "home",
+    "href": "/"
+  },
+  {
+    "title": "Services",
+    "icon": "services",
+    "href": "/services"
+  },
+  {
+    "title": "Pricing",
+    "icon": "pricing",
+    "href": "/pricing"
+  },
+  {
+    "title": "Blog",
+    "icon": "blog",
+    "href": "/blog"
+  }
+]
