@@ -2,21 +2,31 @@
   {
     "title": "Home",
     "icon": "home",
-    "href": "/"
+    "href": "/",
+    "auth": false
   },
   {
     "title": "Services",
     "icon": "services",
-    "href": "/services"
+    "href": "/services",
+    "auth": false
   },
   {
     "title": "Pricing",
     "icon": "pricing",
-    "href": "/pricing"
+    "href": "/pricing",
+    "auth": false
   },
   {
     "title": "Blog",
     "icon": "blog",
-    "href": "/blog"
+    "href": "/blog",
+    "auth": false
+  },
+  {
+    "title": "Profile",
+    "icon": "profile",
+    "href": "/profile",
+    "auth": true
   }
 ]

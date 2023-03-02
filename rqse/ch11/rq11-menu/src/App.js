@@ -2,18 +2,14 @@ import './App.css';
 import Main from './components/Main';
 import Footer from './components/Footer';
 import Header from './components/Header';
-import { createContext, useState } from 'react';
-import menu from "./data/menu.json"; 
-
-export const MenuContext = createContext([]);
+import { DataProvider } from './data/Context'; 
 
 function App() {
-
   return (
     <div className="App">
-      <MenuContext.Provider value={menu}>
+      <DataProvider>
         <Header/>
-      </MenuContext.Provider>
+      </DataProvider>
       <Main/>
       <Footer/>
     </div>
