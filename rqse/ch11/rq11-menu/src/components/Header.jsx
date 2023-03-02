@@ -1,23 +1,33 @@
 import MenuItem from "./MenuItem";
-import { useContext, useState } from 'react';
-import Context from '../data/Context';
+import { useData } from '../data/Context';
 
 function Header() {
-  const menu = useContext(Context);
-  const [isLoggedIn, setLoggedIn] = useState(false);
+  const { links, isLoggedIn, login, logout } = useData();
 
-  function onSubmit(e){
-    setLoggedIn(!isLoggedIn);
+  function onSubmit() {
+    if (isLoggedIn) {
+      logout();
+    } else {
+      login();
+    }
   };
 
   return(
     <header>
       <nav>
         <ul className="menu">
-          {menu.map(({title, ...props}) => {
-            return(<MenuItem key={title} {...props}>{title}</MenuItem>);
+          {links.map(({title, auth, ...props}) => {
+            if (!auth) {
+              return(<MenuItem key={title} {...props}>{title}</MenuItem>);
+            } else {
+              if (auth && isLoggedIn) {
+                return(<MenuItem key={title} {...props}>{title}</MenuItem>);
+              } else {
+                return null;
+              }
+            }
           })}
-          <button onClick={onSubmit}>{isLoggedIn ? "Logout" : "Login"}</button>
+          <button onClick={(onSubmit)}>{isLoggedIn ? "Logout" : "Login"}</button>
         </ul>
       </nav>
     </header>

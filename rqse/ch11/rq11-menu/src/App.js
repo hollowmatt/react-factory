@@ -2,15 +2,14 @@ import './App.css';
 import Main from './components/Main';
 import Footer from './components/Footer';
 import Header from './components/Header';
-import Context from './data/Context'; 
-import menu from "./data/menu.json"; 
+import { DataProvider } from './data/Context'; 
 
 function App() {
   return (
     <div className="App">
-      <Context.Provider value={menu}>
+      <DataProvider>
         <Header/>
-      </Context.Provider>
+      </DataProvider>
       <Main/>
       <Footer/>
     </div>
