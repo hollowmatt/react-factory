@@ -1,9 +1,9 @@
 import MenuItem from "./MenuItem";
 import { useContext, useState } from 'react';
-import { MenuContext } from '../App';
+import Context from '../data/Context';
 
 function Header() {
-  const menu = useContext(MenuContext);
+  const menu = useContext(Context);
   const [isLoggedIn, setLoggedIn] = useState(false);
 
   function onSubmit(e){
