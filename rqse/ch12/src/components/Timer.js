@@ -1,20 +1,19 @@
+import { Button } from './Button';
+import { TimeParts } from './TimeParts';
+
+const values = {
+  "numLeft": "05",
+  "unitLeft": "minutes",
+  "numRight": "00",
+  "unitRight": "seconds"
+}
+
 function Timer() {
+
   return (
     <section className="timer">
-      <ul className="parts">
-        <li className="part">
-          <p className="number">05</p>
-          <p className="unit">minutes</p>
-        </li>
-        <li className="colon">:</li>
-        <li className="part">
-          <p className="number">00</p>
-          <p className="unit">seconds</p>
-        </li>
-      </ul>
-      <button title="Play" className="toggle">
-        <img src="/icons/play.svg" alt="Play" />
-      </button>
+      <TimeParts values={values} />
+      <Button title="Play" />
     </section>
   );
 };
