@@ -1,6 +1,6 @@
 import './style.css';
 
-import TimerManager from './TimerManager';
+import TimerManager from './components/TimerManager';
 
 function App() {
   return (
