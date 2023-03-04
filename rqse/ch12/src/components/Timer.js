@@ -14,6 +14,7 @@ function Timer() {
     <section className="timer">
       <TimeParts values={values} />
       <Button title="Play" />
+      <Button title="Trash" />
     </section>
   );
 };
