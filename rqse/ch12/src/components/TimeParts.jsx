@@ -12,4 +12,4 @@ export function TimeParts({values}) {
       </li>
     </ul>
   );
-}
+}         
