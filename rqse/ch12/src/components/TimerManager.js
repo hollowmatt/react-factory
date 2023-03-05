@@ -1,11 +1,9 @@
 import Timer from './Timer';
-import { TimeForm } from './Form';
 
 function TimerManager() {
   return (
     <div className="timers">
-      <Timer />
-      <TimeForm />
+      <Timer startTime={300}/>
     </div>
   );
 }

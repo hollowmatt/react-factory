@@ -1,15 +1,14 @@
-export function TimeParts({values}) {
+import Number from './Number';
+
+export function TimeParts({time}) {
+  const minutes = Math.floor(time / 60);
+  const seconds = time % 60;
+
   return(
     <ul className="parts">
-      <li className="part">
-        <p className="number">{values.numLeft}</p>
-        <p className="unit">{values.unitLeft}</p>
-      </li>
+      <Number value={minutes} label='Minutes'/>
       <li className="colon">:</li>
-      <li className="part">
-        <p className="number">{values.numRight}</p>
-        <p className="unit">{values.unitRight}</p>
-      </li>
+      <Number value={seconds} label="Seconds" />
     </ul>
   );
 }         
