@@ -1,39 +1,53 @@
 import { Button } from './Button';
 import { TimeParts } from './TimeParts';
-import { useState, useEffect } from 'react';
+import useReduction from "use-reduction";
+import { useEffect } from 'react';
 
 function Timer({ startTime, onComplete}) {
-  const [isRunning, setRunning] = useState(false);
-  const [numSecs, setSecs] = useState(startTime);
-  const play = () => setRunning(true);
-  const pause = () => setRunning(false);
-  
+ 
+  const reducer = {
+    play: (state) =>
+      ({...state, isRunning: true}),
+    pause: (state) =>
+      ({...state, isRunning: false}),
+    restart: (state) =>
+      ({...state, numSecs: state.numSecs, isCompleted: false}),
+    tick: (state) => {
+      const numSecs = state.numSecs - 1;
+      if (numSecs <= 0) {
+        return({
+          ...state,
+          numSecs: 0,
+          isCompleted: true,
+          isRunning: false,
+        });
+      }
+      return {
+        ...state,
+        numSecs,
+      };
+    }
+  };
+
+  const INITIAL_STATE = { numSecs: startTime, isRunning: false, isCompleted: false };
+  const [state, actions] = useReduction(INITIAL_STATE, reducer);
+
   useEffect(() => {
-    if(!isRunning) {
+    if(!state.isRunning) {
       return;
     }
-    function tick() {
-      setSecs(oldValue => {
-        const value = oldValue - 1;
-        if (value <= 0) {
-          setRunning(false);
-          onComplete();
-          return(startTime);
-        }
-        return value;
-      });
-    }
-    const interval = setInterval(tick, 1000);
+    const interval = setInterval(actions.tick(), 1000);
     return () => { clearInterval(interval)};
-  }, [isRunning, startTime, onComplete]);
+  }, [state.isRunning, actions]);
 
   return (
-    <section className={`timer ${isRunning ? 'timer-ticking' : ''}`}>
-      <TimeParts time={numSecs} />
-      {isRunning
-      ? <Button title='Pause' icon="pause" onClick={pause} />
-      : <Button title='Play' icon="play" onClick={play} />
+    <section className={`timer ${state.isRunning ? 'timer-ticking' : state.isCompleted ? 'timer-ringing' : ''}`}>
+      <TimeParts time={state.numSecs} />
+      {state.isRunning
+      ? <Button title='Pause' icon="pause" onClick={actions.pause} />
+      : <Button title='Play' icon="play" onClick={actions.play} />
       }
+      <Button icon="restart" label='Restart' onClick={actions.restart}/>
       <Button icon="trash" label="Delete" onClick={onComplete}/>
     </section>
   );
