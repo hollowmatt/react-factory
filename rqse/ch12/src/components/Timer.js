@@ -1,38 +1,40 @@
 import { Button } from './Button';
 import { TimeParts } from './TimeParts';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
-function Timer() {
-  //initialize state to determine if timer is running, and number of seconds
-  //in the timer
-  const values = {
-    "numLeft": "05",
-    "unitLeft": "minutes",
-    "numRight": "00",
-    "unitRight": "seconds"
-  }
+function Timer({ startTime, onComplete}) {
   const [isRunning, setRunning] = useState(false);
-  const [numSecs, setSecs] = useState(0);
-
-  function startStop(e) {
-    e.preventDefault();
-    setSecs(300);
-    setRunning(!isRunning);
-  }
+  const [numSecs, setSecs] = useState(startTime);
+  const play = () => setRunning(true);
+  const pause = () => setRunning(false);
+  
+  useEffect(() => {
+    if(!isRunning) {
+      return;
+    }
+    function tick() {
+      setSecs(oldValue => {
+        const value = oldValue - 1;
+        if (value <= 0) {
+          setRunning(false);
+          onComplete();
+          return(startTime);
+        }
+        return value;
+      });
+    }
+    const interval = setInterval(tick, 1000);
+    return () => { clearInterval(interval)};
+  }, [isRunning, startTime, onComplete]);
 
   return (
-    <section className="timer">
-      <TimeParts values={values} />
-      <button 
-        title={isRunning ? 'Pause' : 'Play'} 
-        className='toggle'
-        onClick={startStop}>
-          <img 
-            src={isRunning ? '/icons/Pause.svg' : '/icons/Play.svg'}
-            alt={isRunning ? 'Pause' : 'Play'}
-          />
-      </button>
-      <Button title="Trash" />
+    <section className={`timer ${isRunning ? 'timer-ticking' : ''}`}>
+      <TimeParts time={numSecs} />
+      {isRunning
+      ? <Button title='Pause' icon="pause" onClick={pause} />
+      : <Button title='Play' icon="play" onClick={play} />
+      }
+      <Button icon="trash" label="Delete" onClick={onComplete}/>
     </section>
   );
 };
