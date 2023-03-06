@@ -34,6 +34,7 @@ function Timer({ startTime, onComplete}) {
       ? <Button title='Pause' icon="pause" onClick={pause} />
       : <Button title='Play' icon="play" onClick={play} />
       }
+      <Button icon="trash" label="Delete" onClick={onComplete}/>
     </section>
   );
 };
