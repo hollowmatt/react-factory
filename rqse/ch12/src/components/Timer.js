@@ -13,6 +13,7 @@ function Timer({ startTime, onComplete}) {
     restart: (state) =>
       ({...state, numSecs: startTime, isCompleted: false}),
     tick: (state) => {
+      console.log(state.numSecs);
       const numSecs = state.numSecs - 1;
       if (numSecs > 0) {
         return({
@@ -36,7 +37,7 @@ function Timer({ startTime, onComplete}) {
     if(!state.isRunning) {
       return;
     }
-    const interval = setInterval(actions.tick(), 1000);
+    const interval = setInterval(() => actions.tick(), 1000);
     return () => { clearInterval(interval)};
   }, [state.isRunning, actions]);
 
