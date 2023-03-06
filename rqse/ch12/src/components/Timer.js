@@ -11,20 +11,20 @@ function Timer({ startTime, onComplete}) {
     pause: (state) =>
       ({...state, isRunning: false}),
     restart: (state) =>
-      ({...state, numSecs: state.numSecs, isCompleted: false}),
+      ({...state, numSecs: startTime, isCompleted: false}),
     tick: (state) => {
       const numSecs = state.numSecs - 1;
-      if (numSecs <= 0) {
+      if (numSecs > 0) {
         return({
           ...state,
-          numSecs: 0,
-          isCompleted: true,
-          isRunning: false,
+          numSecs,
         });
       }
       return {
         ...state,
-        numSecs,
+        numSecs: 0,
+        isCompleted: true,
+        isRunning: false,
       };
     }
   };
