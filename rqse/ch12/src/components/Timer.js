@@ -2,7 +2,7 @@ import { Button } from './Button';
 import { TimeParts } from './TimeParts';
 import { useState, useEffect } from 'react';
 
-function Timer({ startTime }) {
+function Timer({ startTime, onComplete}) {
   const [isRunning, setRunning] = useState(false);
   const [numSecs, setSecs] = useState(startTime);
   const play = () => setRunning(true);
@@ -17,6 +17,7 @@ function Timer({ startTime }) {
         const value = oldValue - 1;
         if (value <= 0) {
           setRunning(false);
+          onComplete();
           return(startTime);
         }
         return value;
@@ -24,7 +25,7 @@ function Timer({ startTime }) {
     }
     const interval = setInterval(tick, 1000);
     return () => { clearInterval(interval)};
-  }, [isRunning, startTime]);
+  }, [isRunning, startTime, onComplete]);
 
   return (
     <section className={`timer ${isRunning ? 'timer-ticking' : ''}`}>
