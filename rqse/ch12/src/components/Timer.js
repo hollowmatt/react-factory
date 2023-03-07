@@ -3,7 +3,7 @@ import { TimeParts } from './TimeParts';
 import useReduction from "use-reduction";
 import { useEffect } from 'react';
 
-function Timer({ startTime, onComplete}) {
+function Timer({ startTime, onComplete, id}) {
  
   const reducer = {
     play: (state) =>
@@ -42,7 +42,7 @@ function Timer({ startTime, onComplete}) {
   }, [state.isRunning, actions]);
 
   return (
-    <section className={`timer ${state.isRunning ? 'timer-ticking' : state.isCompleted ? 'timer-ringing' : ''}`}>
+    <section className={`timer ${state.isRunning ? 'timer-ticking' : state.isCompleted ? 'timer-ringing' : ''}`} key={id}>
       <TimeParts time={state.numSecs} />
       {state.isRunning
       ? <Button title='Pause' icon="pause" onClick={actions.pause} />

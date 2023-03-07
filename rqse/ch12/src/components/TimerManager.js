@@ -8,7 +8,7 @@ function TimerManager() {
   return (
     <div className="timers">
       {startTime > 0
-        ? <Timer startTime={startTime} onComplete={() => setStartTime(0)}/>
+        ? <Timer startTime={startTime} onComplete={() => setStartTime(0)} id="default"/>
         : <TimeForm add={setStartTime}/>
       }
     </div>
