@@ -3,7 +3,7 @@ import { TimeForm } from './Form';
 import { useState } from 'react';
 
 function TimerManager() {
-  const [timers, setTimers] = useState([{startTime:0, id:0}]);
+  const [timers, setTimers] = useState([{startTime:30, id:0}]);
   const [adding, setAdding] = useState(true);
 
   const onComplete = (idToDelete) => {
