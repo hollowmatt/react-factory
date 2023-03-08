@@ -1,4 +1,5 @@
 import Input from './Input';
+import { Button } from './Button';
 import { useState } from 'react';
 
 const EMPTY = { mins: 0, secs: 0 };
@@ -14,12 +15,15 @@ export function TimeForm({add}) {
 
   function addTimer(e) {
     e.preventDefault();
-    add((parseInt(data.mins) * 60) + parseInt(data.secs));
+    if (data.mins === 0 && data.secs === 0) {
+      return;
+    }
+    add(data.mins * 60 + data.secs);
     setData(EMPTY);
   };
   
   return (
-    <form className="timer timer-new">
+    <form className="timer timer-new" onSubmit={addTimer}>
       <ul className="parts">
         <li> 
           <Input name="mins" value={data.mins} onChange={onChange} />
@@ -29,9 +33,7 @@ export function TimeForm({add}) {
           <Input name="secs" value={data.secs} onChange={onChange} /> 
         </li>
       </ul>
-      <button title='Play' className='toggle' onClick={addTimer}>
-        <img src="/icons/Play.svg" alt="Add Timer and Play" />
-      </button>
+      <Button icon="Play" label="Start" />
     </form>
   );
 }

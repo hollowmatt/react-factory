@@ -33,6 +33,8 @@ function Timer({ startTime, onComplete, id}) {
   const INITIAL_STATE = { numSecs: startTime, isRunning: false, isCompleted: false };
   const [state, actions] = useReduction(INITIAL_STATE, reducer);
 
+  const deleteHandler = () => onComplete(id);
+
   useEffect(() => {
     if(!state.isRunning) {
       return;
@@ -49,7 +51,7 @@ function Timer({ startTime, onComplete, id}) {
       : <Button title='Play' icon="play" onClick={actions.play} />
       }
       <Button icon="restart" label='Restart' onClick={actions.restart}/>
-      <Button icon="trash" label="Delete" onClick={onComplete}/>
+      <Button icon="trash" label="Delete" onClick={deleteHandler}/>
     </section>
   );
 };
