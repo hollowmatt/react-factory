@@ -1,9 +1,9 @@
-import Button from "./Button";
+
 import { useState } from 'react';
 
 function TaskForm({add}) {
   const [title, setTitle] = useState();
-  const EMPTY = {title: ''};
+
   const addTask = (evt) => {
     evt.preventDefault();
     console.log('add task');
