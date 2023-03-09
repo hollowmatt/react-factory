@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import Task from './Task';
+import TaskForm from './TaskForm';
 
 function TaskList() {
   const INIT_TASKS = [
@@ -18,25 +19,18 @@ function TaskList() {
   ];
   const [tasks, setTasks] = useState(INIT_TASKS);
   
+  const addTask = (title) => {
+    const id = tasks.length;
+    setTasks((oldTasks) => [...oldTasks, {id, title}] );
+    console.log(tasks);
+  };
+
   return (
     <ol className="lane">
       {tasks.map(({id, title}) => (
         <Task title={title} key={id} />
       ))}
-      <li className="card">
-        <header className="card-header card-header-new">
-          <form className="card-title-form">
-            <input
-              className="card-title card-title-input"
-              placeholder="Add new task"
-              name="title"
-            />
-            <button className="icon-button">
-              <img src="icons/plus.svg" alt="Add task" />
-            </button>
-          </form>
-        </header>
-      </li>
+      <TaskForm add={addTask} />
     </ol>
   );
 }
