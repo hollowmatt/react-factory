@@ -31,12 +31,15 @@ function TaskList() {
 
   const onUpdate = (title, id) => {
     console.log("title: " + title + ", id: " + id);
+    setTasks((oldTasks) => {
+      oldTasks[oldTasks.findIndex((task) => task.id === id)].title = title
+    });
   }
 
   return (
     <ol className="lane">
       {tasks.map(({id, title}) => (
-        <Task title={title} key={id} id={id} onDelete={removeTask} on Update={onUpdate}/>
+        <Task title={title} key={id} id={id} onDelete={removeTask} onUpdate={onUpdate}/>
       ))}
       <TaskForm add={addTask} />
     </ol>

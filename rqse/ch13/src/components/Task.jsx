@@ -6,7 +6,7 @@ function Task({title, id, onDelete, onUpdate}){
   const deleteTask = () => {
     onDelete(id);
   }
-  const [heading, setHeading] = useState({title});
+  const [heading, setHeading] = useState(title);
   const [isEditing, setEditing] = useState(false);
   const onChange = (evt) => {
     setHeading(evt.target.value);
@@ -14,15 +14,17 @@ function Task({title, id, onDelete, onUpdate}){
 
   const save = () => {
     onUpdate(heading, id);
+    setEditing(false);
+    setHeading(title);
   };
 
   return(
-    <li className="card">
+    <li className={`${isEditing ? "card-header card-header-new" : "card"}`}>
       {!isEditing 
         ? (<Header title={title} />) 
         : (<input
           className="card-title card-title-input"
-          placeholder="Add new task"
+          placeholder={heading}
           name="heading"
           onChange={onChange}
           value={heading}
