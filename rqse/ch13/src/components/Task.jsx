@@ -1,7 +1,11 @@
 import Header from './Header';
 import Button from './Button';
 
-function Task({title}){
+function Task({title, id, onDelete}){
+  const deleteTask = () => {
+    onDelete(id);
+  }
+
   return(
     <li className="card">
      <Header title={title} />
@@ -10,7 +14,7 @@ function Task({title}){
           <Button icon="pencil" title="Edit"/>
         </li>
         <li>
-          <Button icon="trash" title="Delete"/>
+          <Button icon="trash" title="Delete" action={deleteTask}/>
         </li>
       </ul>
     </li>

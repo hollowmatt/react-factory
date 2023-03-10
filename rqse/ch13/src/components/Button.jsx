@@ -1,6 +1,7 @@
 function Button({icon, title, action}) {
   const execute = (e) => {
-   action();
+    e.preventDefault();
+    action();
   }
 
   return(
