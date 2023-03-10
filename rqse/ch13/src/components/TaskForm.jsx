@@ -7,7 +7,9 @@ function TaskForm({add}) {
   const addTask = (evt) => {
     evt.preventDefault();
     console.log('add task');
-    add(title);
+    if(title){
+      add(title);
+    }
     setTitle("");
   };
 
