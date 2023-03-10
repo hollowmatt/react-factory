@@ -19,7 +19,7 @@ function Task({title, id, onDelete, onUpdate}){
   };
 
   return(
-    <li className={`${isEditing ? "card-header card-header-new" : "card"}`}>
+    <li className={`${isEditing ? "card-header" : "card"}`}>
       {!isEditing 
         ? (<Header title={title} />) 
         : (<input
@@ -33,7 +33,7 @@ function Task({title, id, onDelete, onUpdate}){
       <ul className="card-controls">
         <li>
           {isEditing
-            ? (<Button icon="pencil" title="Save" action={save} /> )
+            ? (<Button icon="check" title="Save" action={save} /> )
             : (<Button icon="pencil" title="Edit" action={() => setEditing(true)}/>)
           }
         </li>

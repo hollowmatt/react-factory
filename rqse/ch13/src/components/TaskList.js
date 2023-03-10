@@ -31,9 +31,7 @@ function TaskList() {
 
   const onUpdate = (title, id) => {
     console.log("title: " + title + ", id: " + id);
-    setTasks((oldTasks) => {
-      oldTasks[oldTasks.findIndex((task) => task.id === id)].title = title
-    });
+    setTasks((ts) => ts.map((task) => (task.id === id ? { ...task, title } : task)));
   }
 
   return (
