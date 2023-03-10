@@ -29,10 +29,14 @@ function TaskList() {
     setTasks((oldTasks) => oldTasks.filter(({id}) => id !== idToDelete));
   }
 
+  const onUpdate = (title, id) => {
+    console.log("title: " + title + ", id: " + id);
+  }
+
   return (
     <ol className="lane">
       {tasks.map(({id, title}) => (
-        <Task title={title} key={id} id={id} onDelete={removeTask}/>
+        <Task title={title} key={id} id={id} onDelete={removeTask} on Update={onUpdate}/>
       ))}
       <TaskForm add={addTask} />
     </ol>
