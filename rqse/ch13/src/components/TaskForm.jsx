@@ -1,13 +1,15 @@
 
 import { useState } from 'react';
+import Button from './Button';
 
 function TaskForm({add}) {
   const [title, setTitle] = useState();
 
-  const addTask = (evt) => {
-    evt.preventDefault();
+  const addTask = () => {
     console.log('add task');
-    add(title);
+    if(title){
+      add(title);
+    }
     setTitle("");
   };
 
@@ -26,9 +28,7 @@ function TaskForm({add}) {
               onChange={onChange}
               value={title}
             />
-            <button className="icon-button" onClick={(addTask)}>
-              <img src="icons/plus.svg" alt="Add task" />
-            </button>
+            <Button icon="plus" title="Add" action={addTask}/>
           </form>
         </header>
       </li>
