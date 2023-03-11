@@ -1,4 +1,5 @@
 import { Counter } from './components/Counter';
+import { PokemonList } from './components/PokemonList';
 import './App.css';
 
 function App() {
@@ -6,6 +7,7 @@ function App() {
     <div className="App">
       <header className='App-header'>
         <Counter />
+        <PokemonList />
       </header>
     </div>
   );
