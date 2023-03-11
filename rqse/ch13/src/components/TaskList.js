@@ -10,11 +10,13 @@ function TaskList() {
       steps: [
         {
           num: 0,
-          desc: "Wax On"
+          desc: "Wax On",
+          complete: false
         },
         {
           num: 1,
-          desc: "Wax Off"
+          desc: "Wax Off",
+          complete: false
         }
       ]
     },
@@ -46,10 +48,12 @@ function TaskList() {
     setTasks((ts) => ts.map((task) => (task.id === id ? { ...task, title } : task)));
   }
 
+  console.log(tasks);
+  
   return (
     <ol className="lane">
-      {tasks.map(({id, title}) => (
-        <Task title={title} key={id} id={id} onDelete={removeTask} onUpdate={onUpdate}/>
+      {tasks.map(({id, title, steps}) => (
+        <Task title={title} key={id} id={id} steps={steps} onDelete={removeTask} onUpdate={onUpdate}/>
       ))}
       <TaskForm add={addTask} />
     </ol>

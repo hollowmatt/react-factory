@@ -1,8 +1,9 @@
 import Header from './Header';
 import Button from './Button';
+import Step from './Step';
 import { useState } from 'react';
 
-function Task({title, id, onDelete, onUpdate}){
+function Task({title, id, steps, onDelete, onUpdate}){
   const deleteTask = () => {
     onDelete(id);
   }
@@ -18,24 +19,33 @@ function Task({title, id, onDelete, onUpdate}){
     setHeading(title);
   };
 
-  return(
-    <li className={`${isEditing ? "card-header" : "card"}`}>
-      {!isEditing 
-        ? (<Header title={title} />) 
-        : (<input
+  if(isEditing) {
+    return(
+      <li className="card-header">
+        <input
           className="card-title card-title-input"
           placeholder={heading}
           name="heading"
           onChange={onChange}
           value={heading}
-        />) 
-      }
+        />
+        <ul>
+          <Button icon="check" title="Save" action={save} />
+        </ul>
+      </li>
+    );
+  }
+  return(
+    <li className="card">
+      <Header title={title} />
+      <ol>
+        {steps.map(({num, desc, complete}) => (
+          <Step num={num} key={num} desc={desc} complete={complete}/>
+        ))}
+      </ol>
       <ul className="card-controls">
         <li>
-          {isEditing
-            ? (<Button icon="check" title="Save" action={save} /> )
-            : (<Button icon="pencil" title="Edit" action={() => setEditing(true)}/>)
-          }
+          <Button icon="pencil" title="Edit" action={() => setEditing(true)}/>
         </li>
         <li>
           <Button icon="trash" title="Delete" action={deleteTask}/>
