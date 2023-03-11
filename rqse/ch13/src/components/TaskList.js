@@ -48,6 +48,8 @@ function TaskList() {
     setTasks((ts) => ts.map((task) => (task.id === id ? { ...task, title } : task)));
   }
 
+  console.log(tasks);
+  
   return (
     <ol className="lane">
       {tasks.map(({id, title, steps}) => (

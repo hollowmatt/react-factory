@@ -1,5 +1,6 @@
 import Header from './Header';
 import Button from './Button';
+import Step from './Step';
 import { useState } from 'react';
 
 function Task({title, id, steps, onDelete, onUpdate}){
@@ -37,6 +38,11 @@ function Task({title, id, steps, onDelete, onUpdate}){
   return(
     <li className="card">
       <Header title={title} />
+      <ol>
+        {steps.map(({num, desc, complete}) => (
+          <Step num={num} key={num} desc={desc} complete={complete}/>
+        ))}
+      </ol>
       <ul className="card-controls">
         <li>
           <Button icon="pencil" title="Edit" action={() => setEditing(true)}/>
