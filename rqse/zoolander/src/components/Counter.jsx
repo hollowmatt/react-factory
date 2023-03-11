@@ -1,10 +1,10 @@
-import { useCounterStore } from "./Store";
+import { useCombinedStore } from "./Store";
 
 export const Counter = () => {
-  const counterNumber = useCounterStore(state => state.number);
-  const increaseNumber = useCounterStore(state => state.increaseCounterNumber);
-  const decreaseNumber = useCounterStore(state => state.decreaseCounterNumber);
-  const log = useCounterStore(state => state.logNumber);
+  const counterNumber = useCombinedStore.useCounterStore(state => state.number);
+  const increaseNumber = useCombinedStore.useCounterStore(state => state.increaseCounterNumber);
+  const decreaseNumber = useCombinedStore.useCounterStore(state => state.decreaseCounterNumber);
+  const log = useCombinedStore.useCounterStore(state => state.logNumber);
   return(
     <div>
       <button onClick={increaseNumber}>+</button>

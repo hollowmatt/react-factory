@@ -11,4 +11,20 @@ export const useCounterStore = create((set, get) => (
   }
 ));
 
+export const usePokeStore = create((set) => (
+  {
+    pokemon: [],
+    fetchPokemon: async () => {
+      await fetch('https://pokeapi.co/api/v2/pokemon')
+        .then(response => response.json())
+        .then(data => set({pokemon: data.results}))
+    }
+  }
+));
+
+export const useCombinedStore = create((...params) => ({
+  ...usePokeStore(...params),
+ ...useCounterStore(...params)
+}));
+
 
