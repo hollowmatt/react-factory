@@ -1,9 +1,9 @@
-import { useCounterStore } from './Store';
+import { usePokeStore } from './Store';
 import { useEffect } from 'react';
 
 export function PokemonList() {
-  const getPokemons = useCounterStore(state => state.fetchPokemon)
-  const pokemonList = useCounterStore(state => state.pokemon)
+  const getPokemons = usePokeStore(state => state.fetchPokemon)
+  const pokemonList = usePokeStore(state => state.pokemon)
   useEffect(() => {
     getPokemons()
   }, [getPokemons])
