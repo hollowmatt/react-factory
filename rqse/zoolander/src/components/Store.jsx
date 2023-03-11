@@ -22,4 +22,9 @@ export const usePokeStore = create((set) => (
   }
 ));
 
+export const useCombinedStore = create((...params) => ({
+  ...usePokeStore(...params),
+ ...useCounterStore(...params)
+}));
+
 
