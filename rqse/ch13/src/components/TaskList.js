@@ -6,15 +6,27 @@ function TaskList() {
   const INIT_TASKS = [
     {
       id: 0,
-      title: 'This is a task'
+      title: 'Master Karate',
+      steps: [
+        {
+          num: 0,
+          desc: "Wax On"
+        },
+        {
+          num: 1,
+          desc: "Wax Off"
+        }
+      ]
     },
     {
       id: 1,
-      title: 'This is another task'
+      title: 'This is another task',
+      steps: []
     },
     {
       id: 2,
-      title: 'Yet a third task'
+      title: 'Yet a third task',
+      steps: []
     }
   ];
   const [tasks, setTasks] = useState(INIT_TASKS);
