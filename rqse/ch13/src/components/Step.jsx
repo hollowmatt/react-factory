@@ -12,7 +12,7 @@ function Step({num, desc, complete}) {
     <li key={num} className="step">
       <input type="checkbox" id={num} value={done} onClick={onUpdate}/>
       {done 
-        ? (<label htmlFor={num} value={done} className="step-complete step-label">{desc}</label>)
+        ? (<label htmlFor={num} value={done} className="step-complete">{desc}</label>)
         : (<label htmlFor={num} value={done} className="step-label">{desc}</label>)
       }
       
