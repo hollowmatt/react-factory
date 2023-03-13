@@ -2,6 +2,7 @@ import Header from './Header';
 import Button from './Button';
 import Step from './Step';
 import { useState } from 'react';
+import StepForm from './StepForm';
 
 function Task({title, id, steps, onDelete, onUpdate}){
   const deleteTask = () => {
@@ -18,6 +19,10 @@ function Task({title, id, steps, onDelete, onUpdate}){
     setEditing(false);
     setHeading(title);
   };
+
+  const addStep = (step) => {
+    console.log(step);
+  }
 
   if(isEditing) {
     return(
@@ -42,6 +47,7 @@ function Task({title, id, steps, onDelete, onUpdate}){
         {steps.map(({num, desc, complete}) => (
           <Step num={num} key={num} desc={desc} complete={complete}/>
         ))}
+        <StepForm add={addStep}/>
       </ol>
       <ul className="card-controls">
         <li>
