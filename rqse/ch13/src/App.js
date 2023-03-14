@@ -1,5 +1,5 @@
 import "./style.css";
-import TaskList from "./components/TaskList";
+import TaskList from "./components/tasks/TaskList";
 
 function App() {
   return (

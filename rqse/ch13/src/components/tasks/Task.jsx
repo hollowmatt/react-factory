@@ -1,8 +1,8 @@
-import Header from './Header';
-import Button from './Button';
-import Step from './Step';
+import Header from '../Header';
+import Button from '../Button';
+import Step from './steps/Step';
 import { useState } from 'react';
-import StepForm from './StepForm';
+import StepForm from './steps/StepForm';
 
 function Task({title, id, steps, onDelete, onUpdate}){
   const deleteTask = () => {
@@ -44,7 +44,7 @@ function Task({title, id, steps, onDelete, onUpdate}){
     <li className="card">
       <Header title={title} />
       <ol>
-        {steps.map(({num, desc, complete}) => (
+        {steps?.map(({num, desc, complete}) => (
           <Step num={num} key={num} desc={desc} complete={complete}/>
         ))}
         <StepForm add={addStep}/>
