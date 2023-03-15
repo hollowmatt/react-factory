@@ -30,11 +30,17 @@ main {
   padding: 0;
 }
 
+.step {
+  border-top: #eee solid;
+  margin-bottom: 10px;
+}
 .add-task {
   padding-bottom: 10px;
+  padding-top: 10px;
 }
 
-.task-complete {
+.task-complete,
+.step-complete {
   text-decoration: line-through;
   color: darkgrey;
 }

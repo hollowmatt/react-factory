@@ -43,7 +43,70 @@ function tasksReducer(tasks, action) {
 }
 
 const initialTasks = [
-  { id: 0, text: 'Philosopher’s Path', done: true },
-  { id: 1, text: 'Visit the temple', done: false },
-  { id: 2, text: 'Drink matcha', done: false }
+  {
+    id: 0, 
+    text: 'Complete task list app', 
+    steps: [
+      {
+        id: 0, 
+        desc: "add steps capability", 
+        complete: false
+      }, 
+      {
+        id: 1, 
+        desc: "add accordian capability", 
+        complete: false
+      }
+    ], 
+    done: false 
+  },
+  { 
+    id: 1, 
+    text: 'Add steps to task list', 
+    steps: [
+      {
+        id: 0, 
+        desc: "create step component", 
+        complete: false
+      }, 
+      {
+        id: 1, 
+        desc: "add step form component", 
+        complete: false
+      }, 
+      {
+        id: 2, 
+        desc: "sort steps", 
+        complete: false
+      }
+    ]
+    , done: false
+  },
+  { 
+    id: 2, 
+    text: 'Drink latte', 
+    steps: [
+      {
+        id: 0, 
+        desc: "turn on machine", 
+        complete: true
+      }, 
+      {
+        id: 1, 
+        desc: "steam milk", 
+        complete: true
+      }, 
+      {
+        id: 2, 
+        desc: "draw shot", 
+        complete: true
+      }, 
+      {
+        id: 3, 
+        desc: "enjoy", 
+        complete: true
+      }
+    ], 
+    done: false
+  }
 ];

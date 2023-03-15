@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { TasksDispatchContext } from './TaskContext';
-import { useContext } from 'react';
+import { Step } from './steps/Step';
 
 export function Task({ task}) {
   const [isEditing, setIsEditing] = useState(false);
@@ -56,6 +56,11 @@ export function Task({ task}) {
               Edit
             </button>
         </ul>
+        <ol className='steps'>
+          {task.steps.map(step => (
+            <Step step={step} key={step.id} />
+          ))}
+        </ol>
       </li>
     );
   }
