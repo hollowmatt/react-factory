@@ -43,7 +43,7 @@ function tasksReducer(tasks, action) {
 }
 
 const initialTasks = [
-  { id: 0, text: 'Philosopher’s Path', done: true },
-  { id: 1, text: 'Visit the temple', done: false },
-  { id: 2, text: 'Drink matcha', done: false }
+  { id: 0, text: 'Complete task list app', done: true },
+  { id: 1, text: 'Add steps to task list', done: false },
+  { id: 2, text: 'Drink latte', done: false }
 ];

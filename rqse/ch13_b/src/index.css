@@ -32,6 +32,7 @@ main {
 
 .add-task {
   padding-bottom: 10px;
+  padding-top: 10px;
 }
 
 .task-complete {
