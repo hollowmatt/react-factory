@@ -34,6 +34,11 @@ main {
   padding-bottom: 10px;
 }
 
+.task-complete {
+  text-decoration: line-through;
+  color: darkgrey;
+}
+
 .card {
   display: flex;
   flex-direction: column;

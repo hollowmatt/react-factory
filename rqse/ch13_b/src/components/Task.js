@@ -29,7 +29,10 @@ export function Task({ task}) {
   } else {
     return(
       <li className='card'>
-        <p className='card-title'>{task.text}</p>
+        {task.done
+          ? ( <p className='card-title task-complete'>{task.text}</p> )
+          : ( <p className='card-title'>{task.text}</p> )
+        }
         <ul className='card-controls'>
           <input
               id={task.id}
