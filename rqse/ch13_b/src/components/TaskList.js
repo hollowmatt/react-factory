@@ -5,15 +5,11 @@ import { useContext } from 'react';
 export default function TaskList() {
   const tasks = useContext(TasksContext);
   return (
-    <ul>
-      {tasks.map(task => (
-        <li key={task.id}>
-          <Task
-            task={task}
-          />
-        </li>
+    <ol className="lane">
+      {tasks.map(task => (          
+        <Task task={task} key={task.id} />
       ))}
-    </ul>
+    </ol>
   );
 }
 
