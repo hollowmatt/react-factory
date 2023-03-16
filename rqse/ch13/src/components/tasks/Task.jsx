@@ -10,10 +10,6 @@ function Task({task}){
   const [isEditing, setEditing] = useState(false);
   const dispatch = useContext(TasksDispatchContext);
 
-  const addStep = (step) => {
-    console.log(step);
-  }
-
   if(isEditing) {
     return(
       <li className="card-header">
@@ -44,7 +40,7 @@ function Task({task}){
         {task.steps?.map(({num, desc, complete}) => (
           <Step num={num} key={num} desc={desc} complete={complete}/>
         ))}
-        <StepForm add={addStep}/>
+        <StepForm task={task}/>
       </ol>
       <ul className="card-controls">
         <li>
