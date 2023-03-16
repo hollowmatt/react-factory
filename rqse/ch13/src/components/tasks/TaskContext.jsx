@@ -1,6 +1,5 @@
 import { useReducer, createContext } from "react";
 import { initialTasks } from './TaskFixture';
-import TaskContext from "../../../../bookfiles/rq13-steps/src/task/context";
 
 export const TasksContext = createContext(null);
 export const TasksDispatchContext = createContext(null);
@@ -10,27 +9,37 @@ export function TasksProvider({children}) {
   const [tasks, dispatch] = useReducer(tasksReducer, INITIAL_TASKS);
 
   return(
-    <TaskContext.Provider value={tasks}>
+    <TasksContext.Provider value={tasks}>
       <TasksDispatchContext.Provider value={dispatch}>
         {children}
       </TasksDispatchContext.Provider>
-    </TaskContext.Provider>
+    </TasksContext.Provider>
   );
 }
 
 function tasksReducer(tasks, action) {
   switch (action.type) {
     case 'addTask': {
-      return;
+      return [...tasks, {
+        id: action.id,
+        text: action.text,
+        done: false
+      }];
     }
     case 'editTask': {
-      return;
+      return tasks.map(t => {
+        if (t.id === action.task.id) {
+          return action.task;
+        } else {
+          return t;
+        }
+      });
     }
     case 'completeTask': {
       return;
     }
     case 'removeTask': {
-      return;
+      return tasks.filter(t => t.id !== action.id);
     }
     case 'addStep': {
       return;
