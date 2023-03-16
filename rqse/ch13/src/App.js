@@ -1,11 +1,14 @@
 import "./style.css";
 import TaskList from "./components/tasks/TaskList";
+import { TasksProvider } from "./components/tasks/TaskContext";
 
 function App() {
   return (
     <main>
-      <h1>Task Manager</h1>
-      <TaskList />
+      <TasksProvider>
+        <h1>Task Manager</h1>
+        <TaskList />
+      </TasksProvider>
     </main>
   );
 }
