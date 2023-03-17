@@ -8,7 +8,19 @@ import { TasksDispatchContext } from './TaskContext';
 function Task({task}){
 
   const [isEditing, setEditing] = useState(false);
+  const [text, setText] = useState(task.title);
   const dispatch = useContext(TasksDispatchContext);
+
+  const updateTitle = () => {
+    setEditing(false);
+    dispatch({
+      type: 'editTask',
+      task: {
+        ...task,
+        title: text
+      }
+    });
+  };
 
   if(isEditing) {
     return(
@@ -18,17 +30,13 @@ function Task({task}){
           placeholder={task.title}
           name="heading"
           onChange={e => {
-            dispatch({
-              tyupe: 'editTask',
-              task: {
-                ...task,
-                text: e.target.value
-              }
-            })}}
-          value={task.title}
+            setText(e.target.value);
+            }
+          }
+          value={text}
         />
         <ul>
-          <Button icon="check" title="Save" action={() => setEditing(false)} />
+          <Button icon="check" title="Save" action={updateTitle} />
         </ul>
       </li>
     );
