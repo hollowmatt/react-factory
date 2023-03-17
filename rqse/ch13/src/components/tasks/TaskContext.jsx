@@ -21,9 +21,8 @@ function tasksReducer(tasks, action) {
   switch (action.type) {
     case 'addTask': {
       return [...tasks, {
-        id: action.id,
-        text: action.text,
-        done: false
+        id: tasks.length,
+        title: action.title
       }];
     }
     case 'editTask': {

@@ -1,14 +1,19 @@
 
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+import { TasksDispatchContext } from './TaskContext';
 import Button from '../Button';
 
 function TaskForm({add}) {
   const [title, setTitle] = useState();
+  const dispatch = useContext(TasksDispatchContext);
 
   const addTask = () => {
     console.log('add task');
     if(title){
-      add(title);
+      dispatch({
+        type: 'addTask',
+        title: title
+      });
     }
     setTitle("");
   };
