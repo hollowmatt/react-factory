@@ -41,7 +41,19 @@ function tasksReducer(tasks, action) {
       return tasks.filter(t => t.id !== action.id);
     }
     case 'addStep': {
-      return;
+      console.log("data: " + action.id + ", " + action.step);
+      return tasks.map(t => {
+        if (t.id === action.id) {
+          return {
+            ...t, 
+            steps: t.steps.concat([{
+              num: t.steps.length, desc: action.step, complete: false
+            }])
+          };
+        } else {
+          return t;
+        }
+      });
     }
     case 'editStep': {
       return;
