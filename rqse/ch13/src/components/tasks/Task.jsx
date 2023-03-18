@@ -24,7 +24,7 @@ function Task({task}){
 
   if(isEditing) {
     return(
-      <li className="card-header">
+      <li className="card-header" key={task}>
         <input
           className="card-title card-title-input"
           placeholder={task.title}

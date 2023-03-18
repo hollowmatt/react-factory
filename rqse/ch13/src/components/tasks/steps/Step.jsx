@@ -11,7 +11,8 @@ function Step({step, id}) {
     dispatch({
       type: 'completeStep',
       taskId: id,
-      stepId: step.num
+      stepId: step.num,
+      completed: done
     });
     setDone(!done);
   };
