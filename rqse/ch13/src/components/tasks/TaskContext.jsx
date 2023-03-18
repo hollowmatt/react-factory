@@ -59,13 +59,28 @@ function tasksReducer(tasks, action) {
       return;
     }
     case 'completeStep': {
-      return;
+      console.log('Step Completed');
+      return tasks;
     }
     case 'moveStep': {
       return;
     }
     case 'removeStep': {
-      return;
+      console.log('remove/delete step');
+      return tasks.map(t => {
+        if (t.id === action.taskId) {
+          return {
+            ...t, 
+            steps: [
+              ...t.steps.slice(0, action.stepId),
+              ...t.steps.slice(action.stepId + 1),
+            ],
+          }
+        }
+        else {
+          return t;
+        }
+      });
     }
     default: {
       throw Error('Unknown action: ' + action.type);

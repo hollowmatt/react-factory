@@ -46,7 +46,7 @@ function Task({task}){
       <Header title={task.title} />
       <ol>
         {task.steps?.map((step) => (
-          <Step key={step} step={step}/>
+          <Step key={step} step={step} id={task.id}/>
         ))}
         <StepForm task={task}/>
       </ol>
