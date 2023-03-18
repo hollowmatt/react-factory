@@ -45,8 +45,8 @@ function Task({task}){
     <li className="card">
       <Header title={task.title} />
       <ol>
-        {task.steps?.map(({num, desc, complete}) => (
-          <Step num={num} key={num} desc={desc} complete={complete}/>
+        {task.steps?.map((step) => (
+          <Step key={step} step={step}/>
         ))}
         <StepForm task={task}/>
       </ol>
