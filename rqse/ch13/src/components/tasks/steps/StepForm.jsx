@@ -1,12 +1,20 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import Button from '../../Button';
+import { TasksDispatchContext } from '../TaskContext';
 
-function StepForm({add}) {
+function StepForm({task}) {
   const [step, setStep] = useState("");
+  const dispatch = useContext(TasksDispatchContext);
 
-  const addStep = () => {
-    add(step);
-    setStep("");
+  const newStep = () => {
+    if(step) {
+      dispatch({
+          type: 'addStep',
+          id: task.id,
+          step: step
+      });
+      setStep("");
+    }
   }
 
   const onChange = (evt) => {
@@ -23,7 +31,7 @@ function StepForm({add}) {
           onChange={onChange}
           value={step}
         />
-        <Button icon="plus" title="Add" action={addStep}/>
+        <Button icon="plus" title="Add" action={newStep}/>
       </form>
     </li>
   );

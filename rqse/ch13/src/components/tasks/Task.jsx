@@ -24,7 +24,7 @@ function Task({task}){
 
   if(isEditing) {
     return(
-      <li className="card-header">
+      <li className="card-header" key={task}>
         <input
           className="card-title card-title-input"
           placeholder={task.title}
@@ -45,8 +45,8 @@ function Task({task}){
     <li className="card">
       <Header title={task.title} />
       <ol>
-        {task.steps?.map(({num, desc, complete}) => (
-          <Step num={num} key={num} desc={desc} complete={complete}/>
+        {task.steps?.map((step) => (
+          <Step key={step} step={step} id={task.id}/>
         ))}
         <StepForm task={task}/>
       </ol>

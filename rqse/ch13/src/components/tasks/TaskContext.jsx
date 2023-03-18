@@ -41,19 +41,46 @@ function tasksReducer(tasks, action) {
       return tasks.filter(t => t.id !== action.id);
     }
     case 'addStep': {
-      return;
+      console.log("data: " + action.id + ", " + action.step);
+      return tasks.map(t => {
+        if (t.id === action.id) {
+          return {
+            ...t, 
+            steps: t.steps.concat([{
+              num: t.steps.length, desc: action.step, complete: false
+            }])
+          };
+        } else {
+          return t;
+        }
+      });
     }
     case 'editStep': {
       return;
     }
     case 'completeStep': {
-      return;
+      console.log('Step Completed');
+      return tasks;
     }
     case 'moveStep': {
       return;
     }
     case 'removeStep': {
-      return;
+      console.log('remove/delete step');
+      return tasks.map(t => {
+        if (t.id === action.taskId) {
+          return {
+            ...t, 
+            steps: [
+              ...t.steps.slice(0, action.stepId),
+              ...t.steps.slice(action.stepId + 1),
+            ],
+          }
+        }
+        else {
+          return t;
+        }
+      });
     }
     default: {
       throw Error('Unknown action: ' + action.type);
