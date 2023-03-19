@@ -10,6 +10,7 @@ function Task({task}){
   const [isEditing, setEditing] = useState(false);
   const [text, setText] = useState(task.title);
   const dispatch = useContext(TasksDispatchContext);
+  const [show, setShow] = useState(false);
 
   const updateTitle = () => {
     setEditing(false);
@@ -21,6 +22,12 @@ function Task({task}){
       }
     });
   };
+
+  const toggle = () => {
+    // evt.preventDefault();
+    console.log(show);
+    setShow(!show);
+  }
 
   if(isEditing) {
     return(
@@ -43,11 +50,16 @@ function Task({task}){
   }
   return(
     <li className="card">
-      <Header title={task.title} />
+      <Header title={task.title} action={toggle} icon={show ? 'up' : 'down'}/>
       <ol>
-        {task.steps?.map((step) => (
-          <Step key={step} step={step} id={task.id}/>
-        ))}
+        {show 
+          ? (
+            task.steps?.map((step) => (
+              <Step key={step} step={step} id={task.id}/>
+            ))
+          )
+          : (<div></div>)
+        }
         <StepForm task={task}/>
       </ol>
       <ul className="card-controls">

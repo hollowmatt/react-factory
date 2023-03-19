@@ -27,7 +27,7 @@ function Step({step, id}) {
   }
 
   return(
-    <li key={step.num} className="step">
+    <li key={step} className="step">
       <input type="checkbox" id={step.num} checked={step.complete} onChange={onUpdate}/>
       {done 
         ? (<label htmlFor={step.num} value={step.complete} className="step-label step-complete">{step.desc}</label>)
