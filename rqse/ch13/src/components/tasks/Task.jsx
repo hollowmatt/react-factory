@@ -11,6 +11,10 @@ function Task({task}){
   const [text, setText] = useState(task.title);
   const dispatch = useContext(TasksDispatchContext);
   const [show, setShow] = useState(false);
+  
+  //Update these with formula soon
+  const stepsTotal=4;
+  const stepsCompleted=4;
 
   const updateTitle = () => {
     setEditing(false);
@@ -70,6 +74,7 @@ function Task({task}){
           <Button icon="trash" title="Delete" action={() => dispatch({type:'removeTask', id:task.id})} />
         </li>
       </ul>
+      <progress className='progress-bar' max={stepsTotal} value={stepsCompleted}/>
     </li> 
   );
 }
