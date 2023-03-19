@@ -44,12 +44,19 @@ function tasksReducer(tasks, action) {
       console.log("data: " + action.id + ", " + action.step);
       return tasks.map(t => {
         if (t.id === action.id) {
-          return {
-            ...t, 
-            steps: t.steps.concat([{
-              num: t.steps.length, desc: action.step, complete: false
-            }])
-          };
+          if (t.steps) {
+            return {
+              ...t, 
+              steps: t.steps.concat([{
+                num: t.steps.length, desc: action.step, complete: false
+              }])
+            };
+          } else {
+            return {
+              ...t,
+              steps: [{num: 0, desc: action.step, complete: false}]
+            }
+          }
         } else {
           return t;
         }
