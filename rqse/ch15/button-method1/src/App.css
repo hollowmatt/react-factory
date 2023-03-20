@@ -36,3 +36,8 @@
     transform: rotate(360deg);
   }
 }
+
+.custom-button {
+  background-color: purple;
+  border-color: purple;
+}
