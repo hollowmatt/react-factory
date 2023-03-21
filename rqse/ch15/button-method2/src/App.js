@@ -1,25 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import Button from "./Button";
+import styles from "./app.module.css";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <fieldset>
+        <legend>Normal button</legend>
+        <Button>Send</Button>
+      </fieldset>
+      <fieldset>
+        <legend>Outline button</legend>
+        <Button outline>Send</Button>
+      </fieldset>
+      <fieldset>
+        <legend>Disabled button</legend>
+        <Button disabled>Send</Button>
+      </fieldset>
+      <fieldset>
+        <legend>Wide button</legend>
+        <Button width={400}>Send</Button>
+      </fieldset>
+      <fieldset>
+        <legend>Custom button</legend>
+        <Button className={styles.customButton}>Send</Button>
+      </fieldset>
     </div>
   );
 }
-
 export default App;
