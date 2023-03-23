@@ -3,10 +3,13 @@ import { Link, useNavigate } from "react-router-dom";
 
 function Login() {
   const [email, setEmail] = useState("");
-  const [passowrd, setPassword] = useState("");
+  const [password, setPassword] = useState("");
 
   const handleSubmit = (evt) => {
-
+    evt.preventDefault();
+    console.log({ email, password });
+    setEmail("");
+    setPassword("");
   };
 
   return(
@@ -28,7 +31,7 @@ function Login() {
           name='password'
           id='password'
           required
-          value={passowrd}
+          value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
         <button className="loginBtn">Sign In</button>
