@@ -5,7 +5,8 @@ function Register() {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
+  const navigate = useNavigate();
+  
   const handleSubmit = (evt) => {
     evt.preventDefault();
     signUp();
@@ -28,6 +29,12 @@ function Register() {
     })
       .then((res) => res.json())
       .then((data) => {
+        if (data.error_message) {
+          alert(data.error_message);
+        } else {
+          alert(data.message);
+          navigate("/");
+        }
         console.log(data);
       })
       .catch((err) => console.error(err));
