@@ -8,10 +8,29 @@ function Register() {
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    console.log({ username, email, password });
+    signUp();
     setEmail("");
     setUsername("");
     setPassword("");
+  };
+
+  const signUp = () => {
+    fetch("http://localhost:4040/api/register", {
+      method: "POST",
+      body: JSON.stringify({
+        email,
+        password,
+        username,
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((err) => console.error(err));
   };
 
   return(
