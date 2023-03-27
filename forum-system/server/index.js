@@ -14,6 +14,18 @@ app.use(cors());
 app.get("/api", (req, res) => {
   res.json({
     message: "Hello Jason",
+    routes: [
+      {
+        method: "POST",
+        route: "/api/register",
+        params: ["email", "password", "username"]
+      },
+      {
+        method: "POST",
+        route: "/api/login",
+        params: ["email", "password"]
+      }
+    ]
   })
 });
 
