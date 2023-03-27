@@ -39,9 +39,9 @@ app.post("/api/register", async(req,res) => {
 
 app.post("/api/login", (req, res) => {
   const {email, password} = req.body;
-
+  
   let result = users.filter(
-    (user) => [ user.email === email && user.password === password ]
+    (user) => user.email === email && user.password === password
   );
 
   if (result.length !== 1) {
@@ -49,7 +49,7 @@ app.post("/api/login", (req, res) => {
       error_message: "Invalid login attempt"
     });
   }
-  
+
   res.json({
     message: "Login successful",
     id: result[0].id,
