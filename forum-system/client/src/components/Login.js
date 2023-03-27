@@ -4,12 +4,37 @@ import { Link, useNavigate } from "react-router-dom";
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    console.log({ email, password });
+    loginUser();
     setEmail("");
     setPassword("");
+  };
+
+  const loginUser = () => {
+    fetch("http://localhost:4040/api/login", {
+      method: "POST",
+      body: JSON.stringify({
+        email,
+        password,
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if(data.error_message) {
+          alert(data.error_message);
+        } else {
+          alert(data.message);
+          navigate("/dashboard");
+          localStorage.setItem("_id", data.id);
+        }
+      })
+      .catch((err) => console.error(err));
   };
 
   return(

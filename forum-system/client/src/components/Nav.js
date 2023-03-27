@@ -1,8 +1,12 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 function Nav() {
+  const navigate = useNavigate();
+  
   const signOut = () => {
-    alert("user signed out");
+    localStorage.removeItem("_id");
+    navigate("/");
   };
 
   return(

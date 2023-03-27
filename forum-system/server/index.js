@@ -49,7 +49,7 @@ app.post("/api/login", (req, res) => {
       error_message: "Invalid login attempt"
     });
   }
-
+  
   res.json({
     message: "Login successful",
     id: result[0].id,
