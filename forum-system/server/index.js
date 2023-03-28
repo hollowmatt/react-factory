@@ -68,6 +68,12 @@ app.post("/api/login", (req, res) => {
   })
 });
 
+app.post("/api/create/thread", async(req, res) => {
+  const {thred, userId} = req.body;
+  const threadId = generateID();
+  console.log({thread, userId, threadId});
+});
+
 
 app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);
