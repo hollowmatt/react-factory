@@ -1,8 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Nav from './Nav';
+import { useNavigate } from 'react-router-dom';
 
 function Home() {
+  const navigate = useNavigate();
   const [thread, setThread] = useState("");
+  useEffect(() => {
+    const checkUser = () => {
+      if(!localStorage.getItem("_id")) {
+        navigate("/");
+      } else {
+        console.log("authenticated");
+      }
+    };
+    checkUser();
+  }, [navigate]);
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
