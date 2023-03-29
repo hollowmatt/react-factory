@@ -5,6 +5,7 @@ const app = express();
 const PORT = 4040;
 
 const users = [];
+const threadList = [];
 const generateID = () => crypto.randomUUID();
 
 app.use(express.urlencoded({ extended: true}));
@@ -72,6 +73,18 @@ app.post("/api/create/thread", async(req, res) => {
   const {thread, userId} = req.body;
   const threadId = generateID();
   console.log({thread, userId, threadId});
+  threadList.unshift({
+    id: threadId,
+    title: thread,
+    userId,
+    replies: [],
+    likes: [],
+  });
+
+  res.json({
+    message: "Thread created",
+    threads: threadList,
+  });
 });
 
 

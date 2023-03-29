@@ -16,11 +16,30 @@ function Home() {
     checkUser();
   }, [navigate]);
 
+  const createThread = () => {
+    fetch("http://localhost:4040/api/create/thread", {
+      method: "POST",
+      body: JSON.stringify({
+        thread,
+        userId: localStorage.getItem("_id"),
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((err) => console.error(err));
+  };
+
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    console.log({ thread });
+    createThread();
     setThread("");
-  }
+    console.log("thread is now: " + thread);
+  };
 
   return(
     <>
