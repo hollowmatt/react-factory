@@ -14,7 +14,15 @@ function Home() {
       if(!localStorage.getItem("_id")) {
         navigate("/");
       } else {
-        console.log("authenticated");
+        fetch("http://localhost:4040/api/all/threads", {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+          .then((res) => res.json())
+          .then((data) => setThreadList(data.threads))
+          .catch((err) => console.error(err));
       }
     };
     checkUser();
