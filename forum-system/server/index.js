@@ -30,6 +30,12 @@ app.get("/api", (req, res) => {
   })
 });
 
+app.get("/api/all/threads", (req, res) => {
+  res.json({
+    threads: threadList,
+  });
+});
+
 app.post("/api/register", async(req,res) => {
   const { email, password, username } = req.body;
   const id = generateID();
