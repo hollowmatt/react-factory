@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import Nav from './Nav';
 import { useNavigate } from 'react-router-dom';
+import Likes from './Likes';
+import Comments from './Comments';
 
 function Home() {
   const navigate = useNavigate();
   const [thread, setThread] = useState("");
+  const [threadList, setThreadList] = useState([]);
+
   useEffect(() => {
     const checkUser = () => {
       if(!localStorage.getItem("_id")) {
@@ -20,27 +24,32 @@ function Home() {
     fetch("http://localhost:4040/api/create/thread", {
       method: "POST",
       body: JSON.stringify({
-        thread,
-        userId: localStorage.getItem("_id"),
+          thread,
+          userId: localStorage.getItem("_id"),
       }),
       headers: {
-        "Content-Type": "application/json",
+          "Content-Type": "application/json",
       },
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+          console.log(data.message);
+          setThreadList(data.threads);
       })
       .catch((err) => console.error(err));
   };
 
-  const handleSubmit = (evt) => {
-    evt.preventDefault();
-    createThread();
-    setThread("");
-    console.log("thread is now: " + thread);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if(thread) {
+      createThread();
+      setThread("");
+    } else {
+      setThread("");
+      alert("cannot create empty thread");
+    }
   };
-
+  
   return(
     <>
       <Nav/>
@@ -60,6 +69,18 @@ function Home() {
           </div>
           <button className='homeBtn'>Create Thread</button>
         </form>
+        <div className='thread__container'>
+          {threadList.map((thread) => (
+            <div className='thread__item' key={thread.id}>
+              <p>{thread.title}</p>
+              <div className='react__container'>
+                {thread.likes.length} {thread.replies.length}
+                {/* <Likes numberOfLikes={thread.likes.length} threadId={thread.id} />
+                <Comments numberOfComments={thread.replies.length} threadId={thread.id} title={thread.title} /> */}
+              </div>
+            </div>
+          ))}
+        </div>
       </main>
     </>
   );
