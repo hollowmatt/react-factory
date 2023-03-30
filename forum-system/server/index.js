@@ -5,6 +5,7 @@ const app = express();
 const PORT = 4040;
 
 const users = [];
+const usersInfo = [];
 const threadList = [];
 const generateID = () => crypto.randomUUID();
 
@@ -38,6 +39,12 @@ app.get("/api/all/threads", (req, res) => {
   });
 });
 
+app.get("/api/all/users", (req, res) => {
+  res.json({
+    users: usersInfo,
+  });
+});
+
 //accept a like on a given thread
 app.post("/api/thread/like", (req, res) => {
   const {threadId, userId} = req.body;
@@ -63,7 +70,9 @@ app.post("/api/register", async(req,res) => {
   );
   if(result.length === 0) {
     const newUser = { id, email, password, username};
+    const newUserInfo = {id, username};
     users.push(newUser);
+    usersInfo.push(newUserInfo);
     console.log("account created with id: " + id);
     return res.json({
       message: "Account created successfully",
