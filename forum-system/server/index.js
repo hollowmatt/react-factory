@@ -12,6 +12,7 @@ app.use(express.urlencoded({ extended: true}));
 app.use(express.json());
 app.use(cors());
 
+//return a 'hello' message
 app.get("/api", (req, res) => {
   res.json({
     message: "Hello Jason",
@@ -30,9 +31,27 @@ app.get("/api", (req, res) => {
   })
 });
 
+//return all threads
 app.get("/api/all/threads", (req, res) => {
   res.json({
     threads: threadList,
+  });
+});
+
+//accept a like on a given thread
+app.post("/api/thread/like", (req, res) => {
+  const {threadId, userId} = req.body;
+  const result = threadList.filter((thread) => thread.id === threadId);
+  const threadLikes = result[0].likes;
+  const authReaction = threadLikes.filter((user) => user === userId);
+  if (authReaction.length === 0) {
+    threadLikes.push(userId);
+    return res.json({
+      message: "You've like it"
+    });
+  }
+  res.json({
+    error_message: "You can only like a thread once",
   });
 });
 
