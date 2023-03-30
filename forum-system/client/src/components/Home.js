@@ -15,10 +15,6 @@ function Home() {
         navigate("/");
       } else {
         fetch("http://localhost:4040/api/all/threads", {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
         })
           .then((res) => res.json())
           .then((data) => setThreadList(data.threads))
