@@ -74,9 +74,8 @@ function Home() {
             <div className='thread__item' key={thread.id}>
               <p>{thread.title}</p>
               <div className='react__container'>
-                {thread.likes.length} {thread.replies.length}
-                {/* <Likes numberOfLikes={thread.likes.length} threadId={thread.id} />
-                <Comments numberOfComments={thread.replies.length} threadId={thread.id} title={thread.title} /> */}
+                <Likes numberOfLikes={thread.likes.length} threadId={thread.id} />
+                <Comments numberOfComments={thread.replies.length} threadId={thread.id} />
               </div>
             </div>
           ))}
