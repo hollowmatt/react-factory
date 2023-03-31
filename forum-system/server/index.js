@@ -121,6 +121,14 @@ app.post("/api/create/thread", async(req, res) => {
   });
 });
 
+app.post("/api/thread/replies", (req, res) => {
+  const {id} = req.body;
+  const result = threadList.filter((thread) => thread.id === id);
+  res.json({
+    replies: result[0].replies,
+    title: result[0].title,
+  });
+});
 
 app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);
