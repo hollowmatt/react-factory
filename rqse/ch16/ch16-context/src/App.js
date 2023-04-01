@@ -1,4 +1,6 @@
 import { createGlobalStyle } from "styled-components";
+import Things from "./things";
+import DataProvider from "./data";
 
 const GlobalStyle = createGlobalStyle`
   html {
@@ -14,7 +16,10 @@ const GlobalStyle = createGlobalStyle`
 
 function App() {
   return (
-   <GlobalStyle/>
+    <DataProvider>
+      <GlobalStyle/>
+      <Things/>
+    </DataProvider>
   );
 }
 
