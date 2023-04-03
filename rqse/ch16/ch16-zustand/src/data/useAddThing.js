@@ -1,7 +1,5 @@
 import useData from "./useData";
-
 function useAddThing() {
-  return useData().actions.addThing;
+  return useData((state) => state.addThing);
 }
-
 export default useAddThing;
