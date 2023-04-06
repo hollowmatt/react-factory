@@ -2,7 +2,7 @@
 export default function IndexRoute() {
   return (
     <div> 
-      Hello index route.
+      <p>Hello index route.</p>
     </div>
 
   );
