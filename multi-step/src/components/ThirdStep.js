@@ -61,6 +61,25 @@ function ThirdStep(props) {
     getStates();
   }, [selectedCountry]);
 
+  useEffect(() => {
+    const getCities = async() => {
+      try {
+        const result = await City.getCitiesOfState(selectedCountry, selectedState);
+        let allCities = [];
+        allCities = result?.map(({ name }) => ({
+          name
+        }));
+        const [{ name: firstCity =''} ={}] = allCities;
+        setCities(allCities);
+        setSelectedCity(firstCity);
+      } catch(error) {
+        setCities([]);
+        console.log(error);
+      }
+    }
+    getCities();
+  },[selectedCountry, selectedState]);
+
   const handleSubmit = async(event) => {
     event.preventDefault();
     console.log('submit');
@@ -101,6 +120,23 @@ function ThirdStep(props) {
           </Form.Control>
         </Form.Group>
 
+        <Form.Group controlId="city">
+          <Form.Label>City</Form.Label>
+          <Form.Control
+            as="select"
+            name="city"
+            value={selectedCity}
+            onChange={(event) => setSelectedCity(event.target.value)}
+          >
+            {cities.length > 0 ? (
+              cities.map(({ name }) => (
+                <option value={name} key={name}>{name}</option>
+              ))
+            ) : (
+              <option value="" key="">No cities found</option>
+            )}
+          </Form.Control>
+        </Form.Group>
 
       </div>
     </Form>
