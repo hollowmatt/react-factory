@@ -24,7 +24,7 @@ function FirstStep(props) {
           {errors.first_name?.type === 'required' && <p className="errorMsg">First name is required</p>}
           {errors.first_name?.type === 'pattern' &&  <p className="errorMsg">First name can only be characters</p>}
         </Form.Group>
-
+        
         <Form.Group controlId="last_name">
           <Form.Label>Last Name</Form.Label>
           <Form.Control
@@ -39,7 +39,7 @@ function FirstStep(props) {
           {errors.last_name?.type === 'pattern' &&  <p className="errorMsg">Last name can only be characters</p>}
         </Form.Group>
 
-        <Button variant="primary" type="submit">
+        <Button variant="primary" type="submit" style={{marginTop: '1em'}}>
           Next
         </Button>
       </div>
