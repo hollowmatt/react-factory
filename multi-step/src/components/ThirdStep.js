@@ -7,7 +7,7 @@ import { BASE_API_URL } from '../utils/constants';
 function ThirdStep(props) {
   const [countries, setCountries] = useState([]);
   const [states, setStates] = useState([]);
-  const [cities, sestCities] = useState([]);
+  const [cities, setCities] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
   const [selectedCountry, setSelectedCountry] = useState('');
@@ -37,6 +37,30 @@ function ThirdStep(props) {
     getCountries();
   }, []);
 
+  useEffect(() => {
+    const getStates = async() => {
+      try {
+        const result = await State.getStatesOfCountry(selectedCountry);
+        let allStates = [];
+        allStates = result?.map(({ isoCode, name}) => ({
+          isoCode,
+          name
+        }));
+        console.log({allStates});
+        const [{isoCode: firstState = ''} = {}] = allStates;
+        setCities([]);
+        setSelectedCity([]);
+        setStates(allStates);
+        setSelectedState(firstState);
+      } catch(error) {
+        setStates([]);
+        setCities([]);
+        setSelectedCity('');
+      }
+    }
+    getStates();
+  }, [selectedCountry]);
+
   const handleSubmit = async(event) => {
     event.preventDefault();
     console.log('submit');
@@ -46,18 +70,38 @@ function ThirdStep(props) {
     <Form className='input-form' onSubmit={handleSubmit}>
       <div className='col-md-6 offset-md-3'>
         <Form.Group controlId="country">
-            <Form.Label>Country</Form.Label>
-            <Form.Control
-              as="select"
-              name="country"
-              value={selectedCountry}
-              onChange={(event) => setSelectedCountry(event.target.value)}
-            >
-              {countries.map(({isoCode, name})=> (
+          <Form.Label>Country</Form.Label>
+          <Form.Control
+            as="select"
+            name="country"
+            value={selectedCountry}
+            onChange={(event) => setSelectedCountry(event.target.value)}
+          >
+            {countries.map(({isoCode, name})=> (
+              <option value={isoCode} key={isoCode}>{name}</option>
+            ))}
+          </Form.Control>
+        </Form.Group>
+
+        <Form.Group controlId="state">
+          <Form.Label>State/Province/Terrigory</Form.Label>
+          <Form.Control
+            as="select"
+            name="state"
+            value={selectedState}
+            onChange={(event) => setSelectedState(event.target.value)}
+          >
+            {states.length > 0 ? (
+              states.map(({ isoCode, name }) => (
                 <option value={isoCode} key={isoCode}>{name}</option>
-              ))}
-            </Form.Control>
-          </Form.Group>
+              ))
+            ) : (
+              <option value="" key="">No Value Found</option>
+            )}
+          </Form.Control>
+        </Form.Group>
+
+
       </div>
     </Form>
     
