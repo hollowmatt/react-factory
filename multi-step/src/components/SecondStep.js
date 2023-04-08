@@ -1,11 +1,14 @@
 import React from "react";
 import { useForm } from 'react-hook-form';
 import { Form, Button } from 'react-bootstrap';
+import { useNavigate } from "react-router-dom";
 
 function SecondStep(props) {
   const { register, handleSubmit, formState: { errors } } = useForm();
+  const history = useNavigate();
   function onSubmit(data) {
     console.log(data);
+    history('/third');
   }
 
   return(
