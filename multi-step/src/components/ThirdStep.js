@@ -137,7 +137,10 @@ function ThirdStep(props) {
             )}
           </Form.Control>
         </Form.Group>
-
+        
+        <Button variant="primary" type="submit" style={{marginTop: '1em'}}>
+          Register
+        </Button>
       </div>
     </Form>
     
