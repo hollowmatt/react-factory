@@ -1,0 +1,32 @@
+[
+  {
+    "title": "Home",
+    "icon": "home",
+    "href": "/",
+    "auth": false
+  },
+  {
+    "title": "Services",
+    "icon": "services",
+    "href": "/services",
+    "auth": false
+  },
+  {
+    "title": "Pricing",
+    "icon": "pricing",
+    "href": "/pricing",
+    "auth": false
+  },
+  {
+    "title": "Blog",
+    "icon": "blog",
+    "href": "/blog",
+    "auth": false
+  },
+  {
+    "title": "Profile",
+    "icon": "profile",
+    "href": "/profile",
+    "auth": true
+  }
+]
