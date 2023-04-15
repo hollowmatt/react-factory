@@ -1,4 +1,5 @@
 import React from "react";
+import { withRouter } from "./withRouter";
 
 function Progress() {
   return(
@@ -21,4 +22,4 @@ function Progress() {
   );
 }
 
-export default Progress;
+export default withRouter(Progress);
