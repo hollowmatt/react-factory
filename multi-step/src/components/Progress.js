@@ -1,19 +1,57 @@
 import React from "react";
 import { withRouter } from "./withRouter";
+import { Link } from 'react-router-dom';
 
-function Progress() {
+// import {
+//   useLocation,
+//   useNavigate,
+//   useParams,
+// } from "react-router-dom";
+
+// function withRouter(Component) {
+//   function ComponentWithRouterProp(props) {
+//     let location = useLocation();
+//     let navigate = useNavigate();
+//     let params = useParams();
+//     return(
+//       <Component
+//         {...props}
+//         router={{ location, navigate, params }}
+//       />
+//     );
+//   }
+//   return ComponentWithRouterProp;
+// }
+
+function Progress({router: {location: { pathname }}}) {
+  const isFirstStep = pathname === '/';
+  const isSecondStep = pathname ==='/second';
+  const isThirdStep = pathname === '/third';
+
   return(
     <React.Fragment>
       <div className="steps">
-        <div className="step">
+        <div className={`${isFirstStep ? 'step active' : 'step'}`}>
           <div>1</div>
-          <div>Step 1</div>
+          <div>
+            {isSecondStep || isThirdStep ? (
+              <Link to="/">Step 1</Link> 
+            ) : (
+              'Step 1'
+            )}
+          </div>
         </div>
-        <div className="step">
+        <div className={`${isSecondStep ? 'step active' : 'step'}`}>
           <div>2</div>
-          <div>Step 2</div>
+          <div>
+            {isThirdStep ? (
+              <Link to="/second">Step 2</Link>
+            ) : (
+              'Step 2'
+            )}
+          </div>
         </div>
-        <div className="step">
+        <div className={`${isThirdStep ? 'step active' : 'step'}`}>
           <div>3</div>
           <div>Step 3</div>
         </div>  
