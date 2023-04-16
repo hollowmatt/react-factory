@@ -4,10 +4,16 @@ import { Form, Button } from 'react-bootstrap';
 import { useNavigate } from "react-router-dom";
 
 function SecondStep(props) {
-  const { register, handleSubmit, formState: { errors } } = useForm();
+  const { user } = props;
+  const { register, handleSubmit, formState: { errors } } = useForm({
+    defaultValues: {
+      user_email: user.user_email,
+      user_password: user.user_password
+    }
+  });
   const history = useNavigate();
   function onSubmit(data) {
-    console.log(data);
+    props.updateUser(data);
     history('/third');
   }
 

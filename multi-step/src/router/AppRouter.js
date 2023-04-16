@@ -10,6 +10,7 @@ function AppRouter() {
 
   const updateUser = (data) => {
     setUser((prevUser) => ({...prevUser, ...data}));
+    console.log(user);
   };
 
   const resetUser = () => {
@@ -22,8 +23,8 @@ function AppRouter() {
         <Header />
         <Routes>
           <Route element={<FirstStep user={user} updateUser={updateUser} />} path="/"/>
-          <Route element={<SecondStep />} path="/second"/>
-          <Route element={<ThirdStep />} path="/third"/>
+          <Route element={<SecondStep user={user} updateUser={updateUser}/>} path="/second"/>
+          <Route element={<ThirdStep user={user}/>} path="/third"/>
         </Routes>
       </div>
     </BrowserRouter>
