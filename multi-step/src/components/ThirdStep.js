@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Form, Button } from 'react-bootstrap';
 import {Country, State, City} from 'country-state-city';
+import { motion } from "framer-motion";
 import axios from 'axios';
 import { BASE_API_URL } from '../utils/constants';
 
@@ -87,7 +88,7 @@ function ThirdStep(props) {
 
   return(
     <Form className='input-form' onSubmit={handleSubmit}>
-      <div className='col-md-6 offset-md-3'>
+      <motion.div className='col-md-6 offset-md-3' initial={{ x: '-100vw' }} animate={{ x: 0 }} transition={{ stiffness: 150}}>
         <Form.Group controlId="country">
           <Form.Label>Country</Form.Label>
           <Form.Control
@@ -141,7 +142,7 @@ function ThirdStep(props) {
         <Button variant="primary" type="submit" style={{marginTop: '1em'}}>
           Register
         </Button>
-      </div>
+      </motion.div>
     </Form>
     
   );
