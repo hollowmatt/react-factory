@@ -1,4 +1,4 @@
-# Multi Step Reg App with MERN
+# Multi Step Reg App with MERN (Front End)
 
 This is based on[this site](https://www.freecodecamp.org/news/build-a-multi-step-registration-app-with-animated-transitions-using-mern-stack/)
 
