@@ -30,7 +30,7 @@ router.post('/login', async (req, res) => {
   try {
     const user = await User.findOne({ user_email: req.body.user_email});
     if(!user) {
-      return res.status(400).send('Invalid credentials..001');
+      return res.status(400).send('Invalid credentials.');
     }
 
     const isMatch = await bcrypt.compare(
@@ -39,7 +39,7 @@ router.post('/login', async (req, res) => {
     );
 
     if(!isMatch) {
-      return res.status(400).send('Invalid credentials..002');
+      return res.status(400).send('Invalid credentials.');
     }
 
     const { user_password, ...rest } = user.toObject();
