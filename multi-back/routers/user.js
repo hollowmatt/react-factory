@@ -26,4 +26,28 @@ router.post('/register', async (req, res) => {
   }
 });
 
+router.post('/login', async (req, res) => {
+  try {
+    const user = await User.findOne({ user_email: req.body.user_email});
+    if(!user) {
+      return res.status(400).send('Invalid credentials..001');
+    }
+
+    const isMatch = await bcrypt.compare(
+      req.body.user_password,
+      user.user_password
+    );
+
+    if(!isMatch) {
+      return res.status(400).send('Invalid credentials..002');
+    }
+
+    const { user_password, ...rest } = user.toObject();
+    return res.send(rest);
+  } catch(err) {
+    return res.status(500).send('Something went awry');
+    console.log("error in the system: ", err);
+  }
+});
+
 module.exports = router;
