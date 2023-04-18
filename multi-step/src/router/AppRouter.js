@@ -24,7 +24,7 @@ function AppRouter() {
         <Routes>
           <Route element={<FirstStep user={user} updateUser={updateUser} />} path="/"/>
           <Route element={<SecondStep user={user} updateUser={updateUser}/>} path="/second"/>
-          <Route element={<ThirdStep user={user}/>} path="/third"/>
+          <Route element={<ThirdStep user={user} updateUser={updateUser} resetUser={resetUser}/>} path="/third"/>
         </Routes>
       </div>
     </BrowserRouter>

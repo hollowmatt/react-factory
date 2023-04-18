@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import { BASE_API_URL } from '../utils/constants';
+import { useNavigate } from "react-router-dom";
 
 function ThirdStep(props) {
   const [countries, setCountries] = useState([]);
@@ -15,6 +16,7 @@ function ThirdStep(props) {
   const [selectedCountry, setSelectedCountry] = useState('');
   const [selectedState, setSelectedState] = useState('');
   const [selectedCity, setSelectedCity] = useState('');
+  const navigate = useNavigate();
 
   useEffect(() => {
     const getCountries = async() => {
@@ -86,7 +88,7 @@ function ThirdStep(props) {
     event.preventDefault();
     
     try {
-      const { user } = props;
+      const { user, resetUser } = props;
       const updatedData = {
         country: countries.find((country) => country.isoCode === selectedCountry)?.name,
         state: states.find((state) => state.isoCode === selectedState)?.name || '',
@@ -96,10 +98,12 @@ function ThirdStep(props) {
         ...user,
         ...updatedData
       });
-      Swal.fire("Registered successfully", 'success').then(
+      Swal.fire({title:"Awesome", text: "Registered successfully", icon: 'success'}).then(
         (result) => {
           if(result.isConfirmed || result.isDismissed) {
-            props.history.push('/');
+            console.log('here');
+            resetUser();
+            navigate('/');
           }
         }
       );
