@@ -3,6 +3,7 @@ import { Form, Button } from 'react-bootstrap';
 import {Country, State, City} from 'country-state-city';
 import { motion } from "framer-motion";
 import axios from 'axios';
+import Swal from 'sweetalert2';
 import { BASE_API_URL } from '../utils/constants';
 
 function ThirdStep(props) {
@@ -95,13 +96,23 @@ function ThirdStep(props) {
         ...user,
         ...updatedData
       });
+      Swal.fire("Registered successfully", 'success').then(
+        (result) => {
+          if(result.isConfirmed || result.isDismissed) {
+            props.history.push('/');
+          }
+        }
+      );
     } catch (error) {
       if(error.response) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops',
+          text: error.response.data
+        });
         console.log('error', error.response.data);
-        alert("error: " + error.response.data);
       }
     }
-    console.log('submit');
   };
 
   return(
