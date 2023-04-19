@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Navigate, Route } from 'react-router-dom';
 import FirstStep from "../components/FirstStep";
 import SecondStep from "../components/SecondStep";
 import ThirdStep from "../components/ThirdStep";
@@ -27,6 +27,7 @@ function AppRouter() {
           <Route element={<SecondStep user={user} updateUser={updateUser}/>} path="/second"/>
           <Route element={<ThirdStep user={user} updateUser={updateUser} resetUser={resetUser}/>} path="/third"/>
           <Route element={<Login/>} path="/login"/>
+          <Route path="*" element={<Navigate to="/" replace />}/>
         </Routes>
       </div>
     </BrowserRouter>
