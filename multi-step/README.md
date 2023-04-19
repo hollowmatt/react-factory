@@ -8,4 +8,6 @@ Updated info on React Hook Form is [here](https://react-hook-form.com/get-starte
 
 React Router v6 information is[here](https://reactrouter.com/en/main/upgrading/v5)
 
+Original GitHub repo is [here](https://github.com/myogeshchavan97/multi-step-form-using-mern)
 
+__NOTES:__ Needed to make several modifications to this app, as the original article and code used older versions of React Router, Country-State-City, React Hook Form, and Bcrypt.  
