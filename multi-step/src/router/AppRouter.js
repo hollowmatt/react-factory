@@ -4,6 +4,7 @@ import FirstStep from "../components/FirstStep";
 import SecondStep from "../components/SecondStep";
 import ThirdStep from "../components/ThirdStep";
 import Header from "../components/Header";
+import Login from "../components/Login";
 
 function AppRouter() {  
   const [user, setUser] = useState({});
@@ -25,6 +26,7 @@ function AppRouter() {
           <Route element={<FirstStep user={user} updateUser={updateUser} />} path="/"/>
           <Route element={<SecondStep user={user} updateUser={updateUser}/>} path="/second"/>
           <Route element={<ThirdStep user={user} updateUser={updateUser} resetUser={resetUser}/>} path="/third"/>
+          <Route element={<Login/>} path="/login"/>
         </Routes>
       </div>
     </BrowserRouter>
