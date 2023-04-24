@@ -1,8 +1,8 @@
 import Welcome from './Welcome';
 
-function Main() {
+function Main({name}) {
   return(
-    <Welcome />
+    <Welcome name={name}/>
   )
 }
 

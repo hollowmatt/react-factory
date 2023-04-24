@@ -1,6 +1,8 @@
-function Welcome() {
+function Welcome({name}) {
   return(
-    <p>Welcome</p>
+    <section>
+      <h1>Welcome, {name}!</h1>
+    </section>
   )
 };
 
