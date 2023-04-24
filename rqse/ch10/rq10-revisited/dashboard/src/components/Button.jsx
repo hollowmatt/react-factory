@@ -2,7 +2,7 @@ const BUTTON_STYLE = {
   display: "inline-block",
   padding: "4px 10px",
   background: "transparent",
-  border: "0:,"
+  border: "0px",
 };
 
 function Button ({children}) {
