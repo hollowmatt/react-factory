@@ -1,12 +1,15 @@
+import { createContext } from 'react';
 import Header from './Header';
 import Main from './Main';
 
+export const NameContext = createContext();
+
 function Dashbaord({name}) {
   return (
-    <div>
-      <Header name={name}/>
-      <Main name={name}/>
-    </div>
+    <NameContext.Provider value={name}>
+      <Header />
+      <Main />
+    </NameContext.Provider>
   );
 }
 

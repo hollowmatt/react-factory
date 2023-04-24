@@ -7,13 +7,13 @@ const HEADER_STYLE = {
   borderBottom: "1px solid",
 };
 
-function Header({name}) {
+function Header() {
   return(
     <header style={HEADER_STYLE}>
       <Button>Home</Button>
       <Button>Groups</Button>
       <Button>Profile</Button>
-      <UserButton name={name}/>
+      <UserButton/>
     </header>
   );
 }
