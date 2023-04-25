@@ -1,9 +1,8 @@
-import { useContext } from 'react';
 import Button from './Button';
-import { NameContext } from './Dashboard';
+import { useName } from '../hooks/UseName';
 
 function UserButton(){
-  const name = useContext(NameContext);
+  const name = useName();
   return(
     <Button>👤 {name}</Button>
   );

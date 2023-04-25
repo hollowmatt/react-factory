@@ -1,8 +1,6 @@
-import { createContext } from 'react';
+import { NameContext } from '../hooks/UseName';
 import Header from './Header';
 import Main from './Main';
-
-export const NameContext = createContext();
 
 function Dashbaord({name}) {
   return (

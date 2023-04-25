@@ -1,5 +1,5 @@
-import { useContext, useReducer } from "react";
-import { NameContext } from "./Dashboard";
+import { useReducer } from "react";
+import { useName } from "../hooks/UseName";
 
 function reducer(state, { type }) {
   switch (type) {
@@ -13,7 +13,7 @@ function reducer(state, { type }) {
 }
 
 function Welcome() {
-  const name = useContext(NameContext);
+  const name = useName();
   const [counter, dispatch] = useReducer(reducer, 0);
   return(
     <section>
