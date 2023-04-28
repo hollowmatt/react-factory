@@ -1,9 +1,10 @@
+import { memo } from 'react';
 import Welcome from './Welcome';
 
-function Main() {
+const Main = memo(function Main() {
   return(
     <Welcome />
   )
-}
+});
 
 export default Main;

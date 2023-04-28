@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import Button from './Button';
 import UserButton from './UserButton';
 
@@ -7,7 +8,7 @@ const HEADER_STYLE = {
   borderBottom: "1px solid",
 };
 
-function Header() {
+const Header = memo(function Header() {
   return(
     <header style={HEADER_STYLE}>
       <Button>Home</Button>
@@ -16,6 +17,6 @@ function Header() {
       <UserButton/>
     </header>
   );
-}
+});
 
 export default Header;
