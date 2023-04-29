@@ -4,7 +4,7 @@ export function Button({ children, ...rest} ) {
   const { isDarkMode } = useDarkMode();
   const style = {
     color: 'inherit',
-    backgroundColor: isDarkMode ? 'black' : 'white',
+    backgroundColor: isDarkMode ? 'black' : '#CCC',
     boxSizing: 'border-box',
     border: '1px solid',
   };
