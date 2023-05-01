@@ -1,12 +1,12 @@
 
-export function Actions(state, { type, payload }) {
+export function reducer(state, { type, payload }) {
   switch (type) {
     case "LOADING":
-      return {...state, status: "Loading"};
+      return {...state, status: "LOADING"};
     case "FAILURE":
-      return {...state, status: "Failure", error: payload};
+      return {...state, status: "FAILURE", error: payload};
     case "SUCCESS":
-      return {...state, status: "Success", result: payload};
+      return {...state, status: "SUCCESS", result: payload};
     default:
       return state;
   }
