@@ -1,26 +1,60 @@
-import React from "react";
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Form, Button } from 'react-bootstrap';
-import { useNavigate } from "react-router-dom";
-import { motion } from "framer-motion";
+import axios from 'axios';
+import { BASE_API_URL } from '../utils/constants';
 
-function SecondStep(props) {
-  const { user } = props;
+function Login() {
   const { register, handleSubmit, formState: { errors } } = useForm({
     defaultValues: {
-      user_email: user.user_email,
-      user_password: user.user_password
+      user_email: '',
+      user_password: ''
     }
   });
-  const history = useNavigate();
-  function onSubmit(data) {
-    props.updateUser(data);
-    history('/third');
-  }
+  const [successMessage, setSuccessMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
+  const [userDetails, setUserDetails] = useState('');
+
+  const onSubmit = async(data) => {
+    console.log(data);
+
+    try {
+      const response = await axios.post(`${BASE_API_URL}/login`, data);
+      setSuccessMessage('User found');
+      setErrorMessage('');
+      setUserDetails(response.data);
+    } catch(err) {
+      console.log(err);
+      if(err.response) {
+        console.log('error: ', err.response.data);
+        setErrorMessage(err.response.data);
+        setUserDetails('');
+      }
+    }
+  };
 
   return(
     <Form className="input-form" onSubmit={handleSubmit(onSubmit)}>
-      <motion.div className="col-md-6 offset-md-3" initial={{ x: '-100vw' }} animate={{ x: 0 }} transition={{ stiffness: 150}}>
+      <div className="col-md-6 offset-md-3">
+        {errorMessage ? (
+          <p className="errorMsg login-error">{errorMessage}</p>
+        ) : (
+          <div>
+            <p className="successMsg">{successMessage}</p>
+
+            {userDetails && (
+              <div className="user-details">
+                <p>Following are the user details:</p>
+                <div>First name: {userDetails.first_name}</div>
+                <div>Last name: {userDetails.last_name}</div>
+                <div>Email: {userDetails.user_email}</div>
+                <div>Country: {userDetails.country}</div>
+                <div>State: {userDetails.state}</div>
+                <div>City: {userDetails.city}</div>
+              </div>
+            )}
+          </div>
+        )}
         <Form.Group controlId="email">
           <Form.Label>Email</Form.Label>
           <Form.Control
@@ -34,7 +68,7 @@ function SecondStep(props) {
           {errors.user_email?.type === 'required' && <p className="errorMsg">Email is required</p>}
           {errors.user_email?.type === 'pattern' &&  <p className="errorMsg">Invalid email address</p>}
         </Form.Group>
-        
+
         <Form.Group controlId="password">
           <Form.Label>Password</Form.Label>
           <Form.Control
@@ -50,11 +84,11 @@ function SecondStep(props) {
         </Form.Group>
 
         <Button variant="primary" type="submit" style={{marginTop: '1em'}}>
-          Next
+          Check Login
         </Button>
-      </motion.div>
+      </div>
     </Form>
   );
 }
 
-export default SecondStep;
+export default Login;

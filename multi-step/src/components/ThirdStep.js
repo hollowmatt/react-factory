@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { Form, Button } from 'react-bootstrap';
 import {Country, State, City} from 'country-state-city';
+import { motion } from "framer-motion";
 import axios from 'axios';
+import Swal from 'sweetalert2';
 import { BASE_API_URL } from '../utils/constants';
+import { useNavigate } from "react-router-dom";
 
 function ThirdStep(props) {
   const [countries, setCountries] = useState([]);
@@ -13,6 +16,7 @@ function ThirdStep(props) {
   const [selectedCountry, setSelectedCountry] = useState('');
   const [selectedState, setSelectedState] = useState('');
   const [selectedCity, setSelectedCity] = useState('');
+  const navigate = useNavigate();
 
   useEffect(() => {
     const getCountries = async() => {
@@ -82,12 +86,42 @@ function ThirdStep(props) {
 
   const handleSubmit = async(event) => {
     event.preventDefault();
-    console.log('submit');
+    
+    try {
+      const { user, resetUser } = props;
+      const updatedData = {
+        country: countries.find((country) => country.isoCode === selectedCountry)?.name,
+        state: states.find((state) => state.isoCode === selectedState)?.name || '',
+        city: selectedCity
+      };
+      await axios.post(`${BASE_API_URL}/register`, {
+        ...user,
+        ...updatedData
+      });
+      Swal.fire({title:"Awesome", text: "Registered successfully", icon: 'success'}).then(
+        (result) => {
+          if(result.isConfirmed || result.isDismissed) {
+            console.log('here');
+            resetUser();
+            navigate('/');
+          }
+        }
+      );
+    } catch (error) {
+      if(error.response) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops',
+          text: error.response.data
+        });
+        console.log('error', error.response.data);
+      }
+    }
   };
 
   return(
     <Form className='input-form' onSubmit={handleSubmit}>
-      <div className='col-md-6 offset-md-3'>
+      <motion.div className='col-md-6 offset-md-3' initial={{ x: '-100vw' }} animate={{ x: 0 }} transition={{ stiffness: 150}}>
         <Form.Group controlId="country">
           <Form.Label>Country</Form.Label>
           <Form.Control
@@ -141,7 +175,7 @@ function ThirdStep(props) {
         <Button variant="primary" type="submit" style={{marginTop: '1em'}}>
           Register
         </Button>
-      </div>
+      </motion.div>
     </Form>
     
   );
