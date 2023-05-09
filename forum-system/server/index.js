@@ -2,7 +2,7 @@ const express = require("express");
 const crypto = require('crypto');
 const cors = require("cors");
 const app = express();
-const PORT = 4040;
+const PORT = process.env.PORT || 4040;
 
 const users = [];
 const usersInfo = [];

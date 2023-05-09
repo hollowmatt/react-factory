@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
+const BASE_PATH = process.env.REACT_APP_API_ADDRESS;
+
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -14,7 +16,7 @@ function Login() {
   };
 
   const loginUser = () => {
-    fetch("http://localhost:4040/api/login", {
+    fetch(BASE_PATH + "/api/login", {
       method: "POST",
       body: JSON.stringify({
         email,

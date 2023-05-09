@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 
+const BASE_PATH = process.env.REACT_APP_API_ADDRESS;
+
 
 function Replies() {
   const [replyList, setReplyList] = useState([]);
@@ -11,7 +13,7 @@ function Replies() {
 
   useEffect(() => {
     const fetchReplies = () => {
-      fetch("http://localhost:4040/api/thread/replies", {
+      fetch(BASE_PATH + "/api/thread/replies", {
         method: "POST",
         body: JSON.stringify({
           id,
@@ -31,7 +33,7 @@ function Replies() {
   },[id]);
 
   const addReply =() => {
-    fetch("http://localhost:4040/api/create/reply", {
+    fetch(BASE_PATH + "/api/create/reply", {
       method: "POST",
       body: JSON.stringify({
         id,

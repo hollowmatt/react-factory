@@ -4,6 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import Likes from './Likes';
 import Comments from './Comments';
 
+const BASE_PATH = process.env.REACT_APP_API_ADDRESS;
+
 function Home() {
   const navigate = useNavigate();
   const [thread, setThread] = useState("");
@@ -14,7 +16,7 @@ function Home() {
       if(!localStorage.getItem("_id")) {
         navigate("/");
       } else {
-        fetch("http://localhost:4040/api/all/threads", {
+        fetch(BASE_PATH + "/api/all/threads", {
         })
           .then((res) => res.json())
           .then((data) => setThreadList(data.threads))
@@ -25,7 +27,7 @@ function Home() {
   }, [navigate]);
 
   const createThread = () => {
-    fetch("http://localhost:4040/api/create/thread", {
+    fetch(BASE_PATH + "/api/create/thread", {
       method: "POST",
       body: JSON.stringify({
           thread,

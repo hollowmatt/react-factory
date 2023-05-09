@@ -1,8 +1,10 @@
 import React from 'react';
 
+const BASE_PATH = process.env.REACT_APP_API_ADDRESS;
+
 function likes({numberOfLikes, threadId}) {
   const handleLikes = () => {
-    fetch("http://localhost:4040/api/thread/like", {
+    fetch(BASE_PATH + "/api/thread/like", {
       method: "POST",
       body: JSON.stringify({
         threadId,
