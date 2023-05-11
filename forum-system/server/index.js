@@ -54,7 +54,7 @@ app.post("/api/thread/like", (req, res) => {
   if (authReaction.length === 0) {
     threadLikes.push(userId);
     return res.json({
-      message: "You've like it"
+      message: "You've liked it"
     });
   }
   res.json({
@@ -114,7 +114,7 @@ app.post("/api/create/thread", async(req, res) => {
     replies: [],
     likes: [],
   });
-
+  
   res.json({
     message: "Thread created",
     threads: threadList,
