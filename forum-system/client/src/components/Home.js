@@ -3,6 +3,7 @@ import Nav from './Nav';
 import { useNavigate } from 'react-router-dom';
 import Likes from './Likes';
 import Comments from './Comments';
+import { Button } from '@chakra-ui/react';
 
 const BASE_PATH = process.env.REACT_APP_API_ADDRESS;
 
@@ -73,7 +74,7 @@ function Home() {
               onChange={(e) => setThread(e.target.value)}
             />
           </div>
-          <button className='homeBtn'>Create Thread</button>
+          <Button colorScheme='blue' variant='outline' type='submit'>Create Thread</Button>
         </form>
         <div className='thread__container'>
           {threadList.map((thread) => (

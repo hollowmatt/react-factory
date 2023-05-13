@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import { Button, Heading } from '@chakra-ui/react';
+import Nav from './Nav';
 
 const BASE_PATH = process.env.REACT_APP_API_ADDRESS;
 
@@ -59,34 +61,38 @@ function Replies() {
   };
 
   return(
-    <main className='replies'>
-      <h1 className='repliesTitle'>{title}</h1>
+    <div>
+      <Nav/>
+      <main className='replies'>
+        <Heading size="md">{title}</Heading>
+        <form className='modal__content' onSubmit={handleSubmit}>
+          <label htmlFor='reply'>Reply to thread</label>
+          <textarea
+            rows={5}
+            value={reply}
+            onChange={(evt) => setReply(evt.target.value)}
+            type='text'
+            name='reply'
+            id='reply'
+            className='modalInput'
+            style={{border: 'solid', borderColor: '#1A73E8'}}
+          />
+          <Button colorScheme='blue' variant='outline' type='submit'>Send</Button>
+        </form>
 
-      <form className='modal__content' onSubmit={handleSubmit}>
-        <label htmlFor='reply'>Reply to thread</label>
-        <textarea
-          rows={5}
-          value={reply}
-          onChange={(evt) => setReply(evt.target.value)}
-          type='text'
-          name='reply'
-          id='reply'
-          className='modalInput'
-        />
-        <button className='modalBtn'>Send</button>
-      </form>
-
-      <div className='thread__container'>
-        {replyList.map((reply) => (
-          <div className='thread__item'>
-            <p>{reply.text}</p>
-            <div className='react__container'>
-              <p style={{opacity: "0.5"}}>by {reply.name}</p>
+        <div className='thread__container'>
+          {replyList.map((reply) => (
+            <div className='thread__item'>
+              <p>{reply.text}</p>
+              <div className='react__container'>
+                <p style={{opacity: "0.5"}}>by {reply.name}</p>
+              </div>
             </div>
-          </div>
-        ))}
-      </div>
-    </main>
+          ))}
+        </div>
+      </main>
+    </div>
+    
   );
 }
 
