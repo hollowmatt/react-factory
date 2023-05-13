@@ -1,4 +1,4 @@
-import { Card, Stack, Image, CardBody, Heading, Flex } from "@chakra-ui/react";
+import { Card, Stack, Image, CardBody, Heading, Flex, Button } from "@chakra-ui/react";
 import React, { useState } from "react";
 import { Link, useNavigate } from 'react-router-dom';
 
@@ -91,7 +91,8 @@ function Register() {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
               />
-              <button className='registerBtn'>REGISTER</button>
+              <Button colorScheme='blue' variant='outline' type='submit'>Register</Button>
+              <br/>
               <p>
                   Have an account? <Link to='/'>Sign in</Link>
               </p>
